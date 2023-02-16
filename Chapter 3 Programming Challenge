@@ -1,6 +1,184 @@
-const int SIZE = 10;
+/*1. Minimum / Maximum
+     Write a program that asks the user to enter two numbers.The program should use the
+     conditional operator to determine which number is the smaller and which is the larger.
+     
+     int a, b;
+     cout << "Enter two numbers and I will compare it for you ->";
+     cin >> a >> b;
+     cout << ((a > b) ? "value 1 greater than 2" : "value 2 greater than 1");
+*/
+
+/* 2. Roman Numeral Converter
+     Write a program that asks the user to enter a number within the range of 1 through
+     10. Use a switch statement to display the Roman numeral version of that number.
+     Input Validation : Do not accept a number less than 1 or greater than 10.
+     
+     string Roman[10] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+     int input;
+     cout << "Enter the number in a range of 1-10 and we will convert it to Roman number\n";
+     while (cin >> input && (input < 1 || input > 10))
+         cout << "Number should be between 1-10. Enter again: ";
+
+     cout << "Modern numeral: " << input 
+          << "\nRoman numeral: " << Roman[input - 1] << endl;
+*/
+
+/*3. Magic Dates
+        The date June 10, 1960 is special because when we write it in the following format, the
+        month times the day equals the year.
+        6 / 10 / 60
+        Write a program that asks the user to enter a month(in numeric form), a day, and a
+        two - digit year.The program should then determine whether the month times the day is
+        equal to the year.If so, it should display a message saying the date is magic.Otherwise
+        it should display a message saying the date is not magic.
+
+    short month, day, year;
+    cout << "Enter a month: ";
+    cin >> month;
+    cout << "Enter day: ";
+    cin >> day;
+    cout << "Enter year (only last two digits): ";
+    cin >> year;
+
+    if (month * day == year)
+        cout << "The date is magic.\n";
+    else
+        cout << "The date is not magic.\n";
+*/
+  
+/*4. Areas of Rectangles
+     The area of a rectangle is the rectangle’s length times its width.Write a program that
+     asks for the lengthand width of two rectangles.The program should tell the user which
+     rectangle has the greater area, or if the areas are the same.
+        
+    float length1, length2,
+          width1, width2;
+    float area1, area2;
+    cout << "Enter the length of rectangle 1 and 2: ";
+    cin >> length1 >> length2;
+    cout << "Width 1 and 2: ";
+    cin >> width1 >> width2;
+
+    area1 = length1 * width1;
+    area2 = length2 * width2;
+
+    cout << ((area1 > area2) ? "rectangle 1 > rectangle 2" : (area2 > area1) ? "rectangle 2 > rectangle 1" : "both are the same");
+*/
+
+/*6. Mass and Weight
+       Scientists measure an object’s mass in kilograms and its weight in newtons.If you know
+       the amount of mass that an object has, you can calculate its weight, in newtons, with
+       the following formula :
+       Weight = mass x 9.8
+       Write a program that asks the user to enter an object’s mass, and then calculates and
+       displays its weight.If the object weighs more than 1,000 newtons, display a message
+       indicating that it is too heavy.If the object weighs less than 10 newtons, display a message
+       indicating that the object is too light.
+	 
+    const float Gforce = 9.8; // unit (m/s^2)
+    float mass, weight;
+    cout << "Object's mass (in kg): ";
+    cin >> mass;
+    weight = mass * Gforce; 
+    cout << "Object's weight is : " << weight << " kg.(m/s^2)";
+*/
+
+/*7. Time Calculator
+        Write a program that asks the user to enter a number of seconds.
+        • There are 60 seconds in a minute.If the number of seconds entered by the user is
+        greater than or equal to 60, the program should display the number of minutes in
+        that many seconds.
+        • There are 3,600 seconds in an hour.If the number of seconds entered by the user is
+        greater than or equal to 3,600, the program should display the number of hours in
+        that many seconds.
+        • There are 86,400 seconds in a day.If the number of seconds entered by the user is
+        greater than or equal to 86,400, the program should display the number of days in
+        that many seconds.
+
+            // Variables
+        int seconds;
+        float num_mins;
+
+        // Ask the user to enter a number of seconds
+        cout << "\nEnter a number of seconds: ";
+        cin >> seconds;
+
+        // Format decimal percision at 2 decimal places.
+        cout << setprecision(2) << fixed;
+
+        // calculate
+        if (seconds <= 59)
+        {
+            cout << seconds;
+            cout << " is less that 60 seconds." << endl;
+        }
+        else if (seconds >= 60 && seconds < 3600)
+        {
+            num_mins = seconds / 60.0;
+            cout << num_mins << " minutes in ";
+            cout << seconds << " seconds" << endl;
+        }
+        else if (seconds >= 3600 && seconds < 86400)
+        {
+            num_mins = seconds / 3600.0;
+            cout << num_mins << " hours in ";
+            cout << seconds << " seconds" << endl;
+        }
+        else if (seconds >= 86400)
+        {
+            num_mins = seconds / 86400.0;
+            cout << num_mins << " days in ";
+            cout << seconds << " seconds" << endl;
+        }
+
+        // Formatting
+        cout << endl << endl;
+*/
+
+/*5. Body Mass Index
+        Write a program that calculates and displays a person’s body mass index(BMI).The
+        BMI is often used to determine whether a person with a sedentary lifestyle is overweight
+        or underweight for his or her height.A person’s BMI is calculated with the
+        following formula :
+        BMI = weight x 703 / height2
+        where weight is measured in pounds and height is measured in inches.The program
+        should display a message indicating whether the person has optimal weight, is underweight,
+        or is overweight.A sedentary person’s weight is considered to be optimal if his
+        or her BMI is between 18.5 and 25. If the BMI is less than 18.5, the person is considered
+        to be underweight.If the BMI value is greater than 25, the person is considered
+        to be overweight.
+        
+        float weight, height, BMI;
+        cout << "Weight (lbs): ";
+        cin >> weight;
+        cout << "Height (inches): ";
+        cin >> height;
+
+        BMI = weight * 703 / pow(height, 2.0);
+
+        if (BMI > 25)
+            cout << "Over weight.";
+        else if (BMI >= 18.5 || BMI <= 25)
+            cout << "Normal.";
+        else if (BMI < 18.5)
+                cout << "Under weight.";
+*/
+
+/*8.Color Mixer
+	The colors red, blue, and yellow are known as the primary colors because they cannot
+	be made by mixing other colors. When you mix two primary colors, you get a secondary
+	color, as shown here:
+	When you mix red and blue, you get purple.
+	When you mix red and yellow, you get orange.
+	When you mix blue and yellow, you get green.
+	Write a program that prompts the user to enter the names of two primary colors to
+	mix. If the user enters anything other than “red,” “blue,” or “yellow,” the program
+	should display an error message. Otherwise, the program should display the name of
+	the secondary color that results by mixing two primary colors.
+
+    const int SIZE = 10;
     char color1[SIZE],
-        color2[SIZE];
+    color2[SIZE];
 
     cout << "Please enter two primary colors to mix \n";
     cout << "First Color: ";
@@ -31,11 +209,11 @@ const int SIZE = 10;
 */
 /*
  9. Change for a Dollar Game 
- Create a change-counting game that gets the user to enter the number of coins required to make 
- exactly one dollar. The program should ask the user to enter the number of pennies, nickles, dimes,
- and quarters. If the total value of the coins entered is equal to one dollar, the program should 
- congratulate the user for winning the game. Otherwise, the program should display a message indicating 
- whether the amount entered was more than or less than one dollar.
+	 Create a change-counting game that gets the user to enter the number of coins required to make 
+	 exactly one dollar. The program should ask the user to enter the number of pennies, nickles, dimes,
+	 and quarters. If the total value of the coins entered is equal to one dollar, the program should 
+	 congratulate the user for winning the game. Otherwise, the program should display a message indicating 
+	 whether the amount entered was more than or less than one dollar.
 
 
 	//We could do floating point number but we will do it as interger counting toward 100 cents
@@ -70,19 +248,19 @@ const int SIZE = 10;
 
 /*10. Days in a Month
 
-Write a program that asks the user to enter the month (letting the user enter an integer in the range of 1 through 12) and the year.
-The program should then display the number of days in that month. Use the following criteria to identify leap years:
+	Write a program that asks the user to enter the month (letting the user enter an integer in the range of 1 through 12) and the year.
+	The program should then display the number of days in that month. Use the following criteria to identify leap years:
 
-1. Determine whether the year is divisible by 100. If it is, then it is a leap year if and only if it is divisible by 400. For example,
-2000 is a leap year but 2001 is not.
-2. If the year is not divisible by 100, then it is a leap year if and if only it is divisible by 4. For example, 2008 is a leap year but
-2009 is not.
+	1. Determine whether the year is divisible by 100. If it is, then it is a leap year if and only if it is divisible by 400. For example,
+	2000 is a leap year but 2001 is not.
+	2. If the year is not divisible by 100, then it is a leap year if and if only it is divisible by 4. For example, 2008 is a leap year but
+	2009 is not.
 
-Here is a sample run of the program :
+	Here is a sample run of the program :
 
-Enter a month (1-12): 2[Enter]
-Enter a year: 2008 [Enter]
-29 days
+	Enter a month (1-12): 2[Enter]
+	Enter a year: 2008 [Enter]
+	29 days
 
 */
 	int month, year;
@@ -161,13 +339,13 @@ Enter a year: 2008 [Enter]
 	
 /*11. Math Tutor
 
-This is a modication of Programming Challenge 17 from chapter 3. Wrtie a program that can be used as a math tutor for a young 
-student. The program should display two random numbers that are to be added, such as:
-  247
-+ 129
-------
-The program should wait for the student to enter the answer. If the answer is correct, a message of congratulations should be printed.
-If the answer is incorrect, a message should be printed showing the correct answer.
+	This is a modication of Programming Challenge 17 from chapter 3. Wrtie a program that can be used as a math tutor for a young 
+	student. The program should display two random numbers that are to be added, such as:
+	  247
+	+ 129
+	------
+	The program should wait for the student to enter the answer. If the answer is correct, a message of congratulations should be printed.
+	If the answer is incorrect, a message should be printed showing the correct answer.
 
 
 	const int MAX_NUMBER = 1000,
