@@ -1,0 +1,674 @@
+const int SIZE = 10;
+    char color1[SIZE],
+        color2[SIZE];
+
+    cout << "Please enter two primary colors to mix \n";
+    cout << "First Color: ";
+    cin >> color1;
+    cout << "Second Color: ";
+    cin >> color2;
+
+    //Convert the string to lower case, in case user enter capital letters
+    cout << strlen(color1) << " " << strlen(color2) << endl;
+    for (int i = 0; i < strlen(color1); i++)
+        color1[i] = tolower(color1[i]);
+
+    cout << endl;
+
+    for (int i = 0; i < strlen(color2); i++)
+        color2[i] = tolower(color2[i]);
+
+
+    //strmp returns 0 if two values are equal, so we need to negate it in if condition
+    if ((!strcmp(color1, "red") && !strcmp(color2, "blue")) || (!strcmp(color1, "blue") && !strcmp(color2, "red")))
+        cout << "Purple.\n";
+    else if ((!strcmp(color1, "red") && !strcmp(color2, "yellow")) || (!strcmp(color1, "yellow") && !strcmp(color2, "red")))
+        cout << "Orange.\n";
+    else if ((!strcmp(color1, "blue") && !strcmp(color2, "yellow")) || (!strcmp(color1, "yellow") && !strcmp(color2, "blue")))
+        cout << "Green\n";
+    else
+        cout << "Error. Can't mix this colors.\n";
+*/
+/*
+ 9. Change for a Dollar Game 
+ Create a change-counting game that gets the user to enter the number of coins required to make 
+ exactly one dollar. The program should ask the user to enter the number of pennies, nickles, dimes,
+ and quarters. If the total value of the coins entered is equal to one dollar, the program should 
+ congratulate the user for winning the game. Otherwise, the program should display a message indicating 
+ whether the amount entered was more than or less than one dollar.
+
+
+	//We could do floating point number but we will do it as interger counting toward 100 cents
+	//which is equal 1 dollar
+
+	const int PEN = 1, NICK = 5, DIME = 10, QUART = 25; 
+	int penny, nickle, dime, quarter;
+
+	cout << "Please enter number of coins (pennies, nickles, dimes, and quarters) in order to make it a dollar\n";
+	cout << "Penny: ";
+	cin >> penny;
+	cout << "Nickle: ";
+	cin >> nickle;
+	cout << "Dime: ";
+	cin >> dime;
+	cout << "Quarter: ";
+	cin >> quarter;
+
+	int total;
+	total = penny * PEN + nickle * NICK + dime * DIME + quarter * QUART;
+
+	cout << "The amount you entered " << total << endl;
+	
+	if (total == 100)
+		cout << "Congratulation! You passed it.\n";
+	else if (total < 100)
+		cout << "The amount you entered is less than 100.\n";
+	else
+		cout << "The amount is greater than 100.\n";
+
+*/
+
+/*10. Days in a Month
+
+Write a program that asks the user to enter the month (letting the user enter an integer in the range of 1 through 12) and the year.
+The program should then display the number of days in that month. Use the following criteria to identify leap years:
+
+1. Determine whether the year is divisible by 100. If it is, then it is a leap year if and only if it is divisible by 400. For example,
+2000 is a leap year but 2001 is not.
+2. If the year is not divisible by 100, then it is a leap year if and if only it is divisible by 4. For example, 2008 is a leap year but
+2009 is not.
+
+Here is a sample run of the program :
+
+Enter a month (1-12): 2[Enter]
+Enter a year: 2008 [Enter]
+29 days
+
+*/
+	int month, year;
+	bool leap = false;
+
+	cout << "Please enter the month: ";
+	cin >> month;
+	cout << "Enter a year: ";
+	cin >> year;
+	
+	if (year % 100 == 0) {
+		if (year % 400 == 0)
+			cout << "It is a leap year!\n";
+		leap = true;
+	}
+	else if (year % 100 != 0) {
+		if (year % 4 == 0)
+			cout << "It is a leap year!\n";
+		leap = true;
+	}
+
+
+	//if we dont want to use switch, we can use if statement
+
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+		cout << "31 days.\n";
+	else if (month == 4 || month == 6 || month == 9 || month == 11)
+		cout << "30 days.\n";
+	else {
+		if (leap)
+			cout << "29 days.\n";
+		cout << "28 days.\n";
+	}
+
+	/*switch (month) {
+	case 1: 
+		cout << "31 days";
+		break;
+	case 2:
+		if (leap)
+			cout << "29 days";
+		else
+			cout << "28 days";
+		break;
+	case 3:
+		cout << "31 days";
+		break;
+	case 4: 
+		cout << "30 days";
+		break;
+	case 5:
+		cout << "31 days";
+		break;
+	case 6:
+		cout << "30 days";
+		break;
+	case 7:
+		cout << "31 days";
+		break;
+	case 8 :
+		cout << "31 days";
+		break;
+	case 9:
+		cout << "30 days";
+		break;
+	case 10:
+		cout << "31 days";
+		break;
+	case 11:
+		cout << "30 days";
+		break;
+	case 12:
+		cout << "31 days";
+		break;
+	}*/
+	
+/*11. Math Tutor
+
+This is a modication of Programming Challenge 17 from chapter 3. Wrtie a program that can be used as a math tutor for a young 
+student. The program should display two random numbers that are to be added, such as:
+  247
++ 129
+------
+The program should wait for the student to enter the answer. If the answer is correct, a message of congratulations should be printed.
+If the answer is incorrect, a message should be printed showing the correct answer.
+
+
+	const int MAX_NUMBER = 1000,
+			  MIN_NUMBER = 0;
+	int random1, random2, answer, input;
+	
+	cout << "This program will generate two random numbers and add it behind the scene. You enter the answer and it will check it." << endl;
+	unsigned seed = time(0);
+
+	//generate random number of cpu time
+	srand(seed);
+
+	random1 = rand() % MAX_NUMBER + MIN_NUMBER;
+	random2 = rand() % MAX_NUMBER + MIN_NUMBER;
+
+	cout << " " << right << setw(4) << random1 << "\n+\n";
+	cout << " " << right << setw(4) << random2 << "\n-----\n  ";
+
+	answer = random1 + random2;
+	cin >> input;
+
+	if (input == answer)
+		cout << "\nCongratulations! You got the right answer.";
+	else
+		cout << "\nIncorrect answer. The answer is " << answer << endl;
+*/
+
+/*
+12. Software Sales
+A software company sells a package that retails for $99. Quantity discounts are given according to the following table.
+
+---------------------------------------------------------------------------------
+Quantity								Discount
+---------------------------------------------------------------------------------
+10-19									20%
+20-49									30%
+50-99									40%
+100 or more								50%
+---------------------------------------------------------------------------------
+Write a program that ask for the number of units sold and computes the total cost of the purchase.
+Input Validation: Make sure the number of units is greater than 0.
+
+	const int RETAIL_PRICE = 99;
+	int units;
+
+	cout << "Yengtaova's Distrubution Companby Inc.\n";
+	cout << "\nEnter the number of units sold: ";
+	//input validation
+	while (cin >> units && units < 0) {
+		cout << "Units cant be less than 0. Enter again: ";
+		cin >> units;
+	}
+
+	//calculate the sale
+	float sale, netSale, discount;
+	sale = units * RETAIL_PRICE;
+	
+	if (units >= 0 && units <= 9)
+		discount = 0;
+	else if (units >= 10 && units <= 19)
+		discount = sale * 0.2;
+	else if (units >= 20 && units <= 49)
+		discount = sale * 0.3;
+	else if (units >= 50 && units <= 99)
+		discount = sale * 0.4;
+	else
+		discount = sale * 0.5;
+
+	//netSale 
+	netSale = sale - discount;
+	cout << setprecision(2) << showpoint << fixed << endl;
+	cout << "Net sale is: $" << netSale << endl;
+*/
+
+/*13. Book Club Points
+Serendipity Booksellers has a book club that awards points to its customers based on
+the number of book purchased each month. The points are awarded as follows:
+
+#If a customer purchases 0 books, he or she earns 0 points.
+#If a customer purchases 1 book, he or she earns 5 points.
+#If a customer purchases 2 books, he or she earns 15 points.
+#If a customer purchases 3 books, he or she earns 30 points.
+#If a customer purchases 4 or more books, he or she earns 60 points.
+
+Write a program that skes the user the enter the number of books that he or she has purchased this month 
+and then displays the number of points awarded.
+
+    int numBooks;
+
+    cout << "Welcome the Yeng's Bookstore!\n"
+        << "Please enter the number of books you have purchased so far for points rewarded: ";
+    cin >> numBooks;
+
+    if (numBooks == 0)
+        cout << "You earn 0 point.\n";
+    else if (numBooks == 1)
+        cout << "You earn 5 points.\n";
+    else if (numBooks == 2)
+        cout << "You earn 15 points.\n";
+    else if (numBooks == 3)
+        cout << "You earned 30 points.\n";
+    else
+        cout << "You earned 60 points.\n";
+*/
+
+/*14. Bank Charges
+A bank charges $10 per month plus the following check fees for a commercial checking account:
+
+$.10 each for fewer than 20 checks
+$.08 each for 20-39 checks
+$.06 each for 40-59 checks
+$.04 each for 60 or more checks
+
+The bank also charges an extra $15 if the balance of the account falls below $400
+(before any check fees are applied). Write a program that asks for the beginning 
+balance and the number of checks written. Compute and display the banks's service fees
+for the month.
+
+Input Validation: Do not accept a negative value for the number of checks written. If a
+negative value is given for the beginning balance, display an urgent message indicating 
+the account is overdrawn.
+
+	float balance, serviceFee = 10.0, checkFee = 0.0;
+	int checks;
+
+	cout << "--------YY Bank Corporation--------\n";
+	cout << "Beginning Balance: ";
+	cin >> balance;
+	if (balance < 0)
+		cout << "Warning your account is overdrawn!. Please contact a bank.\n";
+	cout << "Checks written: ";
+	while (cin >> checks && checks < 0) {
+		cout << "No negative value. Enter again: ";
+	}
+
+	//Check the checks fee
+	if (checks >= 0 && checks < 20)
+		checkFee = .10;
+	else if (checks >= 20 && checks <= 39)
+		checkFee = .08;
+	else if (checks >= 40 && checks <= 59)
+		checkFee = .06;
+	else
+		checkFee = .04;
+
+	serviceFee += checkFee;
+
+	//Check balance if fall below threshold. If yes, charge extra.
+	cout << setprecision(2) << showpoint << fixed << endl;
+	if (balance < 400) {
+		serviceFee += 15.0;
+		cout << "Breakout fees: \nMonthly fee: $ 10.00 \nCheck fee: $" << checkFee << "\nExtra charge: $ 15.00" << endl;
+	}
+	else
+		cout << "Breakout fees: \nMonthly fee: $ 10.00 \nCheck fee: $" << checkFee << "\nExtra charge: $ 0.00" << endl;
+
+	cout << "The monthly service charge is: $" << serviceFee << endl;
+*/
+
+
+/*15. Shipping Charges
+
+The Fast Fright Shipping Company charges the following rates:
+
+---------------------------------------------------------------------------
+Weight of Package (in Kilograms)                Rate per 500 Miles Shipped
+--------------------------------------------------------------------------
+	2 kg or less				    $1.10
+	Over 2 kg but not more than 6 kg.           $2.20
+	Over 6 kg but not more than 10 kg           $3.70
+	Over 10 kg but not more than 20 kg          $4.80
+--------------------------------------------------------------------------
+Write a program that asks for the weight of the package and the distance it is
+to be shipped, and then displays the charges.
+Input Validation: Do not accept values of 0 or less for the weight of the package.
+Do not accept weights of more than 20 kg (this is the maximum weight the company will
+ship). Do not accept distances of less than 10 miles or more than 3,000 miles. These 
+are the company's minimum and maximum shipping distances.
+
+	const int START_DISTANCE = 500;
+	float weight, distance, charges;
+
+	cout << "Welcome to the Fast Freight Shipping Company\n";
+	cout << "Enter the weight of the package: ";
+
+	while (cin >> weight && (weight <= 0 || weight > 20)) 
+		cout << "Weight should not be less than or equal to 0 and greater than 20. Enter again: ";
+	
+
+	cout << "Enter the distance to be shipped: ";
+	while (cin >> distance && (distance < 10 || distance > 3000))
+		cout << "Distance should not be less than 10 miles and greater than 3000 miles. Enter again: ";
+
+	if (weight <= 2)
+		charges = (distance * 1.10) / START_DISTANCE;
+	else if (weight > 2 && weight <= 6)
+		charges = (distance * 2.20) / START_DISTANCE;
+	else if (weight > 6 && weight <= 10)
+		charges = (distance * 3.70) / START_DISTANCE;
+	else
+		charges = (distance * 4.80) / START_DISTANCE;
+
+	cout << fixed << showpoint << setprecision(2) << endl;
+	cout << "The charge for the shipping is: $" << charges << endl;
+*/
+
+/*16. Running the Race
+Write a program that asks for the names of three runners and the time it took each
+of them to finish a race. The program should display who came in first, second, and 
+third place.
+Input Validation: Only accept positive numbers for the times.
+
+	string player1, player2, player3;
+	float time1, time2, time3;
+
+	cout << "Please enter the name of three runners: ";
+	cout << "\nRunner 1: ";
+	getline(cin, player1);
+	cout << "Time taken: ";
+	while (cin >> time1 && time1 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cin.ignore();
+	cout << "Runner 2: ";
+	getline(cin, player2);
+	cout << "Time taken: ";
+	while (cin >> time2 && time2 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cin.ignore();
+	cout << "Runner 3: ";
+	getline(cin, player3);
+	cout << "Time taken: ";
+	while (cin >> time3 && time3 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cout << endl;
+	if (time1 < time2 && time1 < time3) {
+		cout << "First place: " << player1 << "\t Time: " << time1 << " seconds\n";
+		if (time2 < time3) {
+			cout << "Second place: " << player2 << "\tTime: " << time2 << " seconds\n";
+			cout << "Third place: " << player3 << "\tTime: " << time3 << " seconds\n";
+		}
+		else if (time3 < time2) {
+			cout << "Second place: " << player3 << "\tTime: " << time3 << " seconds\n";
+			cout << "Third place: " << player2 << "\tTime: " << time2 << " seconds\n";
+		}
+	}
+	else if (time2 < time1 && time2 < time3) {
+		cout << "First place: " << player2 << "\t Time: " << time2 << " seconds\n";
+		if (time1 < time3) {
+			cout << "Second place: " << player1 << "\tTime: " << time1 << " seconds\n";
+			cout << "Third place: " << player3 << "\tTime: " << time3 << " seconds\n";
+		}
+		else if (time3 < time1) {
+			cout << "Second place: " << player3 << "\tTime: " << time3 << " seconds\n";
+			cout << "Third place: " << player1 << "\tTime: " << time1 << " seconds\n";
+		}
+	}
+	else if (time3 < time1 && time3 < time2) {
+		cout << "First place: " << player3 << "\t Time: " << time3 << " seconds\n";
+		if (time1 < time2) {
+			cout << "Second place: " << player1 << "\tTime: " << time1 << " seconds\n";
+			cout << "Third place: " << player2 << "\tTime: " << time2 << " seconds\n";
+		}
+		else if (time2 < time1) {
+			cout << "Second place: " << player2 << "\tTime: " << time2 << " seconds\n";
+			cout << "Third place: " << player1 << "\tTime: " << time1 << " seconds\n";
+		}
+	}
+*/
+
+/*17. Personal Best
+
+Write a program that asks for the name of a pole vaulter and the dates and vault heights (in meters)
+of the athlete's three best vaults. It should then report, in order of height (best first), the date on
+which each vault was made and its height.
+
+Input Validation: Only accept values between 2.0 and 5.0 for the heights.
+
+	const int SIZE = 15;
+	char name[SIZE];
+
+	float height, height2, height3;
+	char date1[SIZE], date2[SIZE], date3[SIZE];
+
+	cout << "Please enter the name of a pole vaulter: ";
+	cin.get(name, SIZE);
+
+	cout << "Enter three best heigths record in meters\n";
+	cout << "Height #1: ";
+	while (cin >> height && (height < 2 || height > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date1, SIZE);
+
+	cout << "Height #2: ";
+	while (cin >> height2 && (height2 < 2 || height2 > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date2, SIZE);
+
+	cout << "Height #3: ";
+	while (cin >> height3 && (height3 < 2 || height3 > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date3, SIZE);
+
+	if (height > height2 && height > height3) {
+		cout << "Height :" << height << " meters" << "\tDate: " << date1 << endl;
+		if (height2 > height3) {
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+		}
+		else {
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+		}
+	}
+	else if (height2 > height && height2 > height3) {
+		cout << "Height :" << height2 << " meters" << "\tDate: " << date2 << endl;
+		if (height > height3) {
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+		}
+		else {
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+		}
+	}
+	else {
+		cout << "Height :" << height3 << " meters" << "\tDate: " << date3 << endl;
+		if (height > height2) {
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+		}
+		else {
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+		}
+	}
+*/
+
+/*18. Fat Gram Calculator
+
+Write a program that asks for the number of calories and fat grams in a food. The 
+program should display the percentage of calories that come from fat. If the calories
+from fat are less than 30% of the total calories of the food, it should also display a 
+message indicating that the food is low in fat.
+ 
+ One gram of fat has 9 calories, so
+ Calories from fat = fat grams * 9
+ The percentage of calories from fat can calculated as 
+ Calories from fat / total calories
+
+ Input Validation: Make sure the number of calories and fat grams are not less than 0. Also,
+ the number of calories from fat cannot be greater than the total number of calories. If that
+ happens, display an error message indicating that either the calories or fat grams were incorrectly
+ entered. 
+
+
+	float cal, fat, calPercentage, calFromFat;
+
+	cout << "Calories: ";
+	while (cin >> cal && cal < 0)
+		cout << "No negative value: Enter again: ";
+
+	cout << "Fat: ";
+	while (cin >> fat && fat < 0)
+		cout << "No negative value. Enter again: ";
+
+	calFromFat = fat * 9;
+	if (calFromFat > cal)
+		cout << "Either the calories or fat grams were incorrectly entered.\n";
+	else {
+		calPercentage = calFromFat / cal;
+		cout << "The percentage of calories from fat is :" << calPercentage << "%";
+	}
+
+	//If the calories from fat are less than 30 % of the total calories of the food
+	if (calFromFat < (cal * 0.3))
+		cout << "\nThe food is low in fat.\n";
+*/
+
+/*19. Spectral Analysis
+
+If a scientist knows the wavelength of an electromagnetic wave, he or she can determine what 
+type of radiation it is. Write a program that asks for the wavelength of an electromagnetic
+wave in meters and then displays what the wave is according to the chart below. (For example, 
+a wave with wavelength of 1E-10 meters would be an X-ray.)
+
+
+	double wavelength;
+
+	cout << "Wavelength (in meters): ";
+	cin >> wavelength;
+
+    if (wavelength >= 1E-2)
+        cout << "Radio Waves" << endl;
+    else if (wavelength <= 1E-2 && wavelength >= 1E-3)
+        cout << "Microwaves" << endl;
+    else if (wavelength <= 1E-3 && wavelength >= 7E-7)
+        cout << "Infrared" << endl;
+    else if (wavelength <= 7E-7 && wavelength >= 4E-7)
+        cout << "Visible Light" << endl;
+    else if (wavelength <= 4E-7 && wavelength >= 1E-8)
+        cout << "Ultraviolet" << endl;
+    else if (wavelength <= 1E-8 && wavelength >= 1E-11)
+        cout << "X Rays" << endl;
+    else if (wavelength <= 1E-11)
+        cout << "Gamma Rays" << endl;
+
+    cout << endl;
+*/
+ 
+/*20. The Speed of Sound
+
+The following table shows the appropriate speed of sound in air, water, and steel.
+
+------------------------------------------------------------------------------
+Medium							Speed
+------------------------------------------------------------------------------
+Air								1,100 feet per second
+Water							4,900 feet per second
+Steel							16,400 feet per second
+------------------------------------------------------------------------------
+Write a program that displays a menu allowing the user to select air, water, or steel.
+After the user has made a selection, he or she should be asked to enter the distance a
+sound wave will travel in the selected medium. The program will then display the amount
+of time it will take. (Round the answer to four decimal places.)
+
+Input Validation: Check that the user has selected one of the available choices from the menu. Do not accept distances less than 0.
+
+	
+	float speed, distance, time;
+	bool loop = true;
+	
+	char  choice;
+
+	while(loop){
+		bool repeat = false;
+		cout << "Please select choice from the menu\n"
+			<< "1. Air\n2. Water\n3. Steel\n\n";
+		
+		cin >> choice;
+
+		switch (choice) {
+		
+		case '1':
+			speed = 1100;
+			break;
+		case '2':
+			speed = 4900;
+			break;
+		case '3':
+			speed = 16400;
+			break;
+		default:
+			cout << "Invalid choice.\n\n";
+			repeat = true;
+			break;
+		}
+		if (!repeat) { loop = false; } //if it doesnt fall in default case, no more repeat
+		else { nullptr; }
+	};
+	
+
+	cout << "Enter the distance it will travel in the selected medium (feet): ";
+	cin >> distance;
+
+	time = distance / speed;
+
+	cout << fixed << showpoint << setprecision(4) << endl;
+	cout << "The amount of time it will take is " << time << " seconds.\n";
+
+*/
+
+
+/*21. The Speed of Sound in Gases
+
+When sound travels through gas, its speed depends primarily on the density of the medium. The less dense the medium, the faster the 
+speed will be. The following table shows the approximate speed of sound at 0 degrees centigrade, measures in meters per second, when 
+traveling through carbon dioxide, air, helium, and hydrogen.
+
+-------------------------------------------------------------------------------
+Medium							Speed(meters per second)
+-------------------------------------------------------------------------------
+Carbon Dioxide					258.0
+Air								331.5
+Helium							972.0
+Hydrogen						1,270.0
+-------------------------------------------------------------------------------
+Write a program that displays a menu allowing the user to select one of these four gases.
+After a selection has been made, the user should enter the number of seconds it took for the
+sound to travel in this medium from its source to the location at which it was detected. The
+program shpuld then report how far away (in meters) the source of the sound was from the 
+detection location.
+
+Input Validation: Check that the user has selected on the available menu choices. Do not accept
+times less than 0 seconds or more than 30 seconds.
+*/
