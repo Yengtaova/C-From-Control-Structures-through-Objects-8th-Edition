@@ -1,0 +1,299 @@
+
+/*16. Running the Race
+Write a program that asks for the names of three runners and the time it took each
+of them to finish a race. The program should display who came in first, second, and 
+third place.
+Input Validation: Only accept positive numbers for the times.
+
+	string player1, player2, player3;
+	float time1, time2, time3;
+
+	cout << "Please enter the name of three runners: ";
+	cout << "\nRunner 1: ";
+	getline(cin, player1);
+	cout << "Time taken: ";
+	while (cin >> time1 && time1 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cin.ignore();
+	cout << "Runner 2: ";
+	getline(cin, player2);
+	cout << "Time taken: ";
+	while (cin >> time2 && time2 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cin.ignore();
+	cout << "Runner 3: ";
+	getline(cin, player3);
+	cout << "Time taken: ";
+	while (cin >> time3 && time3 < 0)
+		cout << "Time can't be negative value. Enter again: ";
+
+	cout << endl;
+	if (time1 < time2 && time1 < time3) {
+		cout << "First place: " << player1 << "\t Time: " << time1 << " seconds\n";
+		if (time2 < time3) {
+			cout << "Second place: " << player2 << "\tTime: " << time2 << " seconds\n";
+			cout << "Third place: " << player3 << "\tTime: " << time3 << " seconds\n";
+		}
+		else if (time3 < time2) {
+			cout << "Second place: " << player3 << "\tTime: " << time3 << " seconds\n";
+			cout << "Third place: " << player2 << "\tTime: " << time2 << " seconds\n";
+		}
+	}
+	else if (time2 < time1 && time2 < time3) {
+		cout << "First place: " << player2 << "\t Time: " << time2 << " seconds\n";
+		if (time1 < time3) {
+			cout << "Second place: " << player1 << "\tTime: " << time1 << " seconds\n";
+			cout << "Third place: " << player3 << "\tTime: " << time3 << " seconds\n";
+		}
+		else if (time3 < time1) {
+			cout << "Second place: " << player3 << "\tTime: " << time3 << " seconds\n";
+			cout << "Third place: " << player1 << "\tTime: " << time1 << " seconds\n";
+		}
+	}
+	else if (time3 < time1 && time3 < time2) {
+		cout << "First place: " << player3 << "\t Time: " << time3 << " seconds\n";
+		if (time1 < time2) {
+			cout << "Second place: " << player1 << "\tTime: " << time1 << " seconds\n";
+			cout << "Third place: " << player2 << "\tTime: " << time2 << " seconds\n";
+		}
+		else if (time2 < time1) {
+			cout << "Second place: " << player2 << "\tTime: " << time2 << " seconds\n";
+			cout << "Third place: " << player1 << "\tTime: " << time1 << " seconds\n";
+		}
+	}
+*/
+
+/*17. Personal Best
+
+Write a program that asks for the name of a pole vaulter and the dates and vault heights (in meters)
+of the athlete's three best vaults. It should then report, in order of height (best first), the date on
+which each vault was made and its height.
+
+Input Validation: Only accept values between 2.0 and 5.0 for the heights.
+
+	const int SIZE = 15;
+	char name[SIZE];
+
+	float height, height2, height3;
+	char date1[SIZE], date2[SIZE], date3[SIZE];
+
+	cout << "Please enter the name of a pole vaulter: ";
+	cin.get(name, SIZE);
+
+	cout << "Enter three best heigths record in meters\n";
+	cout << "Height #1: ";
+	while (cin >> height && (height < 2 || height > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date1, SIZE);
+
+	cout << "Height #2: ";
+	while (cin >> height2 && (height2 < 2 || height2 > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date2, SIZE);
+
+	cout << "Height #3: ";
+	while (cin >> height3 && (height3 < 2 || height3 > 5))
+		cout << "Height must be between 2.0-5.0 meters.";
+	cin.ignore();
+	cout << "Date:";
+	cin.get(date3, SIZE);
+
+	if (height > height2 && height > height3) {
+		cout << "Height :" << height << " meters" << "\tDate: " << date1 << endl;
+		if (height2 > height3) {
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+		}
+		else {
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+		}
+	}
+	else if (height2 > height && height2 > height3) {
+		cout << "Height :" << height2 << " meters" << "\tDate: " << date2 << endl;
+		if (height > height3) {
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+		}
+		else {
+			cout << "Height: " << height3 << " meters" << "\tDate: " << date3 << endl;
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+		}
+	}
+	else {
+		cout << "Height :" << height3 << " meters" << "\tDate: " << date3 << endl;
+		if (height > height2) {
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+		}
+		else {
+			cout << "Height: " << height2 << " meters" << "\tDate: " << date2 << endl;
+			cout << "Height: " << height << " meters" << "\tDate: " << date1 << endl;
+		}
+	}
+*/
+
+/*18. Fat Gram Calculator
+
+Write a program that asks for the number of calories and fat grams in a food. The 
+program should display the percentage of calories that come from fat. If the calories
+from fat are less than 30% of the total calories of the food, it should also display a 
+message indicating that the food is low in fat.
+ 
+ One gram of fat has 9 calories, so
+ Calories from fat = fat grams * 9
+ The percentage of calories from fat can calculated as 
+ Calories from fat / total calories
+
+ Input Validation: Make sure the number of calories and fat grams are not less than 0. Also,
+ the number of calories from fat cannot be greater than the total number of calories. If that
+ happens, display an error message indicating that either the calories or fat grams were incorrectly
+ entered. 
+
+
+	float cal, fat, calPercentage, calFromFat;
+
+	cout << "Calories: ";
+	while (cin >> cal && cal < 0)
+		cout << "No negative value: Enter again: ";
+
+	cout << "Fat: ";
+	while (cin >> fat && fat < 0)
+		cout << "No negative value. Enter again: ";
+
+	calFromFat = fat * 9;
+	if (calFromFat > cal)
+		cout << "Either the calories or fat grams were incorrectly entered.\n";
+	else {
+		calPercentage = calFromFat / cal;
+		cout << "The percentage of calories from fat is :" << calPercentage << "%";
+	}
+
+	//If the calories from fat are less than 30 % of the total calories of the food
+	if (calFromFat < (cal * 0.3))
+		cout << "\nThe food is low in fat.\n";
+*/
+
+/*19. Spectral Analysis
+
+If a scientist knows the wavelength of an electromagnetic wave, he or she can determine what 
+type of radiation it is. Write a program that asks for the wavelength of an electromagnetic
+wave in meters and then displays what the wave is according to the chart below. (For example, 
+a wave with wavelength of 1E-10 meters would be an X-ray.)
+
+
+	double wavelength;
+
+	cout << "Wavelength (in meters): ";
+	cin >> wavelength;
+
+    if (wavelength >= 1E-2)
+        cout << "Radio Waves" << endl;
+    else if (wavelength <= 1E-2 && wavelength >= 1E-3)
+        cout << "Microwaves" << endl;
+    else if (wavelength <= 1E-3 && wavelength >= 7E-7)
+        cout << "Infrared" << endl;
+    else if (wavelength <= 7E-7 && wavelength >= 4E-7)
+        cout << "Visible Light" << endl;
+    else if (wavelength <= 4E-7 && wavelength >= 1E-8)
+        cout << "Ultraviolet" << endl;
+    else if (wavelength <= 1E-8 && wavelength >= 1E-11)
+        cout << "X Rays" << endl;
+    else if (wavelength <= 1E-11)
+        cout << "Gamma Rays" << endl;
+
+    cout << endl;
+*/
+ 
+/*20. The Speed of Sound
+
+The following table shows the appropriate speed of sound in air, water, and steel.
+
+------------------------------------------------------------------------------
+Medium							Speed
+------------------------------------------------------------------------------
+Air								1,100 feet per second
+Water							4,900 feet per second
+Steel							16,400 feet per second
+------------------------------------------------------------------------------
+Write a program that displays a menu allowing the user to select air, water, or steel.
+After the user has made a selection, he or she should be asked to enter the distance a
+sound wave will travel in the selected medium. The program will then display the amount
+of time it will take. (Round the answer to four decimal places.)
+
+Input Validation: Check that the user has selected one of the available choices from the menu. Do not accept distances less than 0.
+
+	
+	float speed, distance, time;
+	bool loop = true;
+	
+	char  choice;
+
+	while(loop){
+		bool repeat = false;
+		cout << "Please select choice from the menu\n"
+			<< "1. Air\n2. Water\n3. Steel\n\n";
+		
+		cin >> choice;
+
+		switch (choice) {
+		
+		case '1':
+			speed = 1100;
+			break;
+		case '2':
+			speed = 4900;
+			break;
+		case '3':
+			speed = 16400;
+			break;
+		default:
+			cout << "Invalid choice.\n\n";
+			repeat = true;
+			break;
+		}
+		if (!repeat) { loop = false; } //if it doesnt fall in default case, no more repeat
+		else { nullptr; }
+	};
+	
+
+	cout << "Enter the distance it will travel in the selected medium (feet): ";
+	cin >> distance;
+
+	time = distance / speed;
+
+	cout << fixed << showpoint << setprecision(4) << endl;
+	cout << "The amount of time it will take is " << time << " seconds.\n";
+
+*/
+
+
+/*21. The Speed of Sound in Gases
+
+When sound travels through gas, its speed depends primarily on the density of the medium. The less dense the medium, the faster the 
+speed will be. The following table shows the approximate speed of sound at 0 degrees centigrade, measures in meters per second, when 
+traveling through carbon dioxide, air, helium, and hydrogen.
+
+-------------------------------------------------------------------------------
+Medium							Speed(meters per second)
+-------------------------------------------------------------------------------
+Carbon Dioxide					258.0
+Air								331.5
+Helium							972.0
+Hydrogen						1,270.0
+-------------------------------------------------------------------------------
+Write a program that displays a menu allowing the user to select one of these four gases.
+After a selection has been made, the user should enter the number of seconds it took for the
+sound to travel in this medium from its source to the location at which it was detected. The
+program shpuld then report how far away (in meters) the source of the sound was from the 
+detection location.
+
+Input Validation: Check that the user has selected on the available menu choices. Do not accept
+times less than 0 seconds or more than 30 seconds.
+*/
