@@ -1,0 +1,388 @@
+// Test.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+
+ /*1. Sum of Two Numbers
+    Write a program that stores the integers 50 and 100 in variables, and stores the sum of
+    these two in a variable named total.
+    
+    int a = 50, b = 100;
+    int total = a + b;
+    cout << total << endl;
+
+*/
+
+ /*2. Sales Prediction
+    The East Coast sales division of a company generates 58 percent of total sales.Based
+    on that percentage, write a program that will predict how much the East Coast division
+    will generate if the company has $8.6 million in sales this year.
+
+    double totalCompanySales = 8.6e6;
+    double eastCoastSalesPercent = 0.58; //58 percent;
+
+    double eastCoastGenerate = totalCompanySales * eastCoastSalesPercent;
+    cout << eastCoastGenerate << "million in total sales." << endl;
+
+  */
+    
+ /*3. Sales Tax
+    Write a program that will compute the total sales tax on a $95 purchase.Assume the
+    state sales tax is 4 percent and the county sales tax is 2 percent.
+
+    const float STATE_SALES_TAX = 0.04,
+                COUNTY_SALES_TAX = 0.02;
+    float purchaseAmount = 95;
+
+    float totalSalesTax = purchaseAmount * (STATE_SALES_TAX + COUNTY_SALES_TAX);
+
+    cout << setprecision(2) << showpoint << fixed;
+    cout << "The total sales tax is: $" << totalSalesTax << endl;
+  */
+
+
+ /*4. Restaurant Bill
+      Write a program that computes the tax and tip on a restaurant bill for a patron with
+      a $88.67 meal charge.The tax should be 6.75 percent of the meal cost.The tip should
+      be 20 percent of the total after adding the tax.Display the meal cost, tax amount, tip
+      amount, and total bill on the screen.
+  
+    const float TAX = 6.75;
+    float mealCharge = 88.67, total = 0, addedTip;
+
+    float addedTax = (mealCharge*TAX)/100.0;
+
+    total = mealCharge + addedTax;
+
+    addedTip = total * 0.20;
+
+    total += addedTip;
+    
+    cout << setprecision(2) << showpoint << fixed;
+    cout << "Fresno County Tax: " << TAX
+         << "\nGratitude percentage: 20%";
+    cout << "\nMeal cost: $" << mealCharge
+        << "\nTax: $" << addedTax
+        << "\nTip: $" << addedTip
+        << "\nTotal cost: $" << total << endl;
+  */
+
+ /*5. Average of Values
+      To get the average of a series of values, you add the values up and then divide the sum
+      by the number of values.Write a program that stores the following values in five different
+      variables : 28, 32, 37, 24, and 33. The program should first calculate the sum
+      of these five variables and store the result in a separate variable named sum.Then, the
+      program should divide the sum variable by 5 to get the average. Display the average
+      on the screen.
+  
+    int a = 28, b = 32, c = 37, d = 24, e = 33;
+    int sum;
+    float average;
+
+    sum = a + b + c + d + e;
+    average = sum / 5.0;
+
+    cout << "The sum is: " << sum << " and the average is: " << average << endl;
+
+ */
+
+/*6. Annual Pay
+    Suppose an employee gets paid every two weeks and earns $2,200 each pay period.
+    In a year the employee gets paid 26 times.Write a program that defines the following variables :
+        payAmount This variable will hold the amount of pay the employee earns each pay period.Initialize the variable with 2200.0.
+        payPeriods This variable will hold the number of pay periods in a year.Initialize
+        the variable with 26.
+        annualPay This variable will hold the employee�s total annual pay, which will
+        be calculated.
+    The program should calculate the employee�s total annual pay by multiplying the
+    employee�s pay amount by the number of pay periods in a year and store the result in
+    the annualPay variable.Display the total annual pay on the screen.
+
+    float payAmount = 2200,
+        payPeriods = 26,
+        annualPay = 0;
+
+    annualPay = payAmount * payPeriods;
+
+    cout << "The annual pay is: $" << annualPay << endl;
+ */
+  
+ /* 7. Ocean Levels
+    Assuming the ocean�s level is currently rising at about 1.5 millimeters per year, write
+    a program that displays :
+    � The number of millimeters higher than the current level that the ocean�s level will be in 5 years
+    � The number of millimeters higher than the current level that the ocean�s level will be in 7 years
+    � The number of millimeters higher than the current level that the ocean�s level will be in 10 years
+  
+    const float risingLevelPerYear = 1.5;
+    float record;
+    for (int i = 1; i <= 10; i++) {
+        if (i == 5 || i == 7 || i == 10)
+        {
+            record = risingLevelPerYear * i;
+            cout << "Ocean's rising level in next " << i << " years: " << record << " mm\n";
+        }
+    
+    }
+  */
+
+  /* 8. Total Purchase
+     A customer in a store is purchasing five items.The prices of the five items are
+     Price of item 1 = $15.95
+     Price of item 2 = $24.95
+     Price of item 3 = $6.95
+     Price of item 4 = $12.95
+     Price of item 5 = $3.95
+
+     Write a program that holds the prices of the five items in five variables. Display each
+     item�s price, the subtotal of the sale, the amount of sales tax, and the total. Assume the
+     sales tax is 7%.
+     
+        const int salesTax = 7;
+        float item[5] = { 15.95, 24.95,6.95,12.95,3.95 };
+        float subtotal = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            cout << "Item " << i + 1 << ": $" << item[i] << endl;
+            subtotal += item[i];
+        }
+        float taxAmount = (subtotal * salesTax) / 100.0;
+        float total = subtotal + taxAmount;
+
+        cout << setprecision(2) << showpoint << fixed;
+        cout << "Subtotal of the sale: $" << subtotal
+             << "\nSales Tax: $ " << taxAmount
+             << "\nTotal: $" << total << endl;
+    */
+
+    /*9. Cyborg Data Type Sizes
+    You have been given a job as a programmer on a Cyborg supercomputer. In order to
+    accomplish some calculations, you need to know how many bytes the following data
+    types use: char , int , float , and double . You do not have any manuals, so you can�t
+    look this information up. Write a C++ program that will determine the amount of
+    memory used by these types and display the information on the screen.
+
+    cout << "This program will tell you the byte size of each data type: ";
+    cout << "\nchar: " << sizeof(char) << " bytes."
+         << "\nint: " << sizeof(int) << " bytes."
+         << "\nfloat: " << sizeof(float) << " bytes."
+         << "\ndouble: " << sizeof(double) << " bytes.";
+    */
+
+    /*10. Miles per Gallon
+    A car holds 15 gallons of gasoline and can travel 375 miles before refueling.Write a
+    program that calculates the number of miles per gallon the car gets.Display the result
+    on the screen.
+    Hint: Use the following formula to calculate miles per gallon(MPG) :
+          MPG = Miles Driven / Gallons of Gas Used
+
+    int gallon = 15;
+    int miles = 375;
+    float MPG = float(miles) / gallon;
+
+    cout << setprecision(1) << fixed << showpoint;
+    cout << "MPG: " << MPG << endl;
+    */
+
+    /*11. Distance per Tank of Gas
+    A car with a 20-gallon gas tank averages 23.5 miles per gallon when driven in town
+    and 28.9 miles per gallon when driven on the highway.Write a program that calculates
+    and displays the distance the car can travel on one tank of gas when driven in town
+    and when driven on the highway.
+    Hint: The following formula can be used to calculate the distance :
+          Distance = Number of Gallons x Average Miles per Gallon
+    
+    int tankGallon = 20;
+    float averageMPGTown = 23.5,
+          averageMPGHw = 28.9,
+          townDistance,
+          hwDistance;
+
+    townDistance = tankGallon * averageMPGTown;
+    hwDistance = tankGallon * averageMPGHw;
+
+    cout << "The distance that the car can travel"
+         << "\nTown: " << townDistance << " miles."
+         << "\nHighway: " << hwDistance << " miles.";
+    */
+    
+    /*12. Land Calculation
+    One acre of land is equivalent to 43,560 square feet.Write a program that calculates
+    the number of acres in a tract of land with 391,876 square feet.
+    
+
+    const int acreTosqfeet = 43560;
+    float landArea = 391876; 
+    float acres = landArea / acreTosqfeet;
+    cout << landArea << " square feet of land is equivalent to " << acres << " acres.";
+    */
+
+
+    /*13. Circuit Board Price
+    An electronics company sells circuit boards at a 35 percent profit. Write a program that
+    will calculate the selling price of a circuit board that costs $14.95. Display the result
+    on the screen.
+    
+
+    float profitPerItem = 35,  //percent
+    circuitPrice = 14.95,
+    profit, sellingPrice;
+
+    //find the 35% profit part 
+    profit = (circuitPrice * profitPerItem) / 100.0;
+
+    sellingPrice = circuitPrice + profit;
+
+    cout << "The price of circuit board without profit is $" << sellingPrice << endl;
+
+    */
+
+    /*14. Personal Information
+        Write a program that displays the following pieces of information, each on a separate line :
+        Your name
+        Your address, with city, state, and ZIP code
+        Your telephone number
+        Your college major
+        Use only a single cout statement to display all of this information.
+
+        string name = "Yeng",
+            address = "1234 West, Bixer, Montana, 45609",
+            tel = "628-455-9123",
+            major = "Computer Science";
+
+        cout << "----Personal Information----"
+            << "\nName:" << name
+            << "\nAddress: " << address
+            << "\nTelephone number: " << tel
+            << "\nMajor: " << major << endl;
+     */
+
+    /*15. Triangle Pattern
+    Write a program that displays the following pattern on the screen :
+        *
+       ***
+      *****
+     *******
+    
+
+    int rows = 4;
+    int space;
+
+    for (int i = 1, k = 0; i <= rows; ++i, k = 0) {
+        for (space = 1; space <= rows - i; ++space) {
+            cout << " ";
+        }
+
+        while (k != 2 * i - 1) {
+            cout << "*";
+            ++k;
+        }
+        cout << endl;
+    }
+    */
+    
+
+    /*16.Diamond Pattern
+        Write a program that displays the following pattern :
+           *
+          ***
+         *****
+        *******
+         *****
+          ***
+           *
+     
+
+    int rows = 4;
+    for (int i = 1, k = 0; i <= rows; i++, k = 0) {
+        for (int space = 1; space <= rows - i; ++space) {
+            cout << " ";
+        }
+        while (k != 2 * i - 1) {
+            cout << "*";
+            k++;
+        }
+        cout << endl;
+        if (i == rows) {
+            for (int j = i - 1; j >= 1; --j) {
+                for (int space = 0; space < i - j; ++space)
+                    cout << " ";
+
+                for (int k = j; k <= 2 * j - 1; ++k)
+                    cout << "*";
+
+                for (int k = 0; k < j - 1; ++k)
+                    cout << "*";
+
+                cout << endl;
+            }
+
+        }
+
+    }
+    */
+
+
+    /*17. Stock Commission
+       Kathryn bought 750 shares of stock at a price of $35.00 per share.She must pay her
+       stockbroker a 2 percent commission for the transaction.Write a program that calculates
+       and displays the following :
+       � The amount paid for the stock alone(without the commission)
+       � The amount of the commission
+       � The total amount paid(for the stock plus the commission)
+    
+
+    const float PRICE_PER_SHARE = 35.00;
+    int numshare = 750;
+    float commission, stockPaid;
+
+    stockPaid = numshare * PRICE_PER_SHARE;
+    commission = stockPaid * 0.02;
+
+    cout << "Stock paid: $" << stockPaid << endl;
+    cout << "Commision fee: $" << commission << endl;
+    cout << "Total amount paid: $" << stockPaid + commission << endl;
+    */
+
+    /*18. Energy Drink Consumption
+         A soft drink company recently surveyed 16,500 of its customers and found that
+         approximately 15 percent of those surveyed purchase one or more energy drinks per
+         week.Of those customers who purchase energy drinks, approximately 58 percent of
+         them prefer citrus - flavored energy drinks.Write a program that displays the following :
+         � The approximate number of customers in the survey who purchase one or more
+         energy drinks per week
+         � The approximate number of customers in the survey who prefer citrus-flavored energy
+         drinks
+    
+    
+        int numCustomers = 16500;
+        int customerBehave, citrusFavor;
+
+        customerBehave = numCustomers * 0.15;
+        citrusFavor = customerBehave * 0.58;  //58 percent of 15 percent people who purchased drink one or more a week
+
+
+        cout << "Number of customers who purchase one or more energy drinks/week: " << customerBehave << endl;
+        cout << "Customers who prefered citrus flavor: " << citrusFavor << endl;
+        */
+
+    
+   
+ 
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
