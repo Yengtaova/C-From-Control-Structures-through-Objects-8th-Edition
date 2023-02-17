@@ -836,10 +836,10 @@ traveling through carbon dioxide, air, helium, and hydrogen.
 -------------------------------------------------------------------------------
 Medium							Speed(meters per second)
 -------------------------------------------------------------------------------
-Carbon Dioxide					258.0
-Air								331.5
-Helium							972.0
-Hydrogen						1,270.0
+Carbon Dioxide					         258.0
+Air					                 331.5
+Helium							 972.0
+Hydrogen						 1,270.0
 -------------------------------------------------------------------------------
 Write a program that displays a menu allowing the user to select one of these four gases.
 After a selection has been made, the user should enter the number of seconds it took for the
@@ -849,4 +849,189 @@ detection location.
 
 Input Validation: Check that the user has selected on the available menu choices. Do not accept
 times less than 0 seconds or more than 30 seconds.
+*/
+
+/*22. Freezing and Boiling Points
+        The following table lists the freezing and boiling points of several substances. Write a
+        program that asks the user to enter a temperature and then shows all the substances
+        that will freeze at that temperature and all that will boil at that temperature.For example,
+        if the user enters −20 the program should report that water will freeze and oxygen
+        will boil at that temperature.
+
+            Substance        Freezing Point(°F)         Boiling Point(°F)
+            -------------------------------------------------------------
+            Ethyl alcohol         -173                        172
+            Mercury               -38                         676
+            Oxygen                -362                       -306
+            Water                  32                         212
+
+       
+        float temparature;
+        cout << "Enter the temperature in Farenheit: ";
+        cin >> temparature;
+
+        if (temparature <= 32) {
+            cout << "Freeze substances"
+                << "\n-------------------\n";
+            cout << "Water";
+            if (temparature <= -38) {
+                cout << "\nMercury";
+                if (temparature <= -173) {
+                    cout << "\nEthyl alocohol";
+                    if (temparature <= -362)
+                        cout << "\nOxygen";
+                }
+            }
+            cout << endl;
+        }
+        if (temparature <= -306 || temparature >= -306) {
+            cout << "\nBoil subtances"
+                << "\n---------------\n";
+            if(temparature <= -306)
+                cout << "Oxygen";
+        
+            if (temparature >= 172) {
+                cout << "Ethyl alcohol";
+                if (temparature >= 212) {
+                    cout << "\nWater";
+                    if (temparature >= 676)
+                        cout << "\nMercury";
+                }
+            }
+        }
+*/
+
+/*23. Geometry Calculator
+        Write a program that displays the following menu :
+        Geometry Calculator
+            1. Calculate the Area of a Circle
+            2. Calculate the Area of a Rectangle
+            3. Calculate the Area of a Triangle
+            4. Quit
+            Enter your choice(1 - 4):
+        
+        If the user enters 1, the program should ask for the radius of the circle and then display
+        its area. Use the following formula :
+
+        area = πr^2
+
+        Use 3.14159 for π and the radius of the circle for r. If the user enters 2, the program
+        should ask for the length and width of the rectangle and then display the rectangle’s
+        area. Use the following formula :
+
+        area = length * width
+
+        If the user enters 3 the program should ask for the length of the triangle’s base and its
+        height, and then display its area.Use the following formula :
+
+        area = base * height * .5
+
+        If the user enters 4, the program should end.
+
+        Input Validation : Display an error message if the user enters a number outside the range
+        of 1 through 4 when selecting an item from the menu.Do not accept negative values
+        for the circle’s radius, the rectangle’s length or width, or the triangle’s base or height.
+    
+  
+    int ch;
+    float radius, area, length, width, base, height;
+
+    cout << "\tGeometry Calculator"
+        << "\n1. Calculate the Area of a Circle"
+        << "\n2. Calculate the Area of a Rectangle"
+        << "\n3. Calculate the Area of a Triangle"
+        << "\n4. Quit"
+        << "\nEnter your choice(1 - 4) :";
+    while (cin >> ch && (ch < 1 || ch > 4))
+        cout << "Choice should be between 1-4. Enter again.";
+
+
+    switch (ch) {
+    case 1:
+        cout << "Radius: ";
+        while (cin >> radius && radius < 0)
+            cout << "enter again.\n";
+        area = M_PI * pow(radius, 2.0);
+        break;
+    case 2:
+        cout << "Length: ";
+        while (cin >> length && length < 0)
+            cout << "enter again.\n";
+        cout << "Width: ";
+        while (cin >> width && width < 0)
+            cout << "enter again.\n";
+        area = length * width;
+        break;
+    case 3:
+        cout << "Base: ";
+        while (cin >> base && base < 0)
+            cout << "enter again.\n";
+        cout << "Height: ";
+        while (cin >> height && height < 0)
+            cout << "enter again.\n";
+        area = base * height * .5;
+        break;
+    case 4:
+        break;
+    }
+    cout << "The area is :" << area << " meter sq\n";
+*/
+
+/*
+    24. Long-Distance Calls
+
+        A long - distance carrier charges the following rates for telephone calls :
+
+        Starting Time of Call Rate per Minute
+         00:00 – 06:59   0.05
+         07:00 – 19:00   0.45
+         19:01 – 23:59   0.20
+
+        Write a program that asks for the starting time and the number of minutes of the call,
+        and displays the charges.The program should ask for the time to be entered as a floating point
+        number in the form HH.MM. For example, 07:00 hours will be entered as 07.00,
+        and 16:28 hours will be entered as 16.28.
+        
+        Input Validation : The program should not accept times that are greater than 23:59. Also,
+        no number whose last two digits are greater than 59 should be accepted. Hint:Assuming
+        num is a floating-point variable, the following expression will give you its fractional part :
+        num − static_cast<int>(num)
+     
+    const float RATE1 = 0.05,
+                RATE2 = 0.45,
+                RATE3 = 0.20;
+
+    float startTime, charge;
+    int checkMinuteDigit, hour, minute, minuteCall;
+    bool loop = true;
+    cout << "Starting time (HH.MM): ";
+
+    while (loop && cin >> startTime) {
+        hour = int(startTime);                                          //I convert hour and minute to integer since comparing floating point number gives
+        minute = (startTime - static_cast<int>(startTime)) * 100;       //an incorrect result. There is a sophiticated way of doing it using epsilon value.
+        if (hour > 23 || minute > 59) {                                 //You can learn more on internet of how to compare floating values
+            cout << "Invalid hour or minute. Should not be greater than 23, 59 respectively. Enter again:";
+            continue;
+        }
+        loop = false;
+    }
+
+    cout << "Number minutes of call: ";
+    cin >> minuteCall;
+
+    if (startTime >= 0 && startTime < 7) {
+        cout << "Rate per minute is: $" << RATE1 << '\n';
+        charge = minuteCall * RATE1;
+    }
+    else if (startTime >= 7 && startTime <= 19) {
+        cout << "Rate per minute is: $" << RATE2 << '\n';
+        charge = minuteCall * RATE2;
+    }
+    else if (startTime > 19 && startTime < 24) {
+        cout << "Rate per minute is: $" << RATE3 << '\n';
+        charge = minuteCall * RATE3;
+    }
+    
+    cout << "Call charge is: $" << charge << endl;
+    
 */
