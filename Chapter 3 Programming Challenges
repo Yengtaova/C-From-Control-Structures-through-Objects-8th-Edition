@@ -1,1 +1,79 @@
+1. Miles per Gallon
+Write a program that calculates a car’s gas mileage. The program should ask the user
+to enter the number of gallons of gas the car can hold and the number of miles it can
+be driven on a full tank. It should then display the number of miles that may be driven
+per gallon of gas.
 
+2. Stadium Seating
+There are three seating categories at a stadium. For a softball game, Class A seats cost
+$15, Class B seats cost $12, and Class C seats cost $9. Write a program that asks how
+many tickets for each class of seats were sold, then displays the amount of income generated
+from ticket sales. Format your dollar amount in fixed-point notation, with two
+decimal places of precision, and be sure the decimal point is always displayed.
+
+3. Test Average
+Write a program that asks for five test scores. The program should calculate the average
+test score and display it. The number displayed should be formatted in fixed-point
+notation, with one decimal point of precision.
+
+4. Average Rainfall
+Write a program that calculates the average rainfall for three months. The program
+should ask the user to enter the name of each month, such as June or July, and the
+amount of rain (in inches) that fell each month. The program should display a message
+similar to the following:
+The average rainfall for June, July, and August is 6.72 inches.
+
+5. Male and Female Percentages
+Write a program that asks the user for the number of males and the number of females
+registered in a class. The program should display the percentage of males and females
+in the class.
+Hint: Suppose there are 8 males and 12 females in a class. There are 20 students in the
+class. The percentage of males can be calculated as 8 ÷ 20 = 0.4, or 40%. The percentage
+of females can be calculated as 12 ÷ 20 = 0.6, or 60%.
+
+6. Ingredient Adjuster
+A cookie recipe calls for the following ingredients:
+• 1.5 cups of sugar
+• 1 cup of butter
+• 2.75 cups of flour
+The recipe produces 48 cookies with this amount of the ingredients. Write a program
+that asks the user how many cookies he or she wants to make, and then displays the
+number of cups of each ingredient needed for the specified number of cookies.
+
+7. Box Office
+  A movie theater only keeps a percentage of the revenue earned from ticket sales. The
+  remainder goes to the movie distributor. Write a program that calculates a theater’s
+  gross and net box office profit for a night. The program should ask for the name of the
+  movie, and how many adult and child tickets were sold. (The price of an adult ticket is
+  $10.00 and a child’s ticket is $6.00.) It should display a report similar to
+    Movie Name:                 “Wheels of Fury”
+    Adult Tickets Sold:                382
+    Child Tickets Sold:                127
+    Gross Box Office Profit:        $ 4582.00
+    Net Box Office Profit:          $ 916.40
+    Amount Paid to Distributor:     $ 3665.60
+    
+8. How Many Widgets?
+The Yukon Widget Company manufactures widgets that weigh 12.5 pounds each.
+Write a program that calculates how many widgets are stacked on a pallet, based on
+the total weight of the pallet. The program should ask the user how much the pallet
+weighs by itself and with the widgets stacked on it. It should then calculate and display
+the number of widgets stacked on the pallet.
+
+9. How Many Calories?
+A bag of cookies holds 30 cookies. The calorie information on the bag claims that there
+are 10 “servings” in the bag and that a serving equals 300 calories. Write a program
+that asks the user to input how many cookies he or she actually ate and then reports
+how many total calories were consumed.
+
+10. How Much Insurance?
+Many financial experts advise that property owners should insure their homes or buildings
+for at least 80 percent of the amount it would cost to replace the structure. Write a
+program that asks the user to enter the replacement cost of a building and then displays
+the minimum amount of insurance he or she should buy for the property.
+
+11. Automobile Costs
+Write a program that asks the user to enter the monthly costs for the following
+expenses incurred from operating his or her automobile: loan payment, insurance, gas,
+oil, tires, and maintenance. The program should then display the total monthly cost of
+these expenses, and the total annual cost of these expenses.
