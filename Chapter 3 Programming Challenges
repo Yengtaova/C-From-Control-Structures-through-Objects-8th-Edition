@@ -53,6 +53,35 @@ number of cups of each ingredient needed for the specified number of cookies.
     Net Box Office Profit:          $ 916.40
     Amount Paid to Distributor:     $ 3665.60
     
+     const float ADULT_TICKET = 10.00,
+                CHILD_TICKET = 6.00,
+                PERCENTAGE = 0.2;  //(20%)
+
+    string movieName = "wheel of Fury";
+    int A_ticketSold, C_ticketSold;
+    float grossIncome, boxOfficeIncome, distributorIncome;
+
+
+    cout << "Name of the movie: ";
+    getline(cin, movieName);
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "How many adult tickets got sold?";
+    cin >> A_ticketSold;
+    cout << "How many child tickets got sold?";
+    cin >> C_ticketSold;
+
+    grossIncome = (A_ticketSold * ADULT_TICKET) + (C_ticketSold * CHILD_TICKET);
+    boxOfficeIncome = grossIncome * PERCENTAGE;
+    distributorIncome = grossIncome - boxOfficeIncome;
+
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "Movie name:" << setw(30) << right << '\"' <<movieName << '\"' << endl;
+    cout << "Adult Tickets Sold:" << setw(30) << right <<A_ticketSold << endl;
+    cout << "Child Tickets Sold: " << setw(28) << right << C_ticketSold << endl;
+    cout << "Gross Box Office Profit:" << setw(25) << right << "$" <<grossIncome << endl;
+    cout << "Net Box Office Profit:" << setw(25) << right << "$" << boxOfficeIncome << endl;
+    cout << "Amount Paid to Distributor:" << setw(25) << right << "$" << distributorIncome << endl;
+    
 8. How Many Widgets?
 The Yukon Widget Company manufactures widgets that weigh 12.5 pounds each.
 Write a program that calculates how many widgets are stacked on a pallet, based on
