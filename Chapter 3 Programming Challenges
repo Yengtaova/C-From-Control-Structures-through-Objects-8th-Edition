@@ -39,12 +39,53 @@ Write a program that asks for five test scores. The program should calculate the
 test score and display it. The number displayed should be formatted in fixed-point
 notation, with one decimal point of precision.
 
+    const int num = 5;
+    float testScores[num];
+    float total = 0;
+    float average;
+
+    for (int i = 0; i < num; i++)
+    {
+        cout << "Score " << i + 1 << ": ";
+        cin >> testScores[i];
+        total += testScores[i];
+    }
+
+    average = total / num;
+
+    cout << setprecision(2) << fixed << showpoint
+        << "The average test score is " << average << endl;
+
 4. Average Rainfall
 Write a program that calculates the average rainfall for three months. The program
 should ask the user to enter the name of each month, such as June or July, and the
 amount of rain (in inches) that fell each month. The program should display a message
 similar to the following:
 The average rainfall for June, July, and August is 6.72 inches.
+
+    const int num = 3;
+    string months[num];
+    float rainfall[num];
+    float average, total = 0;
+
+    for (int i = 0; i < num; i++) {
+        cout << "Enter name of the month: ";
+        cin >> months[i];
+        cout << "Rainfall amount: ";
+        cin >> rainfall[i];
+    }
+
+    for (int i : rainfall)
+        total += i;
+    average = total / num;
+
+    cout << setprecision(2) << showpoint << fixed <<  "\nThe average rainfall for ";
+    for (int i = 0; i < num; i++) {
+        if (i == num - 1)
+            cout << "and " << months[i] << " is " << average << " inches.\n";
+        else
+            cout << months[i] << ", ";
+    }
 
 5. Male and Female Percentages
 Write a program that asks the user for the number of males and the number of females
