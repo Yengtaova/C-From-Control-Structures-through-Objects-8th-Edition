@@ -95,6 +95,23 @@ Hint: Suppose there are 8 males and 12 females in a class. There are 20 students
 class. The percentage of males can be calculated as 8 ÷ 20 = 0.4, or 40%. The percentage
 of females can be calculated as 12 ÷ 20 = 0.6, or 60%.
 
+    int numMale, numFemale, numStudent;
+    float malePercent, femalePercent;
+
+    cout << "Number of student in class ";
+    cin >> numStudent;
+
+    cout << "Number of male in class ";
+    cin >> numMale;
+    cout << "Number of female in class ";
+    cin >> numFemale;
+
+    malePercent = float(numMale) / numStudent;
+    femalePercent = float(numFemale) / numStudent;
+
+    cout << "The percentage of males in class is " << malePercent
+        << "\nThe percentage of females in class is " << femalePercent;
+
 6. Ingredient Adjuster
 A cookie recipe calls for the following ingredients:
 • 1.5 cups of sugar
@@ -103,6 +120,26 @@ A cookie recipe calls for the following ingredients:
 The recipe produces 48 cookies with this amount of the ingredients. Write a program
 that asks the user how many cookies he or she wants to make, and then displays the
 number of cups of each ingredient needed for the specified number of cookies.
+
+    const float STANDARD_COOKIE = 48,
+                SUGAR_STD = 1.5,
+                BUTTER_STD = 1,
+                FLOUR_STD = 2.75;
+
+    float sugar, butter, flour;
+    int num;
+
+    cout << "How many cookie you would like to make: ";
+    cin >> num;
+    sugar = (num * SUGAR_STD) / STANDARD_COOKIE;
+    butter = (num * BUTTER_STD) / STANDARD_COOKIE;
+    flour = (num * FLOUR_STD) / STANDARD_COOKIE;
+
+    cout << setprecision(2) << showpoint << fixed;
+    cout << "The number of ingredients needed for making " << num << " cookies\n";
+    cout << sugar << " cups of sugar\n"
+        << butter << " cups of butter\n"
+        << flour << " cups of flour\n";
 
 7. Box Office
   A movie theater only keeps a percentage of the revenue earned from ticket sales. The
