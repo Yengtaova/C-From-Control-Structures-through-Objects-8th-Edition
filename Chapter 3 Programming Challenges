@@ -4,12 +4,35 @@ to enter the number of gallons of gas the car can hold and the number of miles i
 be driven on a full tank. It should then display the number of miles that may be driven
 per gallon of gas.
 
+    float gallon, miles, MPG;
+
+    cout << "Number of gallon gas that car can hold: ";
+    cin >> gallon;
+    cout << "Number of miles it can drive with full tank: ";
+    cin >> miles;
+    MPG = miles / gallon;
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "Miles per gallon for the car :" << MPG << " mpg.";
+
 2. Stadium Seating
 There are three seating categories at a stadium. For a softball game, Class A seats cost
 $15, Class B seats cost $12, and Class C seats cost $9. Write a program that asks how
 many tickets for each class of seats were sold, then displays the amount of income generated
 from ticket sales. Format your dollar amount in fixed-point notation, with two
 decimal places of precision, and be sure the decimal point is always displayed.
+
+    const int CLASS_A = 15,
+              CLASS_B = 12,
+              CLASS_C = 9;
+    int classATicket, classBticket, classCTicket;
+    int income;
+
+    cout << "How many tickets seat for each class seat? Enter in order ";
+    cin >> classATicket >> classBticket >> classCTicket;
+
+    income = (classATicket * CLASS_A) + (classBticket * CLASS_B) + (classCTicket * CLASS_C);
+
+    cout << setprecision(2) << fixed << showpoint << "Total income earn from tickets sale is $" << income;
 
 3. Test Average
 Write a program that asks for five test scores. The program should calculate the average
