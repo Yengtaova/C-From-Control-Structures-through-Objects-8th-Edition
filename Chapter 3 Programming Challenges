@@ -209,14 +209,62 @@ are 10 “servings” in the bag and that a serving equals 300 calories. Write a
 that asks the user to input how many cookies he or she actually ate and then reports
 how many total calories were consumed.
 
+    int numCookie = 30,
+        servingPerBag = 10,
+        caloriesAmt = 300,
+        num, serving;
+    float calConsume;
+    
+
+    cout << "How many cookie you ate? ";
+    cin >> num;
+
+    //1 serving = 3 cookies since 30 cookies = 10 servings
+    serving = num / 3;
+    calConsume = (num * caloriesAmt) / numCookie;
+
+    cout << "The total calories you consume is " << calConsume << " kcal, which is equivalent to " 
+         << serving << " serving";
+
 10. How Much Insurance?
 Many financial experts advise that property owners should insure their homes or buildings
 for at least 80 percent of the amount it would cost to replace the structure. Write a
 program that asks the user to enter the replacement cost of a building and then displays
 the minimum amount of insurance he or she should buy for the property.
 
+    float replacementCost, minimumInsurance;
+
+    cout << "How much is the replacement cost of a building? ";
+    cin >> replacementCost;
+
+    minimumInsurance = (replacementCost * 80) / 100.0;
+
+    cout << "The minimum of insurance cost you need to buy $" << minimumInsurance;
+
 11. Automobile Costs
 Write a program that asks the user to enter the monthly costs for the following
 expenses incurred from operating his or her automobile: loan payment, insurance, gas,
 oil, tires, and maintenance. The program should then display the total monthly cost of
 these expenses, and the total annual cost of these expenses.
+
+    float loan_payment, insurance, gas, oil, tires, maintainance;
+    float total;
+
+    cout << "Loan payment: ";
+    cin >> loan_payment;
+    cout << "Insurance: ";
+    cin >> insurance;
+    cout << "Gas: ";
+    cin >> gas;
+    cout << "Oil: ";
+    cin >> oil;
+    cout << "Tires: ";
+    cin >> tires;
+    cout << "Maintainance: ";
+    cin >> maintainance;
+
+    total = loan_payment + insurance + gas + oil, tires + maintainance;
+
+    cout << "The total monthly cost is $" << total << endl;
+    cout << "Annual cost is $" << total * 12 << endl;
+
