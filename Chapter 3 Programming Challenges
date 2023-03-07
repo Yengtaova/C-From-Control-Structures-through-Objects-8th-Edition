@@ -190,6 +190,19 @@ the total weight of the pallet. The program should ask the user how much the pal
 weighs by itself and with the widgets stacked on it. It should then calculate and display
 the number of widgets stacked on the pallet.
 
+    float WeightPerWidget = 12.5;
+    float paletWeigh, totalWeigh, widgetAmount, numWidget;
+
+    cout << "The weigh of the pallet itself: ";
+    cin >> paletWeigh;
+
+    cout << "The weigh of the pallet and widgets together: ";
+    cin >> totalWeigh;
+
+    numWidget = (totalWeigh - paletWeigh) / WeightPerWidget;
+
+    cout << "The number of widgets stacked on the pallet: " << numWidget << endl;
+
 9. How Many Calories?
 A bag of cookies holds 30 cookies. The calorie information on the bag claims that there
 are 10 “servings” in the bag and that a serving equals 300 calories. Write a program
