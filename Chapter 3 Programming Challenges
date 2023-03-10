@@ -268,3 +268,41 @@ these expenses, and the total annual cost of these expenses.
     cout << "The total monthly cost is $" << total << endl;
     cout << "Annual cost is $" << total * 12 << endl;
 
+13. Currency
+Write a program that will convert U.S.dollar amounts to Japanese yen and to euros,
+storing the conversion factors in the constants YEN_PER_DOLLAR and EUROS_PER_
+DOLLAR.To get the most up - to - date exchange rates, search the Internet using the
+term “currency exchange rate”.If you cannot find the most recent exchange rates, use
+the following :
+            1 Dollar = 98.93 Yen
+            1 Dollar = 0.74 Euros
+Format your currency amounts in fixed - point notation, with two decimal places of
+precision, and be sure the decimal point is always displayed.
+
+    const float YEN_PER_DOLLAR = 98.93,
+                EUROS_PER_DOLLAR = 0.74;
+
+    float amount, yen, euro;
+   
+    cout << "\t\tExchange rate store\n";
+    cout << "How much dollars? $";
+    cin >> amount;
+
+    yen = amount * YEN_PER_DOLLAR;
+    euro = amount * EUROS_PER_DOLLAR;
+
+    cout << setprecision(2) << fixed << showpoint;
+    SetConsoleOutputCP(1252);
+    cout << "\u00A5 " << yen << endl;
+    cout << "\u20AC " << euro << endl;
+
+    //How to input the yen and euro sign
+    //Its simple. The first line you need to include is loading the Windows library.
+    //   #include <Windows.h>
+
+    //And then you need the following 2 lines.The 1st sets the code page for the cout function 
+    //to unicode instead of ASCII.The second line is the code for displaying the euro, its number 
+    //in the unicode table is 20AC in hexadecimal.
+    //    SetConsoleOutputCP(1252);
+    //    cout << "\u20AC"
+
