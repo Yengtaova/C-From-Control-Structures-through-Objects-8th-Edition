@@ -267,7 +267,23 @@ these expenses, and the total annual cost of these expenses.
 
     cout << "The total monthly cost is $" << total << endl;
     cout << "Annual cost is $" << total * 12 << endl;
+    
+12. Celsius to Fahrenheit
+Write a program that converts Celsius temperatures to Fahrenheit temperatures.The
+formula is
+        F = (9 / 5)C + 32
+        F is the Fahrenheit temperature, and C is the Celsius temperature.
 
+    float degree, farenheit;
+
+    cout << "This program will convert the Celsius temperature to Fareheit for you.\n";
+    cout << "Enter the degree in celcius: ";
+    cin >> degree;
+
+    farenheit = ((degree * 9)/5) + 32;
+     
+    cout << degree << " Celcius = " << farenheit << " Farenheit.";
+    
 13. Currency
 Write a program that will convert U.S.dollar amounts to Japanese yen and to euros,
 storing the conversion factors in the constants YEN_PER_DOLLAR and EUROS_PER_
