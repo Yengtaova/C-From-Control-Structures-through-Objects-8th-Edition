@@ -590,3 +590,19 @@ ordered. It should then calculate and display the number of pizzas to purchase.
     cout << setprecision(1);
     cout << "The number of slides you can get from " << int(diameter) << " inches pizza is " << numSlides << endl;
     cout << "You should order " << numPizza << " pizza" << endl;
+    
+22. Angle Calculator
+Write a program that asks the user for an angle, entered in radians. The program
+should then display the sine, cosine, and tangent of the angle. (Use the sin , cos , and
+tan library functions to determine these values.) The output should be displayed in
+fixed-point notation, rounded to four decimal places of precision.
+    
+    float radians;
+
+    cout << "Enter the angle in radians (PI/x): ";
+    cin >> radians;
+
+    cout << setprecision(4) << showpoint << fixed;
+    cout << "Sine: " << sin(radians)
+        << "\nCosine: " << cos(radians)
+        << "\nTangent: " << tan(radians) << endl;
