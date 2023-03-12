@@ -399,3 +399,21 @@ current tax rate for each $100 of assessed value. The program should then calcul
 and report how much annual property tax a senior homeowner will be charged for this
 property and what the quarterly tax bill will be.
 
+    const float ACCESS_PERCENTAGE = 0.6,
+                SENIOR_EXEMPTION = 5000;
+    float value, accessment_value, propertyTax,
+        accessValueAfterDiscount, quarterTax;
+
+    cout << "The actual value of the property: ";
+    cin >> value;
+
+    accessment_value = value * ACCESS_PERCENTAGE;
+    accessValueAfterDiscount = accessment_value - SENIOR_EXEMPTION;
+
+    propertyTax = (accessValueAfterDiscount * 2.64) / 100;
+    quarterTax = propertyTax / 4.0;
+
+    cout << "Accessment value: $" << accessValueAfterDiscount
+        << "\nProperty tax: $" << propertyTax
+        << "\nQuarterly tax: $" << quarterTax << endl;
+
