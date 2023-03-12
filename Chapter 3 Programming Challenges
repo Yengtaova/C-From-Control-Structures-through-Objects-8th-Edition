@@ -340,3 +340,30 @@ County Sales Tax: $ 501.38
 State Sales Tax: $ 1002.75
 Total Sales Tax: $ 1504.13
 
+
+    const float STATE_TAX = 0.04,
+                COUNTY_TAX = 0.02;
+    string month, year;
+    float sales, totalCollected, countyTax, stateTax, totalSalesTax;
+
+    cout << "Month ";
+    cin >> month;
+    cout << "Year ";
+    cin >> year;
+
+    cout << "The total amount of sales ";
+    cin >> sales;
+
+    countyTax = sales * COUNTY_TAX;
+    stateTax = sales * STATE_TAX;
+    totalSalesTax = countyTax + stateTax;
+    totalCollected = sales + totalSalesTax;
+
+    cout << "\nMonth: " << month << endl;
+    cout << "-----------------------\n";
+    cout << "Total Collected:" << right << setw(10) << "$ " << totalCollected
+        << "\nSales:"  <<right << setw(20) << "$ " << sales
+        << "\nCounty Sales Tax:"  << right << setw(9) << "$ " << countyTax
+        << "\nState Sales Tax:" <<right << setw(10) << "$ " << stateTax
+        << "\nTotal Sales Tax:"  <<right << setw(10) << "$ " << totalSalesTax;
+
