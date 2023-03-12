@@ -1,1 +1,72 @@
+1. Sum of Numbers
+Write a program that asks the user for a positive integer value. The program should use
+a loop to get the sum of all the integers from 1 up to the number entered. For example,
+if the user enters 50, the loop will find the sum of 1, 2, 3, 4, … 50.
+Input Validation: Do not accept a negative starting number.
 
+    int input, sum = 0;
+    cout << "Please enter a number and we will do a sum up from 1 to your enter number: ";
+    cin >> input;
+
+    while (input <= 0) {
+        cout << "No negative value or zero. Enter again.";
+        cin >> input;
+    }
+
+    for (int i = 1; i <= input; i++)
+        sum += i;
+
+    cout << "The sum from 1 to " << input << " is " << sum;
+    
+2. Characters for the ASCII Codes
+Write a program that uses a loop to display the characters for the ASCII codes 0
+through 127. Display 16 characters on each line.
+
+   for (int i = 0, y = 0; i <= 127; i++, y++)
+    {
+        if (y == 17)
+            cout << "\n";
+        cout << char(i) << " ";
+    }
+
+3. Ocean Levels
+Assuming the ocean’s level is currently rising at about 1.5 millimeters per year, write
+a program that displays a table showing the number of millimeters that the ocean will
+have risen each year for the next 25 years.
+
+    const float RISING_LEVEL = 1.5; //millimeter per year
+    float seaLevel = 0;
+    int i = 0;
+    while (++i <= 25) {
+        seaLevel += RISING_LEVEL;
+        cout << i << " year: " << seaLevel << " millimeters.\n";
+    }
+
+4. Calories Burned
+Running on a particular treadmill you burn 3.6 calories per minute. Write a program that
+uses a loop to display the number of calories burned after 5, 10, 15, 20, 25, and 30 minutes.
+
+    const float CAL_PER_MINUTE = 3.6;
+    float calBurn;
+
+    for (int i = 5; i <= 30; i += 5)
+    {
+        calBurn = i * CAL_PER_MINUTE;
+        cout << i << " minutes: " << calBurn << " cal.\n";
+    }
+
+5. Membership Fees Increase
+A country club, which currently charges $2,500 per year for membership, has
+announced it will increase its membership fee by 4% each year for the next six years.
+Write a program that uses a loop to display the projected rates for the next six years.
+
+    const int CHARGE_PER_YEAR = 2500;
+    float membershipIncrease = 0.04;
+    float accumulate = CHARGE_PER_YEAR;
+    float increase;
+
+    for (int i = 0; i < 6; i++) {
+        increase = accumulate * membershipIncrease;
+        accumulate += increase;
+        cout << i + 1 << " year: $" << accumulate << endl;
+    }
