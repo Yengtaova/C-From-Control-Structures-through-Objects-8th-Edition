@@ -417,3 +417,77 @@ property and what the quarterly tax bill will be.
         << "\nProperty tax: $" << propertyTax
         << "\nQuarterly tax: $" << quarterTax << endl;
 
+17. Math Tutor
+Write a program that can be used as a math tutor for a young student. The program
+should display two random numbers to be added, such as
+247
++
+129
+---
+The program should then pause while the student works on the problem. When the
+student is ready to check the answer, he or she can press a key and the program will
+display the correct solution:
+247
++
+129
+---
+376
+
+
+    int num1, num2, sum, a = 0;
+
+    unsigned int seed = time(0);
+    srand(seed);
+
+    while (a < 5)
+    {
+    num1 = rand() % 1000;
+    num2 = rand() % 1000;
+
+    sum = num1 + num2;
+
+    cout << endl;
+    cout << setw(5) <<right << num1
+        << "\n+\n"
+        << setw(5) <<right << num2
+        << "\n-----\n"
+        <<setw(5) <<right << sum << endl;
+
+    a++;
+    }
+    
+18. Interest Earned
+Assuming there are no deposits other than the original investment, the balance in a
+savings account after one year may be calculated as
+
+Amount = Principal *(1 + Rate/T)^T
+
+Principal is the balance in the savings account, Rate is the interest rate, and T is
+the number of times the interest is compounded during a year ( T is 4 if the interest is
+compounded quarterly).
+
+Write a program that asks for the principal, the interest rate, and the number of times
+the interest is compounded. It should display a report similar to
+
+Interest Rate: 4.25%
+Times Compounded: 12
+Principal: $ 1000.00
+Interest: $ 43.34
+Amount in Savings: $ 1043.34
+
+19. Monthly Payments
+The monthly payment on a loan may be calculated by the following formula:
+
+Payment = (Rate *(1 + Rate)^N / ((1 + Rate)^N - 1))* L
+
+Rate is the monthly interest rate, which is the annual interest rate divided by 12. (12%
+annual interest would be 1 percent monthly interest.) N is the number of payments, and
+L is the amount of the loan. Write a program that asks for these values and displays a
+report similar to
+
+Loan Amount: $ 10000.00
+Monthly Interest Rate: 1%
+Number of Payments: 36
+Monthly Payment: $ 332.14
+Amount Paid Back: $ 11957.15
+Interest Paid: $ 1957.15
