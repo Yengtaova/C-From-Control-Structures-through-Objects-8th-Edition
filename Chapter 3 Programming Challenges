@@ -606,3 +606,65 @@ fixed-point notation, rounded to four decimal places of precision.
     cout << "Sine: " << sin(radians)
         << "\nCosine: " << cos(radians)
         << "\nTangent: " << tan(radians) << endl;
+        
+23. Stock Transaction Program
+Last month Joe purchased some stock in Acme Software, Inc. Here are the details of
+the purchase:
+• The number of shares that Joe purchased was 1,000.
+• When Joe purchased the stock, he paid $45.50 per share.
+• Joe paid his stockbroker a commission that amounted to 2% of the amount he paid
+for the stock.
+
+Two weeks later Joe sold the stock. Here are the details of the sale:
+• The number of shares that Joe sold was 1,000.
+• He sold the stock for $56.90 per share.
+• He paid his stockbroker another commission that amounted to 2% of the amount
+he received for the stock.
+Write a program that displays the following information:
+• The amount of money Joe paid for the stock.
+• The amount of commission Joe paid his broker when he bought the stock.
+• The amount that Joe sold the stock for.
+• The amount of commission Joe paid his broker when he sold the stock.
+• Display the amount of profit that Joe made after selling his stock and paying the two
+commissions to his broker. (If the amount of profit that your program displays is a
+negative number, then Joe lost money on the transaction.)
+
+    int numShare = 1000;
+    const float PRICE_PER_SHARE = 45.50,
+                PRICE_PER_SHARE_SOLD = 56.90,
+                COMMISSION_FEES = 0.02;
+    float paidAmount, commissionFees, soldAmount, soldCommission, profit;
+
+    paidAmount = numShare * PRICE_PER_SHARE;
+    commissionFees = paidAmount * COMMISSION_FEES;
+    soldAmount = numShare * PRICE_PER_SHARE_SOLD;
+    soldCommission = soldAmount * COMMISSION_FEES;
+    profit = soldAmount - commissionFees - soldCommission;
+
+    cout << "Amount of money Joe paid for stock: $" << paidAmount
+        << "\nCommission fees: $" << commissionFees
+        << "\nAmount that Joe sold the stock for: $" << soldAmount
+        << "\nCommission fees when sold the stock: $" << soldCommission << endl;
+
+    if (profit - paidAmount < 0)
+        cout << "Joe lose the profit of $" << profit - paidAmount;
+    else
+        cout << "Joe gain profit of $" << profit - paidAmount;
+
+24. Word Game
+Write a program that plays a word game with the user. The program should ask the
+user to enter the following:
+• His or her name
+• His or her age
+• The name of a city
+• The name of a college
+• A profession
+• A type of animal
+• A pet’s name
+After the user has entered these items, the program should display the following story,
+inserting the user’s input into the appropriate locations:
+
+There once was a person named NAME who lived in CITY . At the age of
+AGE , NAME went to college at COLLEGE . NAME graduated and went to work
+as a PROFESSION . Then, NAME adopted a(n) ANIMAL named PETNAME . They
+both lived happily ever after!
