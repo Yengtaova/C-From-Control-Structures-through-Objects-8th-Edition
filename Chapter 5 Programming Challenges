@@ -91,6 +91,32 @@ Hour Distance Traveled
 Input Validation: Do not accept a negative number for speed and do not accept any
 value less than 1 for time traveled.
 
+ float speed, time, distance;
+
+
+    cout << "The speed of vehicle in miles per hour: ";
+    cin >> speed;
+    while(speed < 0)
+    {
+        cout << "No negative speed. Enter again:";
+        cin >> speed;
+    }
+
+    cout << "How many hours it has traveled: ";
+    cin >> time;
+    while (time <= 1)
+    {
+        cout << "Time should not less or equal to 1 hour: ";
+        cin >> time;
+    }
+
+    cout << "Hour\tDistance Traveled\n"
+        << "--------------------------\n";
+    for (int i = 1; i <= time; i++) {
+        distance = speed * i;
+        cout << i << "\t" << setw(10) <<right << distance << endl;
+    }
+
 
 7. Pennies for Pay
 Write a program that calculates how much a person would earn over a period of time
@@ -101,3 +127,101 @@ total pay at the end of the period. The output should be displayed in a dollar a
 not the number of pennies.
 
 Input Validation: Do not accept a number less than 1 for the number of days worked.
+
+    int numDays, dollar;
+    int cent;
+    int total = 1;
+    
+
+    cout << "How many days that you work? ";
+    cin >> numDays;
+
+    while (numDays < 1) {
+        cout << "No work less than 1 day. Re-enter: ";
+        cin >> numDays;
+    }
+
+    for (int i = 1; i <= numDays; i++) {
+        if(i == 1){
+            dollar = total / 100;
+            cent = total % 100;
+            cout << "Day " << i << ":\t$" << float(cent/100.0) << endl;
+        }
+        else {
+            total *= 2; //continue to double each day
+            dollar = total / 100;
+            cent = total % 100;
+            if (cent % 100 == 0) {
+                dollar = cent / 100;
+            }
+            cout << "Day " << i << ":\t$" << dollar + float(cent/100.0) << endl;
+        }
+    }
+
+8. Math Tutor
+This program started in Programming Challenge 15 of Chapter 3 , and was modified
+in Programming Challenge 9 of Chapter 4 . Modify the program again so it displays a
+menu allowing the user to select an addition, subtraction, multiplication, or division
+problem. The final selection on the menu should let the user quit the program. After
+the user has finished the math problem, the program should display the menu again.
+This process is repeated until the user chooses to quit the program.
+Input Validation: If the user selects an item not on the menu, display an error message
+and display the menu again.
+
+9. Hotel Occupancy
+Write a program that calculates the occupancy rate for a hotel. The program should
+start by asking the user how many floors the hotel has. A loop should then iterate once
+for each floor. In each iteration, the loop should ask the user for the number of rooms
+on the floor and how many of them are occupied. After all the iterations, the program
+should display how many rooms the hotel has, how many of them are occupied, how
+many are unoccupied, and the percentage of rooms that are occupied. The percentage
+may be calculated by dividing the number of rooms occupied by the number of rooms.
+
+Input Validation: Do not accept a value less than 1 for the number of floors. Do not
+accept a number less than 10 for the number of rooms on a floor.
+
+10. Average Rainfall
+Write a program that uses nested loops to collect data and calculate the average rainfall
+over a period of years. The program should first ask for the number of years. The outer
+loop will iterate once for each year. The inner loop will iterate twelve times, once for
+each month. Each iteration of the inner loop will ask the user for the inches of rainfall
+for that month.
+After all iterations, the program should display the number of months, the total inches
+of rainfall, and the average rainfall per month for the entire period.
+Input Validation: Do not accept a number less than 1 for the number of years. Do not
+accept negative numbers for the monthly rainfall.
+
+11. Population
+Write a program that will predict the size of a population of organisms. The program
+should ask the user for the starting number of organisms, their average daily population
+increase (as a percentage), and the number of days they will multiply. A loop
+should display the size of the population for each day.
+Input Validation: Do not accept a number less than 2 for the starting size of the population.
+Do not accept a negative number for average daily population increase. Do not
+accept a number less than 1 for the number of days they will multiply.
+
+12. Celsius to Fahrenheit Table
+In Programming Challenge 10 of Chapter 3 you were asked to write a program that
+converts a Celsius temperature to Fahrenheit. Modify that program so it uses a loop
+to display a table of the Celsius temperatures 0–20, and their Fahrenheit equivalents.
+13. The Greatest and Least of These
+Write a program with a loop that lets the user enter a series of integers. The user should
+enter −99 to signal the end of the series. After all the numbers have been entered, the
+program should display the largest and smallest numbers entered.
+
+14. Student Line Up
+A teacher has asked all her students to line up single file according to their first name.
+For example, in one class Amy will be at the front of the line and Yolanda will be at
+the end. Write a program that prompts the user to enter the number of students in the
+class, then loops to read that many names. Once all the names have been read it reports
+which student would be at the front of the line and which one would be at the end of
+the line. You may assume that no two students have the same name.
+Input Validation: Do not accept a number less than 1 or greater than 25 for the number
+of students.
+
+15. Payroll Report
+Write a program that displays a weekly payroll report. A loop in the program should
+ask the user for the employee number, gross pay, state tax, federal tax, and FICA withholdings.
+The loop will terminate when 0 is entered for the employee number. After the
+data is entered, the program should display totals for gross pay, state tax, federal tax,
+FICA withholdings, and net pay.
