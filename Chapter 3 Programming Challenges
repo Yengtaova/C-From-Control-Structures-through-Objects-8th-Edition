@@ -475,6 +475,24 @@ Principal: $ 1000.00
 Interest: $ 43.34
 Amount in Savings: $ 1043.34
 
+   float principal, rate, compounded, interest, savings;
+
+    cout << "Interest Rate: ";
+    cin >> rate;
+    cout << "Principal: ";
+    cin >> principal;
+    cout << "Compounded times: ";
+    cin >> compounded;
+
+    savings = principal * pow((1 + (rate/100) / compounded), compounded);
+    interest = savings - principal;
+
+    cout << "\nInterest Rate: " << setw(9) << right << rate << "%"
+        << "\nTimes Compounded: " << setw(3) << right << "$" << compounded
+        << "\nPrincipal: " << setw(10) << right << "$" << principal
+        << "\nInterest: " << setw(11) << right << "$" << interest
+        << "\nSaving: " << setw(13) << right << "$" << savings << endl;
+
 19. Monthly Payments
 The monthly payment on a loan may be calculated by the following formula:
 
