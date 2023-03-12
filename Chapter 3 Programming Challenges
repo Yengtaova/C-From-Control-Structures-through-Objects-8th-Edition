@@ -509,3 +509,30 @@ Number of Payments: 36
 Monthly Payment: $ 332.14
 Amount Paid Back: $ 11957.15
 Interest Paid: $ 1957.15
+
+float loan, monthlyInterRate, numPayment, annualRate,
+          paidBack, payment, interestPaid;
+
+    cout << "Enter your loan amount: ";
+    cin >> loan;
+    cout << "Number of payment: ";
+    cin >> numPayment;
+    cout << "Annual Interest Rate: ";
+    cin >> annualRate;
+    
+    monthlyInterRate = annualRate / 12; 
+    monthlyInterRate /= 100; //Change it to decimal format
+
+    payment = ((monthlyInterRate * pow(1 + monthlyInterRate, numPayment)) * loan) / (pow(1 + monthlyInterRate, numPayment) - 1);
+ 
+    
+    paidBack = payment * numPayment;
+    interestPaid = paidBack - loan;
+
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "\nLoan Amount: " << loan
+        << "\nMonthly Interest Rate: " << monthlyInterRate << "%"
+        << "\nNumber of Payments: " << numPayment
+        << "\nMonthly Payment: " << "$" << payment
+        << "\nAmount Paid Back: " << "$" << paidBack
+        << "\nInterest Paid: " << "$" << interestPaid << endl;
