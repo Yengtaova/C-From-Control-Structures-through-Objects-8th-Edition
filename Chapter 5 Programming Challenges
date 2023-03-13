@@ -302,14 +302,65 @@ Input Validation: Do not accept a number less than 2 for the starting size of th
 Do not accept a negative number for average daily population increase. Do not
 accept a number less than 1 for the number of days they will multiply.
 
+    int numDay;
+    float population, increasePercent, dailyIncrease;
+
+    cout << "Starting population: ";
+    while (cin >> population && population < 2)
+        cout << "Population should not be less than 2. Enter again: ";
+
+    cout << "Average daily population increase (in percent): ";
+    while (cin >> increasePercent && increasePercent < 0)
+        cout << "No negative value for population increase. Enter again: ";
+
+    cout << "The number of day that will be multiplied: ";
+    while (cin >> numDay && numDay < 1)
+        cout << "The day should not be less than 1. Enter again: ";
+
+    cout << setprecision(2) << fixed << showpoint;
+
+    for (int i = 0; i < numDay; i++)
+    {
+        dailyIncrease = (population * increasePercent) / 100;
+        population += dailyIncrease;
+        cout << "Day " << i + 1 << ": " << population << endl;
+    }
+
 12. Celsius to Fahrenheit Table
 In Programming Challenge 10 of Chapter 3 you were asked to write a program that
 converts a Celsius temperature to Fahrenheit. Modify that program so it uses a loop
 to display a table of the Celsius temperatures 0–20, and their Fahrenheit equivalents.
+
+    float fahrenheit;
+    
+    cout << "Celsius\tFahrenheit\n";
+    for (int i = 0; i <= 20; i++)
+    {
+        fahrenheit = (i * 9 / 5) + 32;
+        cout << i << "\370C\t  " << fahrenheit << "\370F" << endl;
+    }
+    
 13. The Greatest and Least of These
 Write a program with a loop that lets the user enter a series of integers. The user should
 enter −99 to signal the end of the series. After all the numbers have been entered, the
 program should display the largest and smallest numbers entered.
+
+    int input;
+    int highest, lowest;
+    cout << "Enter a series of integer and we will give the least and greatest of them. Enter -99 to stop: ";
+    cin >> input;
+
+    highest = lowest = input;
+
+    do {
+        if (input > highest)
+            highest = input;
+        else if (input < lowest)
+            lowest = input;
+        cin >> input;
+    } while (input != -99);
+
+    cout << "The largest number is " << highest << " and the lowest is " << lowest << endl;
 
 14. Student Line Up
 A teacher has asked all her students to line up single file according to their first name.
@@ -321,9 +372,66 @@ the line. You may assume that no two students have the same name.
 Input Validation: Do not accept a number less than 1 or greater than 25 for the number
 of students.
 
+    int numStudents;
+    string name, first, last;
+
+    //I set 15 students in the class
+    cout << "How many students are in the class?\n";
+    while (cin >> numStudents && (numStudents < 0 || numStudents > 25))
+        cout << "No less than 1 or greater than 25. Enter again";
+
+    ifstream myFile("studentList.txt");
+    
+
+    if (myFile)
+    {
+        //assign the first and last to the first name so we can compare it in the loop
+        myFile >> name; 
+        first = last = name;
+        while (myFile >> name) {
+            if (first > name)
+                first = name;
+            else if (last < name)
+                last = name;
+        }
+        cout << "The fist student in line is " << first
+            << "\nThe last student in line is " << last << endl;
+        cout << "Closing the file...\n";
+        myFile.close();
+    }
+    else
+        cout << "File cant be opened.\n";
+
 15. Payroll Report
 Write a program that displays a weekly payroll report. A loop in the program should
 ask the user for the employee number, gross pay, state tax, federal tax, and FICA withholdings.
 The loop will terminate when 0 is entered for the employee number. After the
 data is entered, the program should display totals for gross pay, state tax, federal tax,
 FICA withholdings, and net pay.
+
+    int empNumber;
+    float grossPay, stateTax, fedTax, fica, netpay;
+
+    do {
+        cout << "Employee number: ";
+        cin >> empNumber;
+        if (empNumber == 0)
+            continue;
+        cout << "Gross pay: ";
+        cin >> grossPay;
+        cout << "State tax: ";
+        cin >> stateTax;
+        cout << "Federal tax: ";
+        cin >> fedTax;
+        //FICA tax is a combination of Social Security and Medicare taxes. Employers and employess pays 7.65% each.
+        cout << "FICA withholdings: ";
+        cin >> fica;
+
+        netpay = grossPay - (grossPay * (stateTax + fedTax)) / 100;
+        cout << "Gross pay: $" << grossPay
+            << "\nState tax: $" << stateTax
+            << "\nFederal tax: $" << fedTax
+            << "\nFICA withholdings: $" << fica
+            << "\nNet pay: $" << netpay << endl << endl;
+
+    } while (empNumber != 0);
