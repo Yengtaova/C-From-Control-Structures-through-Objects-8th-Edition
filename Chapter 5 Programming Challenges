@@ -262,6 +262,37 @@ of rainfall, and the average rainfall per month for the entire period.
 Input Validation: Do not accept a number less than 1 for the number of years. Do not
 accept negative numbers for the monthly rainfall.
 
+    const int NUM_MONTH = 12;
+    int year, totalMonth;
+    string months[NUM_MONTH] = { "January", "February", "March", "April", "May", "June", "July", 
+                                  "August", "September", "October", "November", "December" };
+    float rainfall[NUM_MONTH];
+    float average, totalRainfall = 0;
+   
+
+    cout << "How many years? ";
+    cin >> year;
+
+    cout << "Enter the rainfall (inches) for each month.\n";
+
+    for (int i = 0; i < year; i++) 
+    {
+        cout << "Year " << i+1 << endl;
+        for (int j = 0; j < NUM_MONTH; j++)
+        {
+            cout << months[j] << ": ";
+            cin >> rainfall[j];
+            totalRainfall += rainfall[i];
+        }
+    }
+
+    totalMonth = year * NUM_MONTH;
+    average = totalRainfall / totalMonth;
+
+    cout << "\nTotal months: " << totalMonth << " months."
+         << "\nTotal inches of rainfall: " << totalRainfall << " inches."
+         << "\nAverage rainfall per month: " << average << " inches.\n";
+
 11. Population
 Write a program that will predict the size of a population of organisms. The program
 should ask the user for the starting number of organisms, their average daily population
