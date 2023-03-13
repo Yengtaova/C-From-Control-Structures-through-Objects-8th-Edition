@@ -435,3 +435,133 @@ FICA withholdings, and net pay.
             << "\nNet pay: $" << netpay << endl << endl;
 
     } while (empNumber != 0);
+    
+16. Savings Account Balance
+Write a program that calculates the balance of a savings account at the end of a period
+of time. It should ask the user for the annual interest rate, the starting balance, and the
+number of months that have passed since the account was established. A loop should
+then iterate once for every month, performing the following:
+
+A) Ask the user for the amount deposited into the account during the month. (Do not
+accept negative numbers.) This amount should be added to the balance.
+B) Ask the user for the amount withdrawn from the account during the month. (Do
+not accept negative numbers.) This amount should be subtracted from the balance.
+C) Calculate the monthly interest. The monthly interest rate is the annual interest rate
+divided by twelve. Multiply the monthly interest rate by the balance, and add the
+result to the balance.
+
+After the last iteration, the program should display the ending balance, the total
+amount of deposits, the total amount of withdrawals, and the total interest earned.
+
+17. Sales Bar Chart
+Write a program that asks the user to enter today’s sales for five stores. The program
+should then display a bar graph comparing each store’s sales. Create each bar in the bar
+graph by displaying a row of asterisks. Each asterisk should represent $100 of sales.
+Here is an example of the program’s output.
+
+Enter today's sales for store 1: 1000 [Enter]
+Enter today's sales for store 2: 1200 [Enter]
+Enter today's sales for store 3: 1800 [Enter]
+Enter today's sales for store 4: 800 [Enter]
+Enter today's sales for store 5: 1900 [Enter]
+
+SALES BAR CHART
+(Each * = $100)
+Store 1: **********
+Store 2: ************
+Store 3: ******************
+Store 4: ********
+Store 5: *******************
+
+18. Population Bar Chart
+Write a program that produces a bar chart showing the population growth of
+Prairieville, a small town in the Midwest, at 20-year intervals during the past 100 years.
+The program should read in the population figures (rounded to the nearest 1,000 people)
+for 1900, 1920, 1940, 1960, 1980, and 2000 from a file. For each year it should
+display the date and a bar consisting of one asterisk for each 1,000 people. The data
+can be found in the People.txt file.
+Here is an example of how the chart might begin:
+PRAIRIEVILLE POPULATION GROWTH
+(each * represents 1,000 people)
+1900 **
+1920 ****
+1940 *****
+
+19. Budget Analysis
+Write a program that asks the user to enter the amount that he or she has budgeted
+for a month. A loop should then prompt the user to enter each of his or her expenses
+for the month and keep a running total. When the loop finishes, the program should
+display the amount that the user is over or under budget.
+
+20. Random Number Guessing Game
+Write a program that generates a random number and asks the user to guess what the
+number is. If the user’s guess is higher than the random number, the program should
+display “Too high, try again.” If the user’s guess is lower than the random number,
+the program should display “Too low, try again.” The program should use a loop that
+repeats until the user correctly guesses the random number.
+
+21. Random Number Guessing Game Enhancement
+Enhance the program that you wrote for Programming Challenge 20 so it keeps a count
+of the number of guesses that the user makes. When the user correctly guesses the random
+number, the program should display the number of guesses.
+
+22. Square Display
+Write a program that asks the user for a positive integer no greater than 15. The program
+should then display a square on the screen using the character ‘X’. The number
+entered by the user will be the length of each side of the square. For example, if the
+user enters 5, the program should display the following:
+XXXXX
+XXXXX
+XXXXX
+XXXXX
+XXXXX
+If the user enters 8, the program should display the following:
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+XXXXXXXX
+
+23. Pattern Displays
+Write a program that uses a loop to display Pattern A below, followed by another loop
+that displays Pattern B.
+___________________________________
+Pattern A       Pattern B
+___________________________________
++               ++++++++++
+++              +++++++++
++++             ++++++++
+++++            +++++++
++++++           ++++++
+++++++          +++++
++++++++         ++++
+++++++++        +++
++++++++++       ++
+++++++++++      +
+___________________________________
+
+24. Using Files—Numeric Processing
+If you have downloaded this book’s source code from the companion Web site, you
+will find a file named Random.txt in the Chapter 05 folder. (The companion Web
+site is at www.pearsonhighered.com/gaddis .) This file contains a long list of random
+numbers. Copy the file to your hard drive and then write a program that opens the file,
+reads all the numbers from the file, and calculates the following:
+A) The number of numbers in the file
+B) The sum of all the numbers in the file (a running total)
+C) The average of all the numbers in the file
+The program should display the number of numbers found in the file, the sum of the
+numbers, and the average of the numbers.
+
+25. Using Files—Student Line Up
+Modify the Student Line Up program described in Programming Challenge 14 so that
+it gets the names from a file. Names should be read in until there is no more data to
+read. If you have downloaded this book’s source code from the companion Web site,
+you will find a file named LineUp.txt in the Chapter 05 folder. You can use this file to
+test the program. (The companion Web site is at www.pearsonhighered.com/gaddis .)
+
+26. Using Files—Savings Account Balance Modification
+Modify the Savings Account Balance program described in Programming Challenge 16
+so that it writes the final report to a file.
