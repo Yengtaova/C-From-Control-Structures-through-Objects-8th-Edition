@@ -453,6 +453,44 @@ result to the balance.
 After the last iteration, the program should display the ending balance, the total
 amount of deposits, the total amount of withdrawals, and the total interest earned.
 
+    float annualRate, startBalance, deposit, withdraw, monthInterst,
+          totalDep = 0, totalWith = 0, totalInter = 0;
+    int numMonth;
+
+
+    cout << "Annual Interest Rate: ";
+    cin >> annualRate;
+
+    cout << "Starting Balance: ";
+    cin >> startBalance;
+
+    cout << "Number of Months passed since open account: ";
+    cin >> numMonth;
+
+    for (int i = 0; i < numMonth; i++)
+    {
+        cout << "Month " << i + 1 << endl;
+        cout << "Deposit amount to the account: $";
+        while (cin >> deposit && deposit < 0)
+            cout << "No negative value. Enter again: ";
+        totalDep += deposit;
+        startBalance += deposit;
+        cout << "Withdraw amount from the account: $";
+        while(cin >> withdraw && withdraw < 0)
+            cout << "No negative value. Enter again: ";
+        totalWith += withdraw;
+        startBalance -= withdraw;
+
+        monthInterst = (annualRate / 12)/100;
+        totalInter += startBalance * monthInterst;
+        startBalance += startBalance * monthInterst;
+    }
+
+    cout << "\nThe ending balance: $" << startBalance
+         << "\nTotal deposits: $" << totalDep
+         << "\nTotal withdraws: $" << totalWith
+         << "\nTotal interest earns: $" << totalInter << endl;
+
 17. Sales Bar Chart
 Write a program that asks the user to enter today’s sales for five stores. The program
 should then display a bar graph comparing each store’s sales. Create each bar in the bar
