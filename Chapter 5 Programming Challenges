@@ -168,6 +168,54 @@ This process is repeated until the user chooses to quit the program.
 Input Validation: If the user selects an item not on the menu, display an error message
 and display the menu again.
 
+  char choice;
+    char sign;
+    int num1, num2, result;
+    unsigned int seed = time(0);
+    srand(seed);
+
+    do {
+        cout << "\tCalculation Menu\n";
+        cout << "Press 1: Addition\n"
+             << "Press 2: Subtraction\n"
+             << "Press 3: Multiplication\n"
+             << "Press 4: Division\n"
+             << "Press q: Exit program\n";
+        cin >> choice;
+
+        num1 = rand() % 1000;
+        num2 = rand() % 1000;
+
+        if (tolower(choice) != 'q')
+        {
+            switch(choice) {
+            case '1':
+                result = num1 + num2;
+                sign = '+';
+                break;
+            case '2':
+                result = num1 - num2;
+                sign = '-';
+                break;
+            case '3':
+                result = num1 * num2;
+                sign = 'x';
+                break;
+            case '4':
+                if (num2 == 0) {
+                    cout << "Cant divide by 0.\n";
+                    continue;
+                }
+                else
+                    result = num1 / num2;
+                sign = char(247);
+                break;
+            }
+            cout << setw(6) << right << num1 << "\n" <<sign <<"\n" << setw(6) << right << num2 
+                 << "\n------\n" << setw(6) << right << result << endl;
+        }
+    } while (tolower(choice) != 'q');
+
 9. Hotel Occupancy
 Write a program that calculates the occupancy rate for a hotel. The program should
 start by asking the user how many floors the hotel has. A loop should then iterate once
@@ -179,6 +227,29 @@ may be calculated by dividing the number of rooms occupied by the number of room
 
 Input Validation: Do not accept a value less than 1 for the number of floors. Do not
 accept a number less than 10 for the number of rooms on a floor.
+
+    int numFloor, numRoom, occupied, 
+        totalOccupied = 0, totalRoom = 0;
+
+    cout << "How many floors does hotel has? ";
+    cin >> numFloor;
+
+    for (int i = 0; i < numFloor; i++)
+    {
+        if (i == 13)  //skip the 13th floor since most hotel doesnt have it
+            continue;
+        cout << "Number of room in " << i + 1 << " floor: ";
+        cin >> numRoom;
+        cout << "How many are occupied? ";
+        cin >> occupied;
+        totalRoom += numRoom;
+        totalOccupied += occupied;
+    }
+
+    cout << "The hotel has total rooms of " << totalRoom
+        << "\nOccupied rooms: " << totalOccupied
+        << "\nUnoccupied rooms: " << totalRoom - totalOccupied
+        << "\nPercentage of rooms that are occupied " << float(totalOccupied) / totalRoom << endl;
 
 10. Average Rainfall
 Write a program that uses nested loops to collect data and calculate the average rainfall
