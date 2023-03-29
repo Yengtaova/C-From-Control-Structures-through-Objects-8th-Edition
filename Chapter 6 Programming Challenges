@@ -1,0 +1,481 @@
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+#include <cmath>
+#include <cstring>
+#include <string>
+#include <random>
+#include <algorithm>
+#include <fstream>
+using namespace std;
+
+
+const double gravity = 9.8;
+
+float calculateRetail(float cost, float markup)
+{
+    float retailPrice;
+    retailPrice = (cost * (markup)) / 100;
+    return retailPrice;
+}
+
+double getLength()
+{
+    double length;
+    cout << "Enter length value: ";
+    cin >> length;
+    return length;
+}
+
+double getWidth()
+{
+    double width;
+    cout << "Enter width value: ";
+    cin >> width;
+    return width;
+}
+
+double getArea(double l, double w)
+{
+    double area = l * w;
+    return area;
+}
+
+void displayData(double l, double w, double a)
+{
+    cout << "Length: " << l << " centimeters.\n";
+    cout << "Width: " << w << " centimeters.\n";
+    cout << "Area: " << a << " centimeters square.\n";
+}
+
+double getSales()
+{
+    double sales;
+    cout << "What is the quarterly sales figure: ";
+    while (cin >> sales && sales < 0)
+        cout << "No less than 0. Enter again: ";
+    return sales;
+}
+
+void findHighest(double sales1, double sales2, double sales3, double sales4)
+{
+    double highest;
+    if (sales1 > sales2 && sales1 > sales3 && sales1 > sales4) {
+        highest = sales1;
+        cout << "Northeast Division has the highest sales with total of $" << highest << endl;
+    }
+    else if (sales2 > sales1 && sales2 > sales3 && sales2 > sales4) {
+        highest = sales2;
+        cout << "Southeast Division has the highest sales with total of $" << highest << endl;
+    }
+    else if (sales3 > sales1 && sales3 > sales2 && sales3 > sales4) {
+        highest = sales3;
+        cout << "Northwest Division has the highest sales with total of $" << highest << endl;
+    }
+    else {
+        highest = sales4;
+        cout << "Southwest Division has the highest sales with total of $" << highest << endl;
+    }
+}
+
+int getNumAccident()
+{
+    int numAccidents;
+    cout << "\nEnter the number of automobile accidents: ";
+    while (cin >> numAccidents && numAccidents < 0)
+        cout << "no less than 0.\n";
+    return numAccidents;
+}
+
+void findLowest(int act1, int act2, int act3, int act4, int act5, string* array)
+{
+
+    int i = 0;
+    int smallest;
+    if (act1 < act2 && act1 < act3 && act1 < act4 && act1 < act5) {
+        smallest = act1; i = 0;
+    }
+    else if (act2 < act1 && act2 < act3 && act2 < act4 && act2 < act5) {
+        smallest = act2; i = 1;
+    }
+    else if (act3 < act1 && act3 < act2 && act3 < act4 && act3 < act5) {
+        smallest = act3; i = 2;
+    }
+    else if (act4 < act1 && act4 < act2 && act4 < act3 && act4 < act5) {
+        smallest = act4; i = 3;
+    }
+    else if (act5 < act1 && act5 < act2 && act5 < act3 && act5 < act4) {
+        smallest = act5; i = 4;
+    }
+    cout << "\n" << array[i] << " region has the smallest amount of accidents of " << smallest << " times.\n";
+}
+
+double fallingDistance(double time)
+{
+    double distance;
+    distance = 0.5 * gravity * time * time;
+    return distance;
+}
+
+double kineticEnery(double mass, double velocity)
+{
+    int K;
+    K = 0.5 * mass * velocity * velocity;
+    return K;
+
+}
+
+double Celsius(double Farenheit)
+{
+    double cel;
+    cel = (5 * (Farenheit - 32))/9;
+    return cel;
+}
+
+void coinToss(int numTimes)
+{
+    const int MIN = 1, MAX = 2;
+    unsigned int seed = time(0);
+    srand(seed);
+   
+    for (int i = 0; i < numTimes; i++) {
+        int random = MIN + (rand() % (MAX - MIN + 1));
+        if (random == 1)
+            cout << "heads.\n";
+        else if (random == 2)
+            cout << "tails.\n";
+    }
+}
+
+float presentValue(float futureValue, float annualInterest, int numYears)
+{
+    float presentValue;
+
+    presentValue = futureValue / pow((1 + (annualInterest / 100.0)), numYears);
+    return presentValue;
+
+}
+
+void futureValue(float accVal, float monthlyRate, int numMonth)
+{
+    float futureValue;
+    futureValue = accVal * pow((1 + (monthlyRate / 100.0)), numMonth);
+    cout << "Future value is $" << futureValue << endl;
+}
+
+void getScore(float& score)
+{
+    cout << "Enter score: ";
+    while (cin >> score && score < 0)
+        cout << " No value less than 0. Enter again.\n";
+}
+
+float findLowest(float sc1, float sc2, float sc3, float sc4, float sc5)
+{
+    float lowest;
+    if (sc1 < sc2 && sc1 < sc3 && sc1 < sc4 && sc1 < sc5)
+        lowest = sc1;
+    else if (sc2 < sc1 && sc2 < sc3 && sc2 < sc4 && sc2 < sc5)
+        lowest = sc2;
+    else if (sc3 < sc1 && sc3 < sc2 && sc3 < sc4 && sc3 < sc5)
+        lowest = sc3;
+    else if (sc4 < sc1 && sc4 < sc2 && sc4 < sc3 && sc4 < sc5)
+        lowest = sc4;
+    else
+        lowest = sc5;
+    cout << "Lowest value is " << lowest << endl;
+    return lowest;
+}
+
+void calcAverage(float sc1, float sc2, float sc3, float sc4, float sc5)
+{
+   
+    float total = sc1 + sc2 + sc3 + sc4 + sc5;
+    float lowest = findLowest(sc1, sc2, sc3, sc4, sc5);
+    float average = (total - lowest ) / 4.0;  // we take the lowest out already so we divide by 4
+
+    cout << "The average test scores is " << average << endl;
+}
+
+
+int main()
+{
+
+1. Markup
+   Write a program that asks the user to enter an item’s wholesale cost and its markup
+   percentage.It should then display the item’s retail price.For example :
+   • If an item’s wholesale cost is 5.00 and its markup percentage is 100 %, then the
+     item’s retail price is 10.00.
+   • If an item’s wholesale cost is 5.00 and its markup percentage is 50%, then the item’s
+     retail price is 7.50.
+The program should have a function named calculateRetail that receives the
+wholesale cost and the markup percentage as arguments and returns the retail price
+of the item.
+Input Validation: Do not accept negative values for either the wholesale cost of the
+item or the markup percentage.
+    
+
+    float wholeSale, markUp;
+    cout << "Wholesale cost: ";
+    while (cin >> wholeSale && wholeSale < 0)
+        cout << "No negative value. Re-enter";
+    cout << "Mark up cost: ";
+    while (cin >> markUp && markUp < 0)
+        cout << "No negative value. Re-enter";
+
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "The retail price is: $" << wholeSale + calculateRetail(wholeSale, markUp);
+    */
+
+  
+2. Rectangle Area—Complete the Program
+If you have downloaded this book’s source code from the companion Web site, you
+will find a partially written program named AreaRectangle.cpp in the Chapter 06
+folder. (The companion Web site is at www.pearsonhighered.com / gaddis .) Your job is
+to complete the program. When it is complete, the program will ask the user to enter
+the width and length of a rectangle and then display the rectangle’s area.The program
+calls the following functions, which have not been written :
+• getLength – This function should ask the user to enter the rectangle’s length and
+then return that value as a double .
+• getWidth – This function should ask the user to enter the rectangle’s width and then
+return that value as a double .
+• getArea – This function should accept the rectangle’s length and width as arguments
+and return the rectangle’s area.The area is calculated by multiplying the
+length by the width.
+• displayData – This function should accept the rectangle’s length, width, and area
+as arguments and display them in an appropriate message on the screen.   
+    
+
+    double length = getLength();
+    double width = getWidth();
+    double area = getArea(length, width);
+
+    displayData(length, width, area);
+
+ 
+3. Winning Division
+Write a program that determines which of a company’s four divisions(Northeast,
+Southeast, Northwest, and Southwest) had the greatest sales for a quarter.It should
+include the following two functions, which are called by main .
+• double getSales() is passed the name of a division.It asks the user for a division’s
+quarterly sales figure, validates the input, then returns it.It should be called once for
+each division.
+• void findHighest() is passed the four sales totals.It determines which is the largest
+and prints the name of the high grossing division, along with its sales figure.
+Input Validation : Do not accept dollar amounts less than $0.00.
+    
+    double sales1, sales2, sales3, sales4;
+  
+    cout << "Northeast Division\n";
+    sales1 = getSales();
+    cout << "Southeast Division\n";
+    sales2 = getSales();
+    cout << "Northwest Division\n";
+    sales3 = getSales();
+    cout << "Southwest Division\n";
+    sales4 = getSales();
+
+    findHighest(sales1, sales2, sales3, sales4);
+    
+
+4. Safest Driving Area
+Write a program that determines which of five geographic regions within a major city
+(north, south, east, west, and central) had the fewest reported automobile accidents last
+year.It should have the following two functions, which are called by main .
+• int getNumAccidents() is passed the name of a region.It asks the user for the
+number of automobile accidents reported in that region during the last year, validates
+the input, then returns it.It should be called once for each city region.
+• void findLowest() is passed the five accident totals.It determines which is the
+smallest and prints the name of the region, along with its accident figure.
+Input Validation : Do not accept an accident number that is less than 0.
+
+
+    string region[5] = { "north", "south", "east", "west", "central" };
+    int act[5];
+
+    for (int i = 0; i < 5; i++) {
+        cout << "------" << region[i] << "------";
+        act[i] = getNumAccident();
+    }
+
+    findLowest(act[0], act[1], act[2], act[3], act[4], region);
+ 
+5. Falling Distance
+When an object is falling because of gravity, the following formula can be used to
+determine the distance the object falls in a specific time period :
+d = 1/2(gt^2)
+The variables in the formula are as follows : d is the distance in meters, g is 9.8, and t
+is the amount of time, in seconds, that the object has been falling.
+Write a function named fallingDistance that accepts an object’s falling time(in
+seconds) as an argument.The function should return the distance, in meters, that the
+object has fallen during that time interval. Write a program that demonstrates the
+function by calling it in a loop that passes the values 1 through 10 as arguments and
+displays the return value.
+ 
+
+
+    for (int i = 1; i <= 10; i++)
+    {
+        if (i == 1)
+        {
+            cout << i << " second : " << fallingDistance(i) << " meters.\n";
+        }
+        else {
+            cout << i << " seconds : " << fallingDistance(i) << " meters\n";
+        }
+    }
+   
+6. Kinetic Energy
+In physics, an object that is in motion is said to have kinetic energy.The following
+formula can be used to determine a moving object’s kinetic energy :
+KE = 1/2(mv^2)
+The variables in the formula are as follows : KE is the kinetic energy, m is the object’s
+mass in kilograms, and v is the object’s velocity, in meters per second.
+Write a function named kineticEnergy that accepts an object’s mass(in kilograms)
+and velocity(in meters per second) as arguments.The function should return the
+amount of kinetic energy that the object has.Demonstrate the function by calling it in
+a program that asks the user to enter values for mass and velocity.
+
+
+    double mass, velocity;
+
+    cout << "Enter the mass (kg): ";
+    cin >> mass;
+    cout << "Enter the velocity (m/s): ";
+    cin >> velocity;
+
+    cout << "The kinetic energy is: " << kineticEnery(mass, velocity) << " joules.\n";
+
+7. Celsius Temperature Table
+The formula for converting a temperature from Fahrenheit to Celsius in
+C = 5/9(F-32)
+where F is the Fahrenheit temperature and C is the Celsius temperature. Write a function
+named celsius that accepts a Fahrenheit temperature as an argument.The function
+should return the temperature, converted to Celsius.Demonstrate the function by
+calling it in a loop that displays a table of the Fahrenheit temperatures 0 through 20
+and their Celsius equivalents.
+
+    double faren, cel;
+
+    cout << "Enter the Farenheit degree and we will convert it into Celsius\n";
+    cin >> faren;
+
+    cel = Celsius(faren);
+
+    cout << faren << "F\370 = " << cel << "C\370";
+  
+8. Coin Toss
+Write a function named coinToss that simulates the tossing of a coin.When you call
+the function, it should generate a random number in the range of 1 through 2. If the
+random number is 1, the function should display “heads.” If the random number is 2,
+the function should display “tails.” Demonstrate the function in a program that asks
+the user how many times the coin should be tossed and then simulates the tossing of
+the coin that number of times.
+   
+    coinToss(5);
+
+9. Present Value
+    Suppose you want to deposit a certain amount of money into a savings account and
+    then leave it alone to draw interest for the next 10 years.At the end of 10 years you
+    would like to have $10,000 in the account. How much do you need to deposit today to make 
+    that happen? You can use the following formula, which is known as the present
+    value formula, to find out :
+        P = F /(1+r)^n
+    The terms in the formula are as follows :
+    • P is the present value, or the amount that you need to deposit today.
+    • F is the future value that you want in the account. (In this case, F is $10,000.)
+    • r is the annual interest rate .
+    • n is the number of years that you plan to let the money sit in the account.
+    Write a program that has a function named presentValue that performs this calculation.
+    The function should accept the future value, annual interest rate, and number of
+    years as arguments.It should return the present value, which is the amount that you
+    need to deposit today. Demonstrate the function in a program that lets the user experiment
+    with different values for the formula’s terms.
+    
+
+        float presentVal, futureVal, annualRate, numYears;
+        cout << "Expected future value amount\n";
+        cin >> futureVal;
+
+        cout << "Annual interest rate\n";
+        cin >> annualRate;
+
+        cout << "Number of years\n";
+        cin >> numYears;
+
+        presentVal = presentValue(futureVal, annualRate, numYears);
+        cout << "In order to get $" << futureVal << " you must put $" << presentVal << " in bank now.\n";
+
+10. Future Value
+    Suppose you have a certain amount of money in a savings account that earns compound
+    monthly interest, and you want to calculate the amount that you will have after a specific
+    number of months.The formula, which is known as the future value formula, is:
+    F = P x (1+i)^t
+    The terms in the formula are as follows :
+    • F is the future value of the account after the specified time period.
+    • P is the present value of the account.
+    • i is the monthly interest rate .
+    • t is the number of months .
+    Write a program that prompts the user to enter the account’s present value, monthly
+    interest rate, and the number of months that the money will be left in the account.The
+    program should pass these values to a function named futureValue that returns the
+    future value of the account, after the specified number of months.The program should
+    display the account’s future value.
+
+          float accValue, monthlyRate; int numMonth;
+          cout << "Enter current account value: $";
+          cin >> accValue;
+
+          cout << "Montly interest rate: ";
+          cin >> monthlyRate;
+
+          cout << "Number of months money will be left in: ";
+          cin >> numMonth;
+
+          futureValue(accValue, monthlyRate, numMonth);
+
+11. Lowest Score Drop
+Write a program that calculates the average of a group of test scores, where the lowest
+score in the group is dropped.It should use the following functions :
+• void getScore() should ask the user for a test score, store it in a reference parameter
+variable, and validate it.This function should be called by main once for each
+of the five scores to be entered.
+• void calcAverage() should calculate and display the average of the four highest
+scores.This function should be called just once by main and should be passed the
+five scores.
+• int findLowest() should find and return the lowest of the five scores passed to it.
+It should be called by calcAverage, which uses the function to determine which of
+the five scores to drop.
+Input Validation : Do not accept test scores lower than 0 or higher than 100.
+
+
+          const int numTest = 5;
+          float score1, score2, score3, score4, score5;
+
+          getScore(score1);
+          getScore(score2);
+          getScore(score3);
+          getScore(score4);
+          getScore(score5);
+
+          calcAverage(score1, score2, score3, score4, score5);
+
+12. Star Search
+A particular talent competition has five judges, each of whom awards a score between
+0 and 10 to each performer.Fractional scores, such as 8.3, are allowed.A performer’s
+final score is determined by dropping the highestand lowest score received, then averaging
+the three remaining scores.Write a program that uses this method to calculate a
+contestant’s score.It should include the following functions :
+• void getJudgeData() should ask the user for a judge’s score, store it in a reference
+parameter variable, and validate it.This function should be called by main once for
+each of the five judges.
+• void calcScore() should calculateand display the average of the three scores that
+remain after dropping the highestand lowest scores the performer received.This
+function should be called just once by mainand should be passed the five scores.
+The last two functions, described below, should be called by calcScore, which uses
+the returned information to determine which of the scores to drop.
+• int findLowest() should findand return the lowest of the five scores passed to it.
+• int findHighest() should find and return the highest of the five scores passed to it.
+Input Validation : Do not accept judge scores lower than 0 or higher than 10.
+
