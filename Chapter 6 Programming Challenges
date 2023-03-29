@@ -198,6 +198,40 @@ void calcAverage(float sc1, float sc2, float sc3, float sc4, float sc5)
     cout << "The average test scores is " << average << endl;
 }
 
+float findHighest(float sc1, float sc2, float sc3, float sc4, float sc5)
+{
+    float highest;
+    if (sc1 > sc2 && sc1 > sc3 && sc1 > sc4 && sc1 > sc5)
+        highest = sc1;
+    else if (sc2 > sc1 && sc2 > sc3 && sc2 > sc4 && sc2 > sc5)
+        highest = sc2;
+    else if (sc3 > sc1 && sc3 > sc2 && sc3 > sc4 && sc3 > sc5)
+        highest = sc3;
+    else if (sc4 > sc1 && sc4 > sc2 && sc4 > sc3 && sc4 > sc5)
+        highest = sc4;
+    else
+        highest = sc5;
+    cout << "Highest value is " << highest << endl;
+    return highest;
+}
+
+void getJudgeScore(float& score)
+{
+    cout << "Enter the score: ";
+    while (cin >> score && (score < 0 || score > 10))
+        cout << "Score couldnt not be less than 0 or greater than 10.\n";
+}
+
+void calScore(float sc1, float sc2, float sc3, float sc4, float sc5)
+{
+    float highest = findHighest(sc1, sc2, sc3, sc4, sc5);
+    float lowest = findLowest(sc1, sc2, sc3, sc4, sc5);
+    float total = sc1 + sc2 + sc3 + sc4 + sc5;
+    float average = (total - highest - lowest)/3.0;
+    cout << setprecision(2) << fixed << showpoint();
+    cout << "The average score from judges is " << average << endl;
+}
+
 
 int main()
 {
@@ -479,3 +513,27 @@ the returned information to determine which of the scores to drop.
 • int findHighest() should find and return the highest of the five scores passed to it.
 Input Validation : Do not accept judge scores lower than 0 or higher than 10.
 
+    float score1, score2, score3, score4, score5;
+    getJudgeScore(score1);
+    getJudgeScore(score2);
+    getJudgeScore(score3);
+    getJudgeScore(score4); 
+    getJudgeScore(score5);
+    calScore(score1, score2, score3, score4, score5);
+    
+13. Days Out
+Write a program that calculates the average number of days a company’s employees
+are absent. The program should have the following functions:
+• A function called by main that asks the user for the number of employees in
+the company. This value should be returned as an int . (The function accepts no
+arguments.)
+• A function called by main that accepts one argument: the number of employees in
+the company. The function should ask the user to enter the number of days each
+employee missed during the past year. The total of these days should be returned as
+an int .
+• A function called by main that takes two arguments: the number of employees in
+the company and the total number of days absent for all employees during the year.
+The function should return, as a double , the average number of days absent. (This
+function does not perform screen output and does not ask the user for input.)
+Input Validation: Do not accept a number less than 1 for the number of employees. Do
+not accept a negative number for the days any employee missed.
