@@ -232,6 +232,33 @@ void calScore(float sc1, float sc2, float sc3, float sc4, float sc5)
     cout << "The average score from judges is " << average << endl;
 }
 
+int numEmployee()
+{
+    int numEmploy;
+    cout << "How many employee in the company? ";
+    while (cin >> numEmploy && numEmploy < 1)
+        cout << "Employee cant be less than 1.";
+    return numEmploy;
+}
+
+int totalMissedDay(int numEmployee)
+{
+    int totalDays = 0;
+    int temp;
+    for (int i = 0; i < numEmployee; i++)
+    {
+        cout << "Employee " << i + 1 << "'s missed days: ";
+        cin >> temp;
+        totalDays += temp;
+    }
+    return totalDays;
+}
+
+double averageAbsentDay(int numEmp, int numMissed)
+{
+    double average = double(numMissed) / numEmp;
+    return average;
+}
 
 int main()
 {
@@ -537,3 +564,54 @@ The function should return, as a double , the average number of days absent. (Th
 function does not perform screen output and does not ask the user for input.)
 Input Validation: Do not accept a number less than 1 for the number of employees. Do
 not accept a negative number for the days any employee missed.
+
+    int num, totalDays;
+    double absentAverage;
+
+    num = numEmployee();
+    totalDays =  totalMissedDay(num);
+    absentAverage = averageAbsentDay(num, totalDays);
+
+    cout << "\nEmployees: " << num << endl;
+    cout << "Total absents: " << totalDays << " days\n";
+    cout << "The average absent days of employee is : " << absentAverage << " days.\n";
+    
+    
+14. Order Status
+The Middletown Wholesale Copper Wire Company sells spools of copper wiring for
+$100 each. Write a program that displays the status of an order. The program should
+have a function that asks for the following data:
+• The number of spools ordered.
+• The number of spools in stock.
+• Whether there are special shipping and handling charges.
+(Shipping and handling is normally $10 per spool.) If there are special charges, the
+program should ask for the special charges per spool.
+The gathered data should be passed as arguments to another function that displays
+• The number of spools ready to ship from current stock.
+• The number of spools on backorder (if the number ordered is greater than what is
+in stock).
+• Subtotal of the portion ready to ship (the number of spools ready to ship times
+$100).
+• Total shipping and handling charges on the portion ready to ship.
+• Total of the order ready to ship.
+The shipping and handling parameter in the second function should have the default
+argument 10.00.
+Input Validation: Do not accept numbers less than 1 for spools ordered. Do not accept
+a number less than 0 for spools in stock or shipping and handling charges.
+
+15. Overloaded Hospital
+Write a program that computes and displays the charges for a patient’s hospital stay.
+First, the program should ask if the patient was admitted as an in-patient or an outpatient.
+If the patient was an in-patient, the following data should be entered:
+• The number of days spent in the hospital
+• The daily rate
+• Hospital medication charges
+• Charges for hospital services (lab tests, etc.)
+The program should ask for the following data if the patient was an out-patient:
+• Charges for hospital services (lab tests, etc.)
+• Hospital medication charges
+The program should use two overloaded functions to calculate the total charges. One
+of the functions should accept arguments for the in-patient data, while the other function
+accepts arguments for out-patient information. Both functions should return the
+total charges.
+Input Validation: Do not accept negative numbers for any data.
