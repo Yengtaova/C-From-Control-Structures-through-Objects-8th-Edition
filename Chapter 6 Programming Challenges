@@ -260,7 +260,7 @@ item or the markup percentage.
 
     cout << setprecision(2) << fixed << showpoint;
     cout << "The retail price is: $" << wholeSale + calculateRetail(wholeSale, markUp);
-    */
+   
 
   
 2. Rectangle Area—Complete the Program
