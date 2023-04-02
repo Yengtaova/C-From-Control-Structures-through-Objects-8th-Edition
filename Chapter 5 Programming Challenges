@@ -511,6 +511,27 @@ Store 3: ******************
 Store 4: ********
 Store 5: *******************
 
+    const int numStores = 5;
+    int barSales[numStores];
+    int stars;
+
+    for (int i = 0; i < numStores; i++)
+    {
+        cout << "Enter today's sales for store " << i +1 << ": ";
+        cin >> barSales[i];
+    }
+
+    cout << "\nSALES BAR CHART \n"
+        << "(Each * = $100)\n";
+    for (int i = 0; i < numStores; i++)
+    {
+        stars = barSales[i] / 100.0;
+        cout << "Store " << i + 1 << ": ";
+        for (int j = 0; j < stars; j++)
+            cout << "*";
+        cout << endl;
+    }
+
 18. Population Bar Chart
 Write a program that produces a bar chart showing the population growth of
 Prairieville, a small town in the Midwest, at 20-year intervals during the past 100 years.
