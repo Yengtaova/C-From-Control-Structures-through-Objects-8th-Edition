@@ -546,11 +546,68 @@ PRAIRIEVILLE POPULATION GROWTH
 1920 ****
 1940 *****
 
+    const int NUM = 6;
+    int pop[NUM];
+    ifstream myFile;
+    myFile.open("People.txt");
+    if (myFile.fail())
+        cout << "Error! Cant read the file.\n";
+    else {
+        int i = 0;
+        while (i < NUM && myFile >> pop[i])
+            i++;
+    }
+    myFile.close();
+
+    int stars;
+    int years = 1880;
+    cout << "\nPRAIRIEVILLE POPULATION GROWTH\n"
+        << "(each * represents 1,000 people)\n";
+    for (int i = 0; i < NUM; i++)
+    {
+        years += 20;
+        stars = pop[i] / 1000;
+        cout << years << " ";
+        for (int j = 0; j < stars; j++)
+            cout << "*";
+        cout << endl;
+    }
+    
+    
 19. Budget Analysis
 Write a program that asks the user to enter the amount that he or she has budgeted
 for a month. A loop should then prompt the user to enter each of his or her expenses
 for the month and keep a running total. When the loop finishes, the program should
 display the amount that the user is over or under budget.
+
+    double monthlyBudget, expense, total = 0;
+    int i = 0;
+
+    cout << fixed << showpoint << setprecision(2);
+    cout << "Budget you set for a month $ ";
+    cin >> monthlyBudget;
+
+    do {
+        cout << "Enter the amount of expenses you use in a month. Press 0 to stop.\n";
+        cout << "Expenses " << i + 1 << ": ";
+        cin >> expense;
+        total += expense;
+        i++;
+    } while (expense != 0);
+
+    double temp;
+    if (total > monthlyBudget) {
+        temp = total - monthlyBudget;
+        cout << "You spent over your budget of $" << temp << endl;
+    }
+    else if (total < monthlyBudget)
+    {
+        temp = monthlyBudget - total;
+        cout << "You spent less than your budget of $" << temp << endl;
+    }
+    else
+        cout << "You meet your budget.\n";
+        
 
 20. Random Number Guessing Game
 Write a program that generates a random number and asks the user to guess what the
@@ -563,6 +620,33 @@ repeats until the user correctly guesses the random number.
 Enhance the program that you wrote for Programming Challenge 20 so it keeps a count
 of the number of guesses that the user makes. When the user correctly guesses the random
 number, the program should display the number of guesses.
+
+    unsigned int seed = time(0);
+    srand(seed);
+    int yourGuess, randomValue, numGuess = 0;
+
+    cout << "This program will generate a random number from 0-10. Guess it until you get the right answer\n";
+
+    randomValue = rand() % 10;
+      
+    do {
+        //cout << "Answer hint: " << randomValue << endl;
+        cout << "Your guess: ";
+        cin >> yourGuess;
+
+        numGuess++;
+
+        if (yourGuess < randomValue)
+            cout << "Too low, try again.\n";
+        else if (yourGuess > randomValue)
+            cout << "Too high, try again.\n";
+        else
+            cout << "Yay!You got it right. The correct number is " << randomValue << endl;
+
+    } while (yourGuess != randomValue);
+
+
+    cout << "\nYou took " << numGuess << " to get the correct answer.\n";
 
 22. Square Display
 Write a program that asks the user for a positive integer no greater than 15. The program
@@ -584,6 +668,21 @@ XXXXXXXX
 XXXXXXXX
 XXXXXXXX
 
+
+    int number;
+
+    cout << "Please enter a positive integer no greater than 15.\n";
+    while (cin >> number && (number > 15 || number <= 0))
+        cout << "Number should not be less or equal 0 or greater than 15. Enter again\n";
+
+    for (int i = 0; i < number; i++)
+    {
+        for (int j = 0; j < number; j++)
+            cout << "X";
+        cout << endl;
+    }
+
+
 23. Pattern Displays
 Write a program that uses a loop to display Pattern A below, followed by another loop
 that displays Pattern B.
@@ -602,6 +701,27 @@ ___________________________________
 ++++++++++      +
 ___________________________________
 
+
+
+cout << "Pattern A" << endl;
+
+for (int i = 1; i <= 10; i++)
+{
+    for (int j = 0; j < i; j++)
+        cout << "+";
+    cout << endl;
+}
+
+cout << "\nPattern B" << endl;
+
+for (int i = 10; i >= 1; i--)
+{
+    for (int j = 0; j < i; j++)
+        cout << "+";
+    cout << endl;
+}
+
+
 24. Using Files—Numeric Processing
 If you have downloaded this book’s source code from the companion Web site, you
 will find a file named Random.txt in the Chapter 05 folder. (The companion Web
@@ -614,12 +734,59 @@ C) The average of all the numbers in the file
 The program should display the number of numbers found in the file, the sum of the
 numbers, and the average of the numbers.
 
+        
+int totalNumber = 0, sum = 0, temp;
+float average;
+
+ifstream myFile("Random.txt");
+
+if (myFile.fail())
+    cout << "Can't open the file.\n";
+else {
+    while (myFile >> temp)
+    {
+        totalNumber++;
+        sum += temp;
+    }
+    myFile.close();
+}
+
+average = float(sum) / totalNumber;
+
+cout << "The number of numbers in the file: " << totalNumber
+<< "\nThe sum of all numbers: " << sum
+<< "\nThe average of all numbers in file: " << average << endl;
+
+
 25. Using Files—Student Line Up
 Modify the Student Line Up program described in Programming Challenge 14 so that
 it gets the names from a file. Names should be read in until there is no more data to
 read. If you have downloaded this book’s source code from the companion Web site,
 you will find a file named LineUp.txt in the Chapter 05 folder. You can use this file to
 test the program. (The companion Web site is at www.pearsonhighered.com/gaddis .)
+
+string name;
+vector<string>studentList;
+int i = 0;
+
+ifstream myFile("LineUp.txt");
+if (myFile.fail())
+    cout << "Can't open the file.\n";
+else {
+    while (myFile >> name) {
+        studentList.push_back(name);
+        i++;
+    }
+    myFile.close();
+}
+
+//We are not supposed to use vector here. But for the ease, we will use it here.
+//Then we use built in sort function to sort the name in the vector in order
+
+sort(studentList.begin(), studentList.end());
+
+for (auto a : studentList)
+    cout << a << endl;
 
 26. Using Files—Savings Account Balance Modification
 Modify the Savings Account Balance program described in Programming Challenge 16
