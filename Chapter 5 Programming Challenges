@@ -791,3 +791,43 @@ for (auto a : studentList)
 26. Using Files—Savings Account Balance Modification
 Modify the Savings Account Balance program described in Programming Challenge 16
 so that it writes the final report to a file.
+
+float annualRate, startBalance, deposit, withdraw, monthInterst,
+        totalDep = 0, totalWith = 0, totalInter = 0;
+    int numMonth;
+
+
+    cout << "Annual Interest Rate: ";
+    cin >> annualRate;
+
+    cout << "Starting Balance: ";
+    cin >> startBalance;
+
+    cout << "Number of Months passed since open account: ";
+    cin >> numMonth;
+
+    for (int i = 0; i < numMonth; i++)
+    {
+        cout << "Month " << i + 1 << endl;
+        cout << "Deposit amount to the account: $";
+        while (cin >> deposit && deposit < 0)
+            cout << "No negative value. Enter again: ";
+        totalDep += deposit;
+        startBalance += deposit;
+        cout << "Withdraw amount from the account: $";
+        while (cin >> withdraw && withdraw < 0)
+            cout << "No negative value. Enter again: ";
+        totalWith += withdraw;
+        startBalance -= withdraw;
+
+        monthInterst = (annualRate / 12) / 100;
+        totalInter += startBalance * monthInterst;
+        startBalance += startBalance * monthInterst;
+    }
+
+    ofstream myFile("Saving.txt");
+
+    myFile << "\nThe ending balance: $" << startBalance
+        << "\nTotal deposits: $" << totalDep
+        << "\nTotal withdraws: $" << totalWith
+        << "\nTotal interest earns: $" << totalInter << endl;
