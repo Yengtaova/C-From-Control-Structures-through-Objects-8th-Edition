@@ -302,6 +302,19 @@ void display(int order, int stock, double charge)
     cout << "Total price: $" << subtotal + ship_n_handling << endl;
 }
 
+float calCharges(int days, float rate, float med, float service)
+{
+    float totalCharge;
+    totalCharge = (days * rate) + med + service;
+    return totalCharge;
+}
+
+float calCharges(float service, float med)
+{
+    float totalCharge = service + med;
+    return totalCharge;
+}
+
 int main()
 {
 
@@ -664,3 +677,32 @@ of the functions should accept arguments for the in-patient data, while the othe
 accepts arguments for out-patient information. Both functions should return the
 total charges.
 Input Validation: Do not accept negative numbers for any data.
+
+    char choice;
+    cout << "Is the patient in or out-patient? ('i'/'o')\n";
+    while (cin >> choice && (tolower(choice) != 'i' && tolower(choice) != 'o'))
+        cout << "Input should be 'i' or 'o'. Enter again: ";
+
+    int days;
+    float rate, medCharges, serviceCharges, totalCharges;
+
+    if (choice == 'i')
+    {
+        cout << "Days spent in hospital: ";
+        cin >> days;
+        cout << "Daily rate: ";
+        cin >> rate;
+        cout << "Medication charges: $";
+        cin >> medCharges;
+        cout << "Hospital services charge: $";
+        cin >> serviceCharges;
+        cout << "Total charges for the patient's stay in hospital is $ " << calCharges(days, rate, medCharges, serviceCharges);
+    }
+    else
+    {
+        cout << "Hospital services charge: $";
+        cin >> serviceCharges;
+        cout << "Medication charges: $";
+        cin >> medCharges;
+        cout << "Total charges for the patient's stay in hospital is $ " << calCharges(serviceCharges, medCharges);
+    }
