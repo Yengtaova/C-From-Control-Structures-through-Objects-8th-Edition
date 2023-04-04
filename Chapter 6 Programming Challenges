@@ -260,6 +260,48 @@ double averageAbsentDay(int numEmp, int numMissed)
     return average;
 }
 
+void getInfo(int& amount, int& stock, double& charge)
+{
+    char choice;
+
+    cout << "The number of spools ordered: ";
+    cin >> amount;
+    cout << "Number of spools in stock: ";
+    cin >> stock;
+    cout << "Is there any special charges per spool? (y/n)\n";
+    cin >> choice;
+    if (choice == 'y' || choice == 'Y') {
+        cout << "Charges: ";
+        cin >> charge;
+    }
+    else
+        return;
+    
+}
+
+void display(int order, int stock, double charge)
+{
+    int shipAmount;
+
+    if (order > stock)
+    {
+        cout << "The backorder of spools are " << order - stock << endl;
+        shipAmount = stock;
+    }
+    else
+    {
+        cout << "Amount ready to ship from the stock are " << order << endl;
+        shipAmount = order;
+    }
+
+    double subtotal = shipAmount * 100;
+    double ship_n_handling = shipAmount * charge;
+
+    cout << "Subtotal of the portion ready to ship: $" << subtotal<< endl;
+    cout << "Total shipping and handling charges: $" << ship_n_handling << endl;
+    cout << "Total price: $" << subtotal + ship_n_handling << endl;
+}
+
 int main()
 {
 
@@ -598,6 +640,13 @@ The shipping and handling parameter in the second function should have the defau
 argument 10.00.
 Input Validation: Do not accept numbers less than 1 for spools ordered. Do not accept
 a number less than 0 for spools in stock or shipping and handling charges.
+
+    int orderAmount, stockAmount;
+    double charge = 10;
+
+    getInfo(orderAmount, stockAmount, charge);
+
+    display(orderAmount, stockAmount, charge);
 
 15. Overloaded Hospital
 Write a program that computes and displays the charges for a patient’s hospital stay.
