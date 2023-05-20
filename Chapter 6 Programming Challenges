@@ -315,6 +315,13 @@ float calCharges(float service, float med)
     return totalCharge;
 }
 
+int sizePopulation(int prevSize, int birthRate, int deathRate)
+{
+    int newPopSize = prevSize + birthRate - deathRate;
+    return newPopSize;
+}
+
+
 int main()
 {
 
@@ -724,6 +731,33 @@ and D is the death rate.
 Input Validation: Do not accept numbers less than 2 for the starting size. Do not accept
 negative numbers for birth rate or death rate. Do not accept numbers less than 1 for
 the number of years.
+
+    int popSize, birthRate, deathRate, numYears;
+    
+    cout << "The starting size of the population: ";
+    while(cin >> popSize && popSize < 2)
+        cout << "Enter again. Population size should not be less than 2.\n";
+    
+    cout << "Annual birth rate: ";
+    while(cin >> birthRate && birthRate < 0)
+        cout << "No negative value. Enter again: ";
+    
+    cout << "Annual death rate: ";
+    while(cin >> deathRate &&  deathRate < 0)
+        cout << "No negative value. Enter again: ";
+    
+    cout << "Number of years to display: ";
+    while(cin >> numYears && numYears < 1)
+        cout << "Number of years can't be less than 1. Enter again: ";
+    
+    int currentStats = popSize;
+    
+    for(int i = 0 ; i < numYears; i++)
+    {
+        cout << "Year " << i+1 << ": ";
+        currentStats = sizePopulation(currentStats, birthRate, deathRate);
+        cout << currentStats << " people\n";
+    }
 
 17. Transient Population
 Modify Programming Challenge 16 to also consider the effect on population caused by
