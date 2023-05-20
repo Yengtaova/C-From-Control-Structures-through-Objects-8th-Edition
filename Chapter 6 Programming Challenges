@@ -321,6 +321,12 @@ int sizePopulation(int prevSize, int birthRate, int deathRate)
     return newPopSize;
 }
 
+int sizePopulation(int prevSize, int birthRate, int deathRate, int in, int out)
+{
+    int newPopSize = prevSize + birthRate - deathRate + in - out;
+    return newPopSize;
+}
+
 
 int main()
 {
@@ -769,6 +775,43 @@ from now. You can either prompt the user to input a value for numYear s, or you 
 set it within the program.
 Input Validation: Do not accept numbers less than 2 for the starting size. Do not accept
 negative numbers for birth rate, death rate, arrivals, or departures.
+
+    int popSize, birthRate, deathRate, numYears, moveOut, moveIn;
+    
+    cout << "The starting size of the population: ";
+    while(cin >> popSize && popSize < 2)
+        cout << "Enter again. Population size should not be less than 2.\n";
+    
+    cout << "Annual birth rate: ";
+    while(cin >> birthRate && birthRate < 0)
+        cout << "No negative value. Enter again: ";
+    
+    cout << "Annual death rate: ";
+    while(cin >> deathRate &&  deathRate < 0)
+        cout << "No negative value. Enter again: ";
+    
+    cout << "Number of people move out: ";
+    while(cin >> moveOut && moveOut < 0 )
+        cout << "No negative value. Enter again: ";
+    
+    
+    cout << "Number of people move in: ";
+    while(cin >> moveIn && moveIn < 0 )
+        cout << "No negative value. Enter again: ";
+    
+    cout << "Number of years to display: ";
+    while(cin >> numYears && numYears < 1)
+        cout << "Number of years can't be less than 1. Enter again: ";
+    
+    int currentStats = popSize;
+    
+    for(int i = 0 ; i < numYears; i++)
+    {
+        cout << "Year " << i+1 << ": ";
+        currentStats = sizePopulation(currentStats, birthRate, deathRate, moveIn, moveOut);
+        cout << currentStats << " people\n";
+    }
+    
 
 18. Paint Job Estimator
 A painting company has determined that for every 110 square feet of wall space,
