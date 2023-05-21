@@ -1,6 +1,52 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+
+int largest(int num[], int size)
+{
+    int largest = num[0];
+    for(int i = 1 ; i < size; i++)
+    {
+        if(num[1] > largest)
+            largest = num[1];
+    }
+    return largest;
+}
+
+int smallest(int num[], int size)
+{
+    int smallest = num[0];
+    for(int i = 1 ; i < size; i++)
+    {
+        if(num[1] < smallest)
+            smallest = num[1];
+    }
+    return smallest;
+}
+
+int main(int argc, const char * argv[]) {
+
 1. Largest/Smallest Array Values
 Write a program that lets the user enter 10 values into an array. The program should
 then display the largest and smallest values stored in the array.
+
+int numArray[10];
+    int large, small;
+    cout << "Enter 10 values and program will display the smallest and largest number among them.\n";
+    for(int i = 0 ; i < 10; i++)
+    {
+        cout << "Number #" << i+1 << ":";
+        cin >> numArray[0];
+    }
+    
+    large = largest(numArray, 10);
+    small = smallest(numArray,10);
+    
+    cout << "\nThe largest number is " << large
+    << "\nThe smallest number is " << small << endl;
 
  2. Rainfall Statistics
 Write a program that lets the user enter the total rainfall for each of 12 months into
@@ -110,3 +156,7 @@ should then display the total number of correctly answered questions, the total 
 of incorrectly answered questions, and a list showing the question numbers of the
 incorrectly answered questions.
 Input Validation: Only accept the letters A, B, C, or D as answers.
+
+
+return 0;
+}
