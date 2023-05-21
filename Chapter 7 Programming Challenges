@@ -67,6 +67,16 @@ void salsaReport(const string (&name)[5], const int (&soldAmount)[5], int size)
         << "\nThe lowest selling is " << name[s] << " with " << small << " jars sold\n";
 }
 
+template<typename  T>
+void greaterNum(const T myArray[], int size, T n)
+{
+    for(int i = 0 ; i < size; i++)
+    {
+        if(myArray[i] > n)
+            cout << myArray[i] << " ";
+    }
+}
+//******************************************************************************************************
 int main(int argc, const char * argv[]) {
 
 1. Largest/Smallest Array Values
@@ -152,6 +162,20 @@ Input Validation: Do not accept negative values for number of jars sold.
 In a program, write a function that accepts three arguments: an array, the size of the
 array, and a number n. Assume that the array contains integers. The function should
 display all of the numbers in the array that are greater than the number n .
+
+    const int NUM = 50;
+    int arrNum[NUM];
+    int n, randNum;
+    
+    for(auto &num : arrNum){
+        randNum = rand()%50 +1;
+        num = randNum;
+    }
+    
+    cout << "Enter the number you want to compare: ";
+    cin >> n;
+    
+    greaterNum(arrNum, NUM, n);
 
  5. Monkey Business
 A local zoo wants to keep track of how many pounds of food each of its three monkeys
