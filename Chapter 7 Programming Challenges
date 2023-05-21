@@ -6,7 +6,7 @@ using namespace std;
 
 
 template <typename T>
-tuple<T, T> largest(T num[], int size)
+tuple<T, T> largest(const T num[], int size)
 {
     int month =0;
     T largest = num[0];
@@ -21,7 +21,7 @@ tuple<T, T> largest(T num[], int size)
 }
 
 template<typename T>
-tuple <T,T> smallest(T num[], int size)
+tuple <T,T> smallest(const T num[], int size)
 {
     int month = 0;
     T smallest = num[0];
@@ -41,6 +41,30 @@ void inputValidate(T& value)
 {
     while(cin >> value && value < 0)
         cout << "No negative value. Enter again: ";
+}
+
+//if we want to use range base for loop we need to pass the array with the size attach to it
+//https://stackoverflow.com/questions/1461432/what-is-array-to-pointer-decay
+void salsaReport(const string (&name)[5], const int (&soldAmount)[5], int size)
+{
+    for(int i = 0 ; i < size; i++)
+    {
+        cout << name[i] << ": " << soldAmount[i] << " jars.\n";
+    }
+    
+    int totalSales = 0;
+    for(auto amount : soldAmount)
+        totalSales += amount;
+    
+    int s, h;
+    double small, high;
+    
+    tie(s, small) = smallest(soldAmount, size);
+    tie(h , high) = largest(soldAmount, size);
+    
+    cout << "Total jars sold is:" <<  totalSales
+         << "\nThe highest selling is " << name[h] << " with " << high << " jars sold"
+        << "\nThe lowest selling is " << name[s] << " with " << small << " jars sold\n";
 }
 
 int main(int argc, const char * argv[]) {
@@ -110,6 +134,19 @@ sold for each type. Once this sales data has been entered, the program should pr
 a report that displays sales for each salsa type, total sales, and the names of the highest
 selling and lowest selling products.
 Input Validation: Do not accept negative values for number of jars sold.
+
+
+    const int NUM = 5;
+    string salsaName[NUM] = {"mild", "medium", "sweet", "hot", "zesty"};
+    int salsaSold[NUM];
+    
+    for(int i = 0 ; i < NUM; i++)
+    {
+        cout << "Number of jars sold for " << salsaName[i] << " salsa ";
+        inputValidate(salsaSold[i]);
+    }
+    
+    salsaReport(salsaName, salsaSold, NUM);
 
 4. Larger Than n
 In a program, write a function that accepts three arguments: an array, the size of the
