@@ -36,7 +36,8 @@ tuple <T,T> smallest(T num[], int size)
     return make_tuple(month, smallest);
 }
 
-void inputValidate(double& value)
+template <typename T>
+void inputValidate(T& value)
 {
     while(cin >> value && value < 0)
         cout << "No negative value. Enter again: ";
