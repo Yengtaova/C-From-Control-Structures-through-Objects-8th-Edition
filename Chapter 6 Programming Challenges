@@ -431,6 +431,179 @@ void menu()
          << "3. Scissor\n";
 }
 
+void transportationFees(int numDays, float& outOfPocket, float& totalExpense, float& totalAllowance, float& save)
+{
+    char choice;
+    float airFare = 0,
+          carRentFee = 0,
+          drivenMiles = 0,
+          ownVehicleExpense = 0,
+          parkingFee = 0,
+          taxiFees =0;
+    
+    cout << "\nRound-trip airfare: ";
+    cin >> airFare;
+    
+   
+    cout << "\nDo you have any car rental?('y' or 'n')\n";
+    cin >> choice;
+    if(choice == 'y'){
+        cout << "How much is the car rental? ";
+        cin >> carRentFee;
+    }
+    else{
+        cout << "\nIf you use personal vehicle. How many miles driven? "; //in case use private vehicle
+        cin >> drivenMiles;
+        ownVehicleExpense = drivenMiles * 0.27;
+    }
+    
+    float parkingQuota = numDays* 6.00;
+    cout << "\nAny parking fees?('y' or 'n')\n";
+    cin >> choice;
+    if(choice == 'y'){   //$6 allowance per day
+        cout << "How much? ";
+        cin >> parkingFee;
+        
+        if(parkingFee > parkingQuota)
+            outOfPocket += (parkingFee - parkingQuota);
+        else
+            save += (parkingQuota-parkingFee);
+    }
+    else
+        save += parkingQuota;
+    
+    float taxiQuota = numDays * 10.0;
+    cout << "\nAny taxi usage?('y' or 'n')\n";
+    cin.clear();
+    cin >> choice;
+    
+    if(choice == 'y'){
+        cout << "How much? ";
+        cin >> taxiFees;
+        
+        if(taxiFees > taxiQuota)
+            outOfPocket += (taxiFees - taxiQuota);
+        else
+            save +=(taxiQuota-taxiFees);
+    }
+    else
+        save += taxiQuota;
+    
+    totalExpense += (airFare + carRentFee + ownVehicleExpense + parkingFee + taxiFees);
+    totalAllowance += (parkingQuota +  taxiQuota);
+}
+
+void accomodateFees(int numDays, float& outOfPocket, float& totalExpense, float& totalAllowance, float& save)
+{
+    float semFees, hotelFees;
+    
+    cout << "\nConference and seminar registration fees: ";
+    cin >> semFees;
+    
+    cout << "\nHotel fees: ";
+    cin >> hotelFees;
+    
+    float hotelQuota = numDays * 90.0;
+    
+    if(hotelFees > hotelQuota)
+        outOfPocket += (hotelFees - hotelQuota);
+    else
+        save += (hotelQuota - hotelFees);
+    
+    totalExpense += (hotelFees + semFees);
+    totalAllowance += hotelQuota;
+    
+}
+
+void mealQuestion(float& meal, float& total, char k)
+{
+    char choice;
+    if(k == 'b')
+        cout << "Did you have breakfast? ";
+    else if(k =='l')
+        cout << "Did you have lunch? ";
+    else
+        cout << "Did you have dinner? ";
+    
+    cin >> choice;
+    
+    if(choice == 'y'){
+        cout << "How much is the meal? ";
+        cin >> meal;
+    }
+    total += meal;
+}
+
+void mealEaten(float deptime, float arrtime, float& outOfPocket, float& totalExpense, float& totalAllowance, float& save)
+{
+    cout << "\nDeparture\n";
+    float mealCost =0;
+    char key;
+    //For the departure day
+    if(deptime < 7.00)  //breakfast
+    {
+        key = 'b';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 9.0)
+            outOfPocket += mealCost - 9.0;
+        else
+            save += (9.0 - mealCost);
+        totalAllowance += 9.0;
+    }
+    else if(deptime < 12.00)  //lunch
+    {
+        key = 'l';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 12.0)
+            outOfPocket += mealCost - 12.0;
+        else
+            save += (12.0 - mealCost);
+        totalAllowance += 12.0;
+    }
+    else if(deptime < 18.00)  //dinner
+    {
+        key = 'd';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 16.0)
+            outOfPocket += mealCost - 16.0;
+        else
+            save += (16.0 - mealCost);
+        totalAllowance += 16.0;
+    }
+    
+    //For the arrival day
+    cout << "\nArrival\n";
+    if(arrtime > 19.00)  //dinner
+    {
+        key = 'd';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 16.0)
+            outOfPocket += mealCost - 16.0;
+        else
+            save += (16.0 - mealCost);
+        totalAllowance += 16.0;
+    }
+    else if(arrtime > 13.00)  //lunch
+    {
+        key = 'l';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 12.0)
+            outOfPocket += mealCost - 12.0;
+        else
+            save += (12.0 - mealCost);
+        totalAllowance += 12.0;
+    }
+    else  //breakfast
+    {
+        key = 'b';
+        mealQuestion(mealCost, totalExpense, key);
+        if(mealCost > 9.0)
+            outOfPocket += mealCost - 9.0;
+        else
+            save += (9.0 - mealCost);
+        totalAllowance += 9.0;
+    }
+    
 int main()
 {
 
@@ -1207,3 +1380,26 @@ the expenses were under the total allowed.
 Input Validation: Do not accept negative numbers for any dollar amount or for miles
 driven in a private vehicle. Do not accept numbers less than 1 for the number of days.
 Only accept valid times for the time of departure and the time of arrival.
+
+
+    int numDays;
+    float depTime, arrTime, saving = 0,
+    totalAllowance = 0, totalExpenses = 0, outOfPocket = 0;
+    
+    cout << "The total days spent on trip: ";
+    cin >> numDays;
+    
+    cout << "\nDeparture time on first day: ";  //Will use decimal and military time as a format
+    cin >> depTime;
+    
+    cout << "\nArrival time on last day: ";
+    cin >> arrTime;
+    
+    transportationFees(numDays, outOfPocket, totalExpenses, totalAllowance, saving);
+    accomodateFees(numDays, outOfPocket, totalExpenses, totalAllowance, saving);
+    mealEaten(depTime, arrTime, outOfPocket, totalExpenses, totalAllowance, saving);
+    
+    cout << "\nTotal expenses during the trip: $" << totalExpenses
+    << "\nTotal allowance expenses: $" << totalAllowance
+    << "\nOut of pocket amount: $" << outOfPocket
+    << "\nTotal saving: $" << saving << endl;
