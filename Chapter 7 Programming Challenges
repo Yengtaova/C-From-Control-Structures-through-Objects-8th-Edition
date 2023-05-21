@@ -1,1 +1,112 @@
+1. Largest/Smallest Array Values
+Write a program that lets the user enter 10 values into an array. The program should
+then display the largest and smallest values stored in the array.
 
+ 2. Rainfall Statistics
+Write a program that lets the user enter the total rainfall for each of 12 months into
+an array of doubles. The program should calculate and display the total rainfall for
+the year, the average monthly rainfall, and the months with the highest and lowest
+amounts.
+Input Validation: Do not accept negative numbers for monthly rainfall figures.
+
+ 3. Chips and Salsa
+Write a program that lets a maker of chips and salsa keep track of sales for five different types of salsa: mild, medium, sweet, hot, and zesty. The program should use two
+parallel 5-element arrays: an array of strings that holds the five salsa names and
+an array of integers that holds the number of jars sold during the past month for each
+salsa type. The salsa names should be stored using an initialization list at the time the
+name array is created. The program should prompt the user to enter the number of jars
+sold for each type. Once this sales data has been entered, the program should produce
+a report that displays sales for each salsa type, total sales, and the names of the highest
+selling and lowest selling products.
+Input Validation: Do not accept negative values for number of jars sold.
+
+4. Larger Than n
+In a program, write a function that accepts three arguments: an array, the size of the
+array, and a number n. Assume that the array contains integers. The function should
+display all of the numbers in the array that are greater than the number n .
+
+ 5. Monkey Business
+A local zoo wants to keep track of how many pounds of food each of its three monkeys
+eats each day during a typical week. Write a program that stores this information in a
+two-dimensional 3 × 5 array, where each row represents a different monkey and each
+column represents a different day of the week. The program should first have the user
+input the data for each monkey. Then it should create a report that includes the following information:
+• Average amount of food eaten per day by the whole family of monkeys.
+• The least amount of food eaten during the week by any one monkey.
+• The greatest amount of food eaten during the week by any one monkey.
+Input Validation: Do not accept negative numbers for pounds of food eaten.
+
+ 6. Rain or Shine
+An amateur meteorologist wants to keep track of weather conditions during the
+past year’s three-month summer season and has designated each day as either rainy
+(‘R’), cloudy (‘C’), or sunny (‘S’). Write a program that stores this information in a
+3 × 30 array of characters, where the row indicates the month (0 = June, 1 = July,
+2 = August) and the column indicates the day of the month. Note that data are not
+being collected for the 31st of any month. The program should begin by reading the
+weather data in from a file. Then it should create a report that displays, for each
+month and for the whole three-month period, how many days were rainy, how many
+were cloudy, and how many were sunny. It should also report which of the three
+months had the largest number of rainy days. Data for the program can be found in
+the RainOrShine.txt file.
+
+ 7. Number Analysis Program
+Write a program that asks the user for a file name. Assume the file contains a series of
+numbers, each written on a separate line. The program should read the contents of the
+file into an array and then display the following data:
+• The lowest number in the array
+• The highest number in the array
+• The total of the numbers in the array
+• The average of the numbers in the array
+If you have downloaded this book’s source code from the companion Web site, you
+will find a file named numbers.txt in the Chapter 07folder. You can use the file to
+test the program. (The companion Web site is at www.pearsonhighered.com/gaddis .) 
+
+8. Lo Shu Magic Square
+The Lo Shu Magic Square is a grid with 3 rows and 3 columns shown in Figure 7-19 .
+The Lo Shu Magic Square has the following properties:
+• The grid contains the numbers 1 through 9 exactly.
+• The sum of each row, each column, and each diagonal all add up to the same
+number. This is shown in Figure 7-20 .
+In a program you can simulate a magic square using a two-dimensional array. Write a
+function that accepts a two-dimensional array as an argument, and determines whether
+the array is a Lo Shu Magic Square. Test the function in a program. 
+
+9. Payroll
+Write a program that uses the following arrays:
+• empId: an array of seven long integers to hold employee identification numbers. The
+array should be initialized with the following numbers:
+5658845 4520125 7895122 8777541
+8451277 1302850 7580489
+• hours: an array of seven integers to hold the number of hours worked by each
+employee
+• payRate: an array of seven doubles to hold each employee’s hourly pay rate
+• wages: an array of seven doubles to hold each employee’s gross wages
+The program should relate the data in each array through the subscripts. For example,
+the number in element 0 of the hours array should be the number of hours worked by
+the employee whose identification number is stored in element 0 of the empId array.
+That same employee’s pay rate should be stored in element 0 of the payRate array.
+The program should display each employee number and ask the user to enter that
+employee’s hours and pay rate. It should then calculate the gross wages for that
+employee (hours times pay rate) and store them in the wages array. After the data has
+been entered for all the employees, the program should display each employee’s identification number and gross wages.
+Input Validation: Do not accept negative values for hours or numbers less than 15.00
+for pay rate.
+
+10. Driver’s License Exam
+The local Driver’s License Office has asked you to write a program that grades the written portion of the driver’s license exam. The exam has 20 multiple choice questions.
+Here are the correct answers:
+1. A        6. B      11. A     16. C
+2. D        7. A      12. C     17. C
+3. B        8. B      13. D     18. A
+4. B        9. C      14. B     19. D
+5. C        10. D     15. D     20. B
+
+Your program should store the correct answers shown above in an array. It should ask
+the user to enter the student’s answers for each of the 20 questions, and the answers
+should be stored in another array. After the student’s answers have been entered, the
+program should display a message indicating whether the student passed or failed the
+exam. (A student must correctly answer 15 of the 20 questions to pass the exam.) It
+should then display the total number of correctly answered questions, the total number
+of incorrectly answered questions, and a list showing the question numbers of the
+incorrectly answered questions.
+Input Validation: Only accept the letters A, B, C, or D as answers.
