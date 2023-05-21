@@ -996,6 +996,44 @@ program should ask the user for the number of stock sales and the necessary data
 each stock sale. It should accumulate the profit or loss for each stock sale and then
 display the total
 
+
+    int numShares;;
+    float pricePerShare, commissionPaid, salePrice, saleCommission, total =0;
+    int types;
+    
+    cout << "How many type of stocks? ";
+    cin >> types;
+    
+    for(int i = 0 ; i < types; i++)
+    {
+        cout << "\nStock # " << i+1 << ":\n";
+        
+        cout << "\nThe number of shares: ";
+        cin >> numShares;
+        
+        cout << "Purchase price per share: ";
+        cin >> pricePerShare;
+        
+        cout << "Perchase commission paid: ";
+        cin >> commissionPaid;
+        
+        cout << "Sale price per share: ";
+        cin >> salePrice;
+        
+        cout << "Sale commission: ";
+        cin >> saleCommission;
+        
+        float profit = calProfit(numShares, salePrice, saleCommission, pricePerShare, commissionPaid);
+        
+        total += profit;
+        
+        
+    }
+    if(total < 0)
+        cout << "Loss total of $" << abs(total) << endl;
+    else
+        cout << "Profit total of $" << total << endl;
+
 22. isPrime Function
 A prime number is a number that is only evenly divisible by itself and 1. For example,
 the number 5 is prime because it can only be evenly divided by 1 and 5. The number 6,
