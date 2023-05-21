@@ -341,7 +341,36 @@ void info(float paintPrice, float squareFeet, int numRoom, const float laborQuot
     cout << "The cost of the paint: $" << totalPaintCost << endl;
     cout << "The labor charges: $" << laborCharge << endl;
     cout << "The total cost of the paint job: $" << laborCharge + totalPaintCost << endl;
-    
+}
+
+void storeInfo(ofstream& file, int d, float r, float md, float sv, float t)
+{
+    if(!file.good()){
+        cout << "fail to open the file";
+        exit(EXIT_FAILURE);
+    }
+    else{
+        file << "In-Patient\n"
+        << "Days spent in hospital: " << d
+        << "\nDaily rate: " << r
+        << "\nMedication charges: " << md
+        << "\nService charges: " << sv
+        << "\nTotal charges: " << t << endl;
+    }
+}
+
+void storeInfo2(ofstream& file, float sv, float mc, float t)
+{
+    if(!file.good()){
+        cout << "fail to open the file";
+        exit(EXIT_FAILURE);
+    }
+    else{
+        file << "Out-Patient\n"
+        << "\nMedication charges: " << mc
+        << "\nService charges: " << sv
+        << "\nTotal charges: " << t << endl;
+    }
 }
 
 
@@ -871,6 +900,49 @@ for square footage of wall space.
 19. Using Files—Hospital Report
 Modify Programming Challenge 15, Overloaded Hospital, to write the report it creates
 to a file.
+
+     char choice;
+     cout << "Is the patient in or out-patient? ('i'/'o')\n";
+     while (cin >> choice && (tolower(choice) != 'i' && tolower(choice) != 'o'))
+         cout << "Input should be 'i' or 'o'. Enter again: ";
+
+     int days;
+     float rate, medCharges, serviceCharges, totalCharges;
+    
+    ofstream outputFile("Hospital_Report.txt");
+    
+    if(outputFile.fail())
+        cout << "Can't create the file.\n";
+    else{
+        
+        if (choice == 'i')
+        {
+            cout << "Days spent in hospital: ";
+            cin >> days;
+            cout << "Daily rate: ";
+            cin >> rate;
+            cout << "Medication charges: $";
+            cin >> medCharges;
+            cout << "Hospital services charge: $";
+            cin >> serviceCharges;
+            totalCharges = calCharges(days, rate, medCharges, serviceCharges);
+            cout << "Total charges for the patient's stay in hospital is $ " << totalCharges << endl;
+            
+            storeInfo(outputFile, days, rate, medCharges, serviceCharges, totalCharges);
+        }
+        else
+        {
+            cout << "Hospital services charge: $";
+            cin >> serviceCharges;
+            cout << "Medication charges: $";
+            cin >> medCharges;
+            totalCharges = calCharges(serviceCharges, medCharges);
+            cout << "Total charges for the patient's stay in hospital is $ " << totalCharges << endl;
+            storeInfo2(outputFile, serviceCharges, medCharges, totalCharges);
+        }
+    }
+    
+    outputFile.close();
 
 20. Stock Profit
 The profit from the sale of a stock can be calculated as follows:
