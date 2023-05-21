@@ -61,7 +61,7 @@ int numArray[10];
     small = smallest(numArray,10);
     
     cout << "\nThe largest number is " << large
-    << "\nThe smallest number is " << small << endl;
+         << "\nThe smallest number is " << small << endl;
 
  2. Rainfall Statistics
 Write a program that lets the user enter the total rainfall for each of 12 months into
@@ -97,7 +97,7 @@ Input Validation: Do not accept negative numbers for monthly rainfall figures.
          << "\nTotal rainfall is " << total << " inches "
          << "\nAverage monthly rainfall is " << average << " inches"
          << "\nLowest month of rainfall is " << small << " inches on " << month[sMonth]
-    << "\nHighest month of rainfall is "  << large << " inches on " << month[lMonth] << endl;
+         << "\nHighest month of rainfall is "  << large << " inches on " << month[lMonth] << endl;
 
  3. Chips and Salsa
 Write a program that lets a maker of chips and salsa keep track of sales for five different types of salsa: mild, medium, sweet, hot, and zesty. The program should use two
