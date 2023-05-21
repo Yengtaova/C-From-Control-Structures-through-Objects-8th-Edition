@@ -422,6 +422,15 @@ void isPrime(ofstream& file, int num)
     }
 }
 
+void menu()
+{
+    cout << "Rock, Paper, Scissor Game\n";
+    cout << "Enter your choice\n"
+         << "1. Rock\n"
+         << "2. Paper\n"
+         << "3. Scissor\n";
+}
+
 int main()
 {
 
@@ -1118,7 +1127,41 @@ that stores a list of all the prime numbers from 1 throught 100 in a file.
  • If both players make the same choice, the game must be played again to determine the winner.
  Be sure to divide the program into functions that perform each major task.
  
- 
+    int choice, cancel, computerChoice;
+    do{
+        bool win = true;
+        computerChoice = rand()%3+1;
+        cout << computerChoice << endl;
+        menu();
+        cin >> choice;
+        
+        if(choice == computerChoice){
+            cout << "Draw\n";
+            continue;
+        }
+        else if(choice == 1)
+        {
+            if(computerChoice == 2)
+                win = false;
+        }
+        else if(choice == 2)
+        {
+            if(computerChoice == 3)
+                win = false;
+        }
+        else{
+            if(computerChoice == 3)
+                win = false;
+        }
+        cout << "Computer choice: " << computerChoice << endl;
+        if(win)
+            cout << "You win the game.\n";
+        else
+            cout << "You lose.\n";
+        
+        cout << "Would you like to continue? Enter '0' for yes, '-1' for no.\n";
+        cin >> cancel;
+        }while( cancel != -1);
  
 Group Project
 25. Travel Expenses
