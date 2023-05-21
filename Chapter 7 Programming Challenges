@@ -5,26 +5,41 @@
 using namespace std;
 
 
-int largest(int num[], int size)
+template <typename T>
+tuple<T, T> largest(T num[], int size)
 {
-    int largest = num[0];
+    int month =0;
+    T largest = num[0];
     for(int i = 1 ; i < size; i++)
     {
-        if(num[1] > largest)
-            largest = num[1];
+        if(num[i] > largest){
+            largest = num[i];
+            month = i;
+        }
     }
-    return largest;
+    return make_tuple(month, largest);
 }
 
-int smallest(int num[], int size)
+template<typename T>
+tuple <T,T> smallest(T num[], int size)
 {
-    int smallest = num[0];
+    int month = 0;
+    T smallest = num[0];
     for(int i = 1 ; i < size; i++)
     {
-        if(num[1] < smallest)
-            smallest = num[1];
+        if(num[i] < smallest){
+            smallest = num[i];
+            month = i;
+        }
     }
-    return smallest;
+        
+    return make_tuple(month, smallest);
+}
+
+void inputValidate(double& value)
+{
+    while(cin >> value && value < 0)
+        cout << "No negative value. Enter again: ";
 }
 
 int main(int argc, const char * argv[]) {
@@ -54,6 +69,35 @@ an array of doubles. The program should calculate and display the total rainfall
 the year, the average monthly rainfall, and the months with the highest and lowest
 amounts.
 Input Validation: Do not accept negative numbers for monthly rainfall figures.
+
+    const int MONTH = 12;
+    double rainfall[MONTH];
+    string month[MONTH] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    
+    cout << "Enter the amount of rainfall for each month\n";
+    for(int i = 0 ; i <MONTH; i++)
+    {
+        cout << month[i] << ": ";
+        inputValidate(rainfall[i]);
+    }
+    
+    double total = 0, average = 0;
+    for(auto val: rainfall)
+        total += val;
+    
+    average = total/MONTH;
+    
+    double large, small;
+    int lMonth, sMonth;
+    
+    tie(sMonth, small) = smallest(rainfall, MONTH);
+    tie(lMonth, large) = largest(rainfall, MONTH);
+    
+    cout << setprecision(2) << showpoint << fixed
+         << "\nTotal rainfall is " << total << " inches "
+         << "\nAverage monthly rainfall is " << average << " inches"
+         << "\nLowest month of rainfall is " << small << " inches on " << month[sMonth]
+    << "\nHighest month of rainfall is "  << large << " inches on " << month[lMonth] << endl;
 
  3. Chips and Salsa
 Write a program that lets a maker of chips and salsa keep track of sales for five different types of salsa: mild, medium, sweet, hot, and zesty. The program should use two
