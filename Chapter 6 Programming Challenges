@@ -380,6 +380,48 @@ float calProfit(int NS, float SP, float SC, float PP, float PC)
     return profit;
 }
 
+void isPrime(int num)
+{
+    bool check = true;
+    if(num == 0 || num == 1)
+        cout << num << " is not a prime number.\n";
+    
+    for(int i = 2; i < num; i++)
+    {
+        if(num % i == 0){
+            cout << num << " is not a prime number.\n";
+            check = false;
+            break;
+        }
+        
+    }
+    if(check)
+        cout << num << " is a prime number.\n";
+}
+
+void isPrime(ofstream& file, int num)
+{
+    bool check = true;
+    if(num == 0 || num == 1){
+        cout << num << " is not a prime number.\n";
+        check = false;
+    }
+    
+    for(int i = 2; i < num; i++)
+    {
+        if(num % i == 0){
+            cout << num << " is not a prime number.\n";
+            check = false;
+            break;
+        }
+        
+    }
+    if(check){
+        cout << "Prime number list from 1-100.\n";
+        file << num << endl;
+    }
+}
+
 int main()
 {
 
@@ -1041,3 +1083,18 @@ however, is not prime because it can be divided evenly by 1, 2, 3, and 6.
 Write a function name isPrime , which takes an integer as an argument and returns
 true if the argument is a prime number, or false otherwise. Demonstrate the function
 in a complete program.
+
+isPrime(12);
+
+23. Prime Number List
+Use the isPrime function that you wrote in programming Challenge 22 in a program
+that stores a list of all the prime numbers from 1 throught 100 in a file. 
+
+    ofstream outputFile("Prime_Number.txt");
+    if(outputFile.fail())
+        cout << "The file can't be opened.\n";
+    else{
+        for(int i = 1 ; i <= 100; i++)
+            isPrime(outputFile, i);
+    }
+    outputFile.close();
