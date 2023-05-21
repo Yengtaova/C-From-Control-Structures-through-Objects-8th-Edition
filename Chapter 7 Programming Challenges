@@ -76,6 +76,54 @@ void greaterNum(const T myArray[], int size, T n)
             cout << myArray[i] << " ";
     }
 }
+
+void averageFoodAmount(double food[][5], int rows)
+{
+   
+    double average[5];
+    
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "\nThe average amount of food eaten by whole family monkey per day.\n";
+    for(int i = 0 ; i < 5; i++)
+    {
+        double total = 0;
+        for(int j = 0 ; j < rows; j++)
+        {
+            total += food[j][i];
+        }
+        average[i] = total/ rows;
+        cout << "Day " <<i+1 << ": " << average[i] << " lbs.\n";
+    }
+}
+
+void leastAmount(double food[][5], int rows)
+{
+    double smallest = food[0][0];
+    for(int i = 0 ; i < rows; i++)
+    {
+        for(int j = 0 ; j < 5; j++)
+        {
+            if(food[i][j] <= smallest)
+                smallest = food[i][j];
+        }
+    }
+    cout << "\nThe least amount of food eaten during the week by any monkey is: " << smallest << " lbs.\n";
+}
+
+void greatestAmount(double food[][5], int rows)
+{
+    double greatest = food[0][0];
+    for(int i = 0 ; i < rows; i++)
+    {
+        for(int j = 0 ; j < 5; j++)
+        {
+            if(food[i][j] >= greatest)
+                greatest = food[i][j];
+        }
+    }
+    cout << "\nThe greatest amount of food eaten during the week by any monkey is: " << greatest << " lbs.\n";
+}
+
 //******************************************************************************************************
 int main(int argc, const char * argv[]) {
 
@@ -177,7 +225,7 @@ display all of the numbers in the array that are greater than the number n .
     
     greaterNum(arrNum, NUM, n);
 
- 5. Monkey Business
+5. Monkey Business
 A local zoo wants to keep track of how many pounds of food each of its three monkeys
 eats each day during a typical week. Write a program that stores this information in a
 two-dimensional 3 × 5 array, where each row represents a different monkey and each
@@ -188,7 +236,25 @@ input the data for each monkey. Then it should create a report that includes the
 • The greatest amount of food eaten during the week by any one monkey.
 Input Validation: Do not accept negative numbers for pounds of food eaten.
 
- 6. Rain or Shine
+    const int ROWS = 3,
+              COLS = 5;
+    double monkeyInfo[ROWS][COLS];
+    
+    cout << "Enter the food information for each monkey\n";
+    for(int i = 0; i < ROWS; i++)
+    {
+        cout << "\nMonkey " << i+1 << "\n";
+        for(int j = 0; j < COLS; j++){
+            cout << "Day " << j+1 <<": ";
+            cin >> monkeyInfo[i][j];
+        }
+    }
+    
+    averageFoodAmount(monkeyInfo, ROWS);
+    leastAmount(monkeyInfo, ROWS);
+    greatestAmount(monkeyInfo, ROWS);
+
+6. Rain or Shine
 An amateur meteorologist wants to keep track of weather conditions during the
 past year’s three-month summer season and has designated each day as either rainy
 (‘R’), cloudy (‘C’), or sunny (‘S’). Write a program that stores this information in a
