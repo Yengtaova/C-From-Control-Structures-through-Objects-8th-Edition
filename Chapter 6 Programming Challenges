@@ -327,6 +327,23 @@ int sizePopulation(int prevSize, int birthRate, int deathRate, int in, int out)
     return newPopSize;
 }
 
+void info(float paintPrice, float squareFeet, int numRoom, const float laborQuote, const float roomSize)
+{
+    
+    float paintGallon = (squareFeet / roomSize)*numRoom;
+    float laborHours = ((squareFeet * 8) / roomSize)*numRoom;
+    float totalPaintCost = paintPrice * paintGallon;
+    float laborCharge = laborHours * laborQuote;
+    
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "The amount of paint required: " << paintGallon << " gallons\n";
+    cout << "The hours of labor required: " << laborHours << " hours\n";
+    cout << "The cost of the paint: $" << totalPaintCost << endl;
+    cout << "The labor charges: $" << laborCharge << endl;
+    cout << "The total cost of the paint job: $" << laborCharge + totalPaintCost << endl;
+    
+}
+
 
 int main()
 {
@@ -828,6 +845,28 @@ the following data:
 Input validation: Do not accept a value less than 1 for the number of rooms. Do not
 accept a value less than $10.00 for the price of paint. Do not accept a negative value
 for square footage of wall space.
+
+
+    const float LABOR_PER_HOUR = 25.0,
+                ROOM_SIZE = 110;
+    float paintPrice, sqFeet;
+    int numRoom;
+    
+    // Every 110 square feet  of wall needs 1 gallon of paint and 8 hours of labor
+    
+    cout << "The number of room to be painted: ";
+    while(cin >> numRoom && numRoom < 1)
+        cout << "Room shouldn't be less than 1. Enter again: ";
+    
+    cout << "Square feet per room: ";
+    while(cin >> sqFeet && sqFeet <= 0)
+        cout << "Can't be negative value. Enter again: ";
+    
+    cout << "The price of paint per gallon: ";
+    while(cin >> paintPrice && paintPrice <= 0)
+        cout << "Price of paint can't be less than or equal to zero. Enter again: ";
+    
+    info(paintPrice,sqFeet,numRoom,LABOR_PER_HOUR,ROOM_SIZE);
 
 19. Using Files—Hospital Report
 Modify Programming Challenge 15, Overloaded Hospital, to write the report it creates
