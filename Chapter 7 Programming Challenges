@@ -404,6 +404,31 @@ been entered for all the employees, the program should display each employee’s
 Input Validation: Do not accept negative values for hours or numbers less than 15.00
 for pay rate.
 
+    const int NUM = 7;
+    long int empId[NUM] = { 5658845, 4520125, 7895122, 8777541,
+                         8451277, 1302850, 7580489 };
+    int hours[NUM];
+    double payRate[NUM];
+    double wages[NUM];
+
+    for (int i = 0; i < NUM; i++)
+    {
+        cout << "\nEmployee id " << empId[i] << ": ";
+        cout << "\nWorking hour: ";
+        cin >> hours[i];
+        cout << "Pay rate: ";
+        cin >> payRate[i];
+        wages[i] = hours[i] * payRate[i];
+    }
+
+    //Display the data
+    for (int i = 0; i < NUM; i++)
+    {
+        cout << "\nEmployee id " << empId[i]
+            << "\nGross pay: $" << wages[i] << endl;
+    }
+
+
 10. Driver’s License Exam
 The local Driver’s License Office has asked you to write a program that grades the written portion of the driver’s license exam. The exam has 20 multiple choice questions.
 Here are the correct answers:
