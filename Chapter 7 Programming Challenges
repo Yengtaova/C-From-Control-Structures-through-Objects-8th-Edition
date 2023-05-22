@@ -245,6 +245,14 @@ void testReport(const char key[], const char answer[], int n)
             cout << "Q" << a + 1 << ": " << answer[a] << " -----> corrected answer is " << key[a] << endl;
         }
     }
+    
+    //for question 11
+    double correctPercentage = double(count) / n;
+    cout << "The percentage of corrected answers " << correctPercentage;
+    if (correctPercentage >= 0.7)
+        cout << "\nPassed";
+    else
+        cout << "\nFailed";
 
 }
 
@@ -583,6 +591,36 @@ Correctly Answered Questions ÷ Total Number of Questions
 • If the percentage of correctly answered questions is 70% or greater, the program
 should indicate that the student passed the exam. Otherwise, it should indicate that
 the student failed the exam.
+
+    const int size = 20;
+    char correctedAnswer[size];
+    char studentAns[size];
+
+    ifstream inputFile("CorrectAnswers.txt");
+    if (inputFile.fail())
+        cout << "Can't open the file.\n";
+    else {
+        int i = 0;
+        while (!inputFile.eof() && i < 20) {
+            inputFile >> correctedAnswer[i];
+            i++;
+        }
+    }
+    inputFile.close();
+
+    ifstream inputFile2("StudentAnswers.txt");
+    if (inputFile2.fail())
+        cout << "Can't open the file.\n";
+    else {
+        int i = 0;
+        while (!inputFile2.eof() && i < 20) {
+            inputFile2 >> studentAns[i];
+            i++;
+        }
+    }
+    inputFile2.close();
+
+    testReport(correctedAnswer, studentAns, 20);
 
 12. Grade Book
 A teacher has five students who have taken four tests. The teacher uses the following
