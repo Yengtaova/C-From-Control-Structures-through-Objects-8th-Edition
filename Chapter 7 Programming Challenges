@@ -348,6 +348,31 @@ If you have downloaded this book’s source code from the companion Web site, yo
 will find a file named numbers.txt in the Chapter 07folder. You can use the file to
 test the program. (The companion Web site is at www.pearsonhighered.com/gaddis .) 
 
+    vector<int> number;
+    int temp;
+
+    ifstream  inputFile("numbers.txt");
+    if (inputFile.fail())
+        cout << "Error. Can't open the file.\n";
+    else {
+        while (!inputFile.eof()) {
+            inputFile >> temp;
+            number.push_back(temp);
+        }
+    }
+    int total = 0;
+    for (auto point : number)
+        total += point;
+
+    //I will use STL to make it quick to find highest and lowest value
+    int highest = *max_element(number.begin(), number.end());
+    int lowest = *min_element(number.begin(), number.end());
+
+    cout << "\nThe lowest number in the array: " << lowest
+         << "\nThe highest number in the array: " << highest
+         <<"\nThe total of the numbers in the array: " << number.size()
+         << "\nThe average of the numbers in the array: " << static_cast<double>(total) / number.size();
+         
 8. Lo Shu Magic Square
 The Lo Shu Magic Square is a grid with 3 rows and 3 columns shown in Figure 7-19 .
 The Lo Shu Magic Square has the following properties:
