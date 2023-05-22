@@ -664,6 +664,47 @@ The program should display the random numbers stored in the lottery array and th
 number of matching digits. If all of the digits match, display a message proclaiming the
 user as a grand prize winner.
 
+    const int num = 5;
+    int lottery[num];
+    int user[num];
+
+
+    srand(time(0));
+    
+    //lottery array
+    for (auto& a : lottery)
+    {
+        int random = rand() % 9 + 1;
+        a = random;
+    }
+
+    //for user
+    cout << "Enter your 5 digits.\n";
+    for (auto& b : user)
+        cin >> b;
+
+    //check for winning
+    bool check = true;
+    for (int i = 0; i < num; i++)
+    {
+        if (lottery[i] != user[i]) {
+            check = false;
+            break;
+        }
+    }
+    if (check)
+        cout << "Congrats. You win the grand prize.\n";
+    else
+        cout << "Better luck next time.\n";
+
+    //print the resutl
+    cout << "Lottery\n";
+    for (int i = 0; i < num; i++)
+        cout << lottery[i] << " ";
+    cout << "\nUser\n";
+    for (int i = 0; i < num; i++)
+        cout << user[i] << " ";
+
 15. vector Modification
 Modify the National Commerce Bank case study presented in Program 7-23 so pin1 ,
 pin2 , and pin3 are vector s instead of arrays. You must also modify the testPIN
