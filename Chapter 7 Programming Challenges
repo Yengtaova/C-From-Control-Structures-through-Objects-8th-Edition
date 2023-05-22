@@ -846,6 +846,49 @@ vector s. The user should be able to enter a boy’s name, a girl’s name, or b
 the application should display messages indicating whether the names were among the
 most popular.
 
+  vector<string>boys;
+    vector<string>girls;
+    string temp;
+
+    ifstream inputFile("GirlNames.txt");
+    if (inputFile.fail())
+        cout << "Error. Can't read the file.\n";
+    else
+    {
+        while (!inputFile.eof()) {
+            getline(inputFile, temp);
+            girls.push_back(temp);
+        }
+    }
+    inputFile.close();
+
+    ifstream inputFile2("BoyNames.txt");
+    if (inputFile2.fail())
+        cout << "Error. Can't read the file.\n";
+    else
+    {
+        while (!inputFile2.eof()) {
+            getline(inputFile2, temp);
+            boys.push_back(temp);
+        }
+    }
+    inputFile2.close();
+
+    bool right = false;
+    cout << "Enter your name to see if it is one of the popular name.\n";
+    getline(cin, temp);
+
+    for (int i = 0; i < boys.size(); i++)
+    {
+        if (temp == boys[i] || temp == girls[i])
+            right = true;     
+    }
+   
+    if(right)
+        cout << "Your name is one of the popular names.\n";
+    else
+        cout << "No. It is not a popular name.\n";
+        
 18. Tic-Tac-Toe Game
 Write a program that allows two players to play a game of tic-tac-toe. Use a twodimensional
 char array with three rows and three columns as the game board. Each
