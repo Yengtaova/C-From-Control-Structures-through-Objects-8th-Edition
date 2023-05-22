@@ -253,7 +253,33 @@ void testReport(const char key[], const char answer[], int n)
         cout << "\nPassed";
     else
         cout << "\nFailed";
+}
 
+void averageGrade(const string name[], const double score[][4], char grade[], int n)
+{
+    double total, average;
+    for (int i = 0; i < n; i++)
+    {
+        total = average = 0;
+        cout << "Average test score for " << name[i] << " is ";
+        for (int j = 0; j < 4; j++) {
+            total += score[i][j];
+        }
+        average = total / 4;
+        cout << average << endl;
+
+        if (average >= 90)
+            grade[i] = 'A';
+        else if (average >= 80)
+            grade[i] = 'B';
+        else if (average >= 70)
+            grade[i] = 'C';
+        else if (average >= 60)
+            grade[i] = 'D';
+        else
+            grade[i] = 'F';
+        cout << "Grade " << grade[i] << endl;
+    }
 }
 
 
@@ -641,6 +667,27 @@ The program should allow the user to enter each student’s name and his or her 
 test scores. It should then calculate and display each student’s average test score and a
 letter grade based on the average.
 Input Validation: Do not accept test scores less than 0 or greater than 100.
+
+    const int NUM = 5,
+              NUMSCORE = 4;
+    string name[NUM];
+    char letterGrade[NUM];
+    double score[NUM][NUMSCORE];
+
+    cout << "Enter the name for each student\n";
+    for (int i = 0; i < NUM; i++)
+    {
+        cout << "Student " << i + 1 << ": ";
+        cin.ignore();
+        getline(cin, name[i]);
+        for (int j = 0; j < NUMSCORE; j++) {
+            cout << "Test score #" << j + 1 << ": ";
+            cin >> score[i][j];
+        }
+        cout << endl;
+    }
+
+    averageGrade(name, score, letterGrade, NUM);
 
 13. Grade Book Modification
 Modify the grade book application in Programming Challenge 13 so it drops each student’s
