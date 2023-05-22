@@ -124,6 +124,51 @@ void greatestAmount(double food[][5], int rows)
     cout << "\nThe greatest amount of food eaten during the week by any monkey is: " << greatest << " lbs.\n";
 }
 
+void trackWeather(char weather[][30], int rows)
+{
+    int rainy = 0, cloudy = 0, sunny = 0;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            if (weather[i][j] == 'R')
+                rainy++;
+            else if (weather[i][j] == 'C')
+                cloudy++;
+            else
+                sunny++;
+        }
+    }
+
+    cout << "There are " << rainy << " rainy days. "
+        << "\nThere are " << cloudy << " cloudy days. "
+        << "\nThere are " << sunny << " sunny days.\n";
+}
+
+void largestRainy(char weather[][30], int rows)
+{
+    vector<int>month;
+    for (int i = 0; i < rows; i++)
+    {
+        int rainy = 0;
+        for (int j = 0; j < 30; j++)
+        {
+            if (weather[i][j] == 'R')
+                rainy++;
+        }
+        month.push_back(rainy);
+    }
+
+    cout << "\nMonth with the highest rainy days.\n";
+    if (month[0] > month[1] && month[0] > month[2])
+        cout << "June:" << month[0] << " day(s).\n";
+    else if (month[1] > month[0] && month[1] > month[2])
+        cout << "July:" << month[1] << " day(s).\n";
+    else
+        cout << "August:" << month[2] << " day(s).\n";
+}
+
 //******************************************************************************************************
 int main(int argc, const char * argv[]) {
 
@@ -266,6 +311,30 @@ month and for the whole three-month period, how many days were rainy, how many
 were cloudy, and how many were sunny. It should also report which of the three
 months had the largest number of rainy days. Data for the program can be found in
 the RainOrShine.txt file.
+
+    const int month = 3,
+              day = 30;
+    char weather[month][day];
+
+    //month: 0 = june,  1 = july,   2 August
+
+    ifstream inputFile("RainOrShine.txt");
+
+    if (inputFile.fail())
+        cout << "File can't be opened.\n";
+    else {
+        for (int i = 0; i < month; i++)
+        {
+            for (int j = 0; j < day; j++) {
+                inputFile >> weather[i][j];
+            }
+        }
+    }
+
+    inputFile.close();
+
+    trackWeather(weather, month);
+    largestRainy(weather, month);
 
  7. Number Analysis Program
 Write a program that asks the user for a file name. Assume the file contains a series of
