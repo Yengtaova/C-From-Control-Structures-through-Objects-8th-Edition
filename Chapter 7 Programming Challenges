@@ -169,6 +169,57 @@ void largestRainy(char weather[][30], int rows)
         cout << "August:" << month[2] << " day(s).\n";
 }
 
+bool LoShuMagic(const int arr[][3], int rows)
+{
+    bool check = true;
+    int sum;
+
+    //check the rows part first
+    for (int i = 0; i < rows; i++)
+    {
+        sum = 0;
+        for (int j = 0; j < 3; j++)
+        {
+            sum += arr[i][j];
+        }
+        if (sum != 15)
+            return false;
+    }
+
+    //check the column part
+    for (int j = 0; j < 3; j++)
+    {
+        sum = 0;
+        for (int i = 0; i < rows; i++)
+        {
+            sum += arr[j][i];
+        }
+        if (sum != 15)
+            return false;
+    }
+
+    
+    //check the diagonal part from top left to end right
+    sum = 0; //reset the sum value
+    for (int i = 0, j =0; i < rows; i++, j++)
+    {
+        sum += arr[i][j];
+    }
+    if (sum != 15)
+        return false;
+
+    //diagonal top right to end left
+    sum = 0;
+    for (int i = 0, j = 2; i < rows, j >=0; i++, j--)
+    {
+        sum += arr[i][j];
+    }
+    if (sum != 15)
+        return false;
+
+    return check;
+}
+
 //******************************************************************************************************
 int main(int argc, const char * argv[]) {
 
@@ -382,6 +433,16 @@ number. This is shown in Figure 7-20 .
 In a program you can simulate a magic square using a two-dimensional array. Write a
 function that accepts a two-dimensional array as an argument, and determines whether
 the array is a Lo Shu Magic Square. Test the function in a program. 
+
+ int square[3][3] = { 4,9,2,
+                      3,5,7,
+                      8,1,6 };
+
+    if (LoShuMagic(square, 3))
+        cout << "It is a Lo Shu Magic Square.\n";
+    else
+        cout << "No, it is not a Lo Shu Magic Square.\n";
+
 
 9. Payroll
 Write a program that uses the following arrays:
