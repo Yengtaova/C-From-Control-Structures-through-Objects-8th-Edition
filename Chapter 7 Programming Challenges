@@ -453,6 +453,75 @@ void takeTurn(char tt[][3], int rows)
     } while (!win);
 }
 
+int getTotal(const int data[][5], int rows)
+{
+    int total = 0;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            total += data[i][j];
+        }
+    }
+    return total;
+}
+
+double getAverage(const int data[][5], int rows)
+{
+    double average = 0;
+    int total = 0;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            total += data[i][j];
+        }
+    }
+    average = double(total) / 20;
+    return average;
+}
+
+int getRowTotal(const int data[][5], int row)
+{
+    int total = 0;
+    for (int i = row, j = 0; j < 5; j++)
+        total += data[i][j];
+    return total;
+}
+
+int getColumnTotal(const int data[][5], int col)
+{
+    int total = 0;
+    for (int j = col, i = 0; i < 5; i++)
+    {
+        total += data[i][j];
+    }
+    return total;
+}
+
+int getHighestInRow(const int data[][5], int row)
+{
+    int highest = data[row][0];
+    for (int i = row, j = 0; j < 5; j++)
+    {
+        if (data[i][j] >= highest)
+            highest = data[i][j];
+    }
+    return highest;    
+}
+
+int getLowestInRow(const int data[][5], int row)
+{
+
+    int lowest = data[row][0];
+    for (int i = row, j = 0; j < 5; j++)
+    {
+        if (data[i][j] <= lowest)
+            lowest = data[i][j];
+    }
+    return lowest;
+}
+
 //******************************************************************************************************
 int main(int argc, const char * argv[]) {
 
@@ -1101,6 +1170,20 @@ subscript of a row in the array. The function should return the lowest value in 
 specified row of the array.
 Demonstrate each of the functions in this program.
 
+
+    const int ROWS = 5,
+              COLS = 5;
+    int data[ROWS][COLS] = { 1 ,5, 3, 2, 10, 
+                            12, 15, 20, 25, 30,
+                            33, 50, 12, 32, 4, 
+                            7, 9, 10, 44, 32};
+
+    cout << getTotal(data, ROWS) << endl;
+    cout << getRowTotal(data, 1) << endl;
+    cout << getColumnTotal(data, 1) << endl;
+    cout << getLowestInRow(data, 2) << endl;
+    cout << getHighestInRow(data, 3) << endl;
+    
 Group Project
 20. Theater Seating
 This program should be designed and written by a team of students. Here are some
