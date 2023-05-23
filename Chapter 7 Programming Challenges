@@ -292,6 +292,166 @@ bool testPIN(vector<int> CP, vector<int> DP)
     return true;
 }
 
+void displayTicTac(const char tt[][3], int rows)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        cout << "|";
+        for (int j = 0; j < 3; j++)
+        {
+            cout << tt[i][j] << "|";
+        }
+        cout << endl;
+    }
+}
+
+bool checkTaken(const char tt[][3], int rows, int cols)
+{
+    bool taken = true;
+    if (tt[rows-1][cols-1] != '*')
+        taken = false;
+    return taken;
+}
+
+bool checkWin(const char tt[][3], int rows, int cols)
+{
+    //bool check = false;
+    int countX, countO;
+    //rows pattern
+    for (int i = 0; i < rows; i++)
+    {
+        countX = countO = 0;
+        for (int j = 0; j < cols; j++)
+        {
+            if (tt[i][j] == 'X')
+                countX++;
+            else if (tt[i][j] == 'O')
+                countO++;
+        }
+        if (countX == 3 || countO == 3)
+            return true;
+
+    }
+    //columns pattern
+    for (int j = 0; j < cols; j++)
+    {
+        countX = countO = 0;
+        for (int i = 0; i < rows; i++)
+        {
+            if (tt[i][j] == 'X')
+                countX++;
+            else if (tt[i][j] == 'O')
+                countO++;
+        }
+        if (countX == 3 || countO == 3)
+            return true;
+    }
+    //diagonal pattern top left to right end
+    countX = countO = 0;
+    for (int i = 0; i < rows; i++)
+    {
+        if (tt[i][i] == 'X')
+            countX++;
+        else if (tt[i][i] == 'O')
+            countO++;
+    }
+    if (countX == 3 || countO == 3)
+        return true;
+    //diagonal pattern top right to end left
+    countX = countO = 0;
+    for (int i = 0, j = 2; i < rows, j >= 0; i++, j--)
+    {
+        if (tt[i][j] == 'X')
+            countX++;
+        else if (tt[i][j] == 'O')
+            countO++;
+    }
+    if (countX == 3 || countO == 3)
+        return true;
+
+    return false;
+}
+
+bool checkDraw(char tt[][3], int rows)
+{
+    bool draw;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (tt[i][j] != '*')
+                draw = true;
+            else
+                draw = false;
+        }
+    }
+    return draw;
+}
+void input(char tt[][3], int& r, int& c) 
+{
+    cout << "Row: ";
+    cin >> r;
+
+    cout << "Column: ";
+    cin >> c;
+
+    while (!checkTaken(tt, r, c))
+    {
+        cout << "The spot is already taken. Enter again.\n";
+        cout << "Row: ";
+        cin >> r;
+        cout << "Column: ";
+        cin >> c;
+    }
+
+}
+
+void takeTurn(char tt[][3], int rows)
+{
+    int row, col;
+    bool win;
+    int boardSpace = 0;
+    do {
+       
+
+        cout << "\nPlayer 1\n";
+
+        input(tt, row, col);
+        tt[row - 1][col - 1] = 'X';
+        boardSpace++;
+        displayTicTac(tt, rows);
+        win = checkWin(tt, row, col);
+        if (boardSpace == 9)
+        {
+            cout << "\nDraw\n";
+            break;
+        }
+        if (win) {
+            cout << "\nPlayer 1 win the game.\n";
+            break;
+        }
+
+        cout << "\nPlayer 2\n";
+
+        input(tt, row, col);
+        tt[row - 1][col - 1] = 'O';
+        boardSpace++;
+        displayTicTac(tt, rows);
+        win = checkWin(tt, row, col);
+        if (win) {
+            cout << "\nPlayer 2 win the game.\n";
+            break;
+        }
+
+        if (boardSpace == 9)
+        {
+            cout << "\nDraw\n";
+            break;;
+        }
+
+
+    } while (!win);
+}
 
 //******************************************************************************************************
 int main(int argc, const char * argv[]) {
@@ -846,7 +1006,7 @@ vector s. The user should be able to enter a boy’s name, a girl’s name, or b
 the application should display messages indicating whether the names were among the
 most popular.
 
-  vector<string>boys;
+    vector<string>boys;
     vector<string>girls;
     string temp;
 
@@ -906,6 +1066,16 @@ Player 1 wins when there are three Xs in a row on the game board. The Xs can app
 in a row, in a column, or diagonally across the board. A tie occurs when all of the
 locations on the board are full, but there is no winner.
 
+    const int ROWS = 3,
+              COLS = 3;
+    char tictac[ROWS][COLS] = { '*', '*', '*', 
+                                '*', '*', '*', 
+                                '*', '*', '*' };
+
+    displayTicTac(tictac, ROWS);
+
+    takeTurn(tictac, ROWS);
+    
 19. 2D Array Operations
 Write a program that creates a two-dimensional array initialized with test data. Use any
 data type you wish. The program should have the following functions:
