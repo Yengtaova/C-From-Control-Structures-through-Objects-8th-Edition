@@ -1,1 +1,174 @@
+int linearSearch(const int long acc[], int size, int searchValue)
+{
+    int found = false;
 
+    for (int i = 0; i < size; i++)
+    {
+        if (acc[i] == searchValue)
+            found = true;
+    }
+    return found;
+}
+
+void search(const int lotto[], int size, int input)
+{
+    bool found = false;
+    for (int i = 0; i < size; i++)
+    {
+        if (lotto[i] == input)
+            found = true;
+    }
+    if (found)
+        cout << "Congrats!. You won a prize.\n";
+    else
+        cout << "Sorry. Try again next time.\n";
+}
+
+int binarySearch(const int lotto[], int size, int searchVal)
+{
+    int first = 0;
+    int last = size - 1;
+    int middle;
+    bool found = false;
+
+    while (first <= last && !found)
+    {
+        middle = (first+last)/2;
+        //cout << lotto[middle] << " ";
+        if (lotto[middle] == searchVal)
+            found = true;
+        else if (lotto[middle] > searchVal)
+            last = middle - 1;
+        else
+            first = middle + 1;
+    }
+    return found;
+}
+
+void selectionSort(int acc[], int size)
+{
+    int startScan, minIndex, minValue;
+    for (startScan = 0; startScan < (size-1); startScan++)
+    {
+        minIndex = startScan;
+        minValue = acc[startScan];
+        for (int index = startScan+1; index < size; index++)
+        {
+            if (acc[index] < minValue) {
+                minValue = acc[index];
+                minIndex = index;
+            }
+        }
+        acc[minIndex] = acc[startScan];
+        acc[startScan] = minValue;
+    }
+}
+
+int main(){
+
+1. Charge Account Validation
+Write a program that lets the user enter a charge account number. The program should
+determine if the number is valid by checking for it in the following list:
+5658845 4520125 7895122 8777541 8451277 1302850
+8080152 4562555 5552012 5050552 7825877 1250255
+1005231 6545231 3852085 7576651 7881200 4581002
+The list of numbers above should be initialized in a single-dimensional array. A simple
+linear search should be used to locate the number entered by the user. If the user enters
+a number that is in the array, the program should display a message saying that the
+number is valid. If the user enters a number that is not in the array, the program should
+display a message indicating that the number is invalid.
+
+    const int SIZE = 18;
+    long int account[SIZE] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850,
+                              8080152, 4562555, 5552012, 5050552, 7825877, 1250255,
+                              1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
+
+    long int input;
+    cout << "Enter the value you would like to look for ";
+    cin >> input;
+
+    int found = linearSearch(account, SIZE, input);
+
+    if (found)
+        cout << "The number is valid.\n";
+    else
+        cout << "The number is not valid.\n";
+                          
+ 
+2. Lottery Winners
+A lottery ticket buyer purchases 10 tickets a week, always playing the same 10 5-digit
+“lucky” combinations. Write a program that initializes an array or a vector with
+these numbers and then lets the player enter this week’s winning 5-digit number.
+The program should perform a linear search through the list of the player’s numbers
+and report whether or not one of the tickets is a winner this week. Here are the
+numbers:
+13579 26791 26792 33445 55555
+62483 77777 79422 85647 93121
+
+    const int SIZE = 10;
+    int luckyNumber[SIZE] = { 13579, 26791, 26792, 33445, 55555,
+                              62483, 77777, 79422, 85647, 93121 };
+
+    int input;
+
+    cout << "Enter this week's winning 5-digit number: ";
+    cin >> input;
+
+    search(luckyNumber, SIZE, input);
+   
+3. Lottery Winners Modification
+Modify the program you wrote for Programming Challenge 2 (Lottery Winners) so it
+performs a binary search instead of a linear search.
+
+    const int SIZE = 10;
+    int luckyNumber[SIZE] = { 13579, 26791, 26792, 33445, 55555,
+                              62483, 77777, 79422, 85647, 93121 };
+
+    int input;
+
+    cout << "Enter this week's winning 5-digit number: ";
+    cin >> input;
+
+    int val = binarySearch(luckyNumber, SIZE, input);
+
+    if (val)
+        cout << "You are the winner.\n";
+    else
+        cout << "Try again next time.\n";
+        
+        
+4. Charge Account Validation Modification
+Modify the program you wrote for Problem 1 (Charge Account Validation) so it performs
+a binary search to locate valid account numbers. Use the selection sort algorithm
+to sort the array before the binary search is performed.
+
+    const int SIZE = 18;
+    int account[SIZE] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850,
+                              8080152, 4562555, 5552012, 5050552, 7825877, 1250255,
+                              1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
+
+    selectionSort(account, SIZE);
+
+    int input;
+    cout << "Enter a value you would like to search ";
+    cin >> input;
+
+    int found = binarySearch(account, SIZE, input);
+
+    if (found)
+        cout << "The number is valid.\n";
+    else
+        cout << "The number is not valid.\n";
+
+5. Rainfall Statistics Modification
+Modify the Rainfall Statistics program you wrote for Programming Challenge 2 of
+Chapter 7 . The program should display a list of months, sorted in order of rainfall,
+from highest to lowest.
+
+6. String Selection Sort
+Modify the selectionSort function presented in this chapter so it sorts an array
+of strings instead of an array of int s. Test the function with a driver program. Use
+Program 8-8 as a skeleton to complete.
+
+return 0;
+}
