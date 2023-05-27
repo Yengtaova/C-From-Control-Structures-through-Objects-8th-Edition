@@ -45,9 +45,11 @@ int binarySearch(const int lotto[], int size, int searchVal)
     return found;
 }
 
-void selectionSort(int acc[], int size)
+template <typename T>
+void selectionSort(T acc[], int size)
 {
-    int startScan, minIndex, minValue;
+    int startScan, minIndex;
+    T minValue;
     for (startScan = 0; startScan < (size-1); startScan++)
     {
         minIndex = startScan;
@@ -64,7 +66,145 @@ void selectionSort(int acc[], int size)
     }
 }
 
-int main(){
+template <typename T, typename S > 
+void selectionSort2(T rain[], S month[], int size)
+{
+    int startScan, maxIndex;
+    T maxRain;
+    S maxMonth;
+    for (startScan = 0; startScan < (size - 1); startScan++)
+    {
+        maxIndex = startScan;
+        maxRain = rain[startScan];
+        maxMonth = month[startScan];
+        for (int index = startScan + 1; index < size; index++)
+        {
+            if (rain[index] > maxRain) {
+                maxRain = rain[index];
+                maxMonth = month[index];
+                maxIndex = index;
+            }
+        }
+        rain[maxIndex] = rain[startScan];
+        rain[startScan] = maxRain;
+        month[maxIndex] = month[startScan];
+        month[startScan] = maxMonth;
+    }
+}
+
+template <typename T>
+int linearSearch2(const T acc[], int size, T searchValue)
+{
+    int found = false;
+    int count = 0;
+    int i = 0;
+
+    while (i < (size - 1) && !found)
+    {
+        if (acc[i] == searchValue)
+            found = true;
+        count++;
+        i++;
+    }
+
+    return count;
+}
+
+template <typename T>
+int binarySearch2(const T lotto[], int size, T searchVal)
+{
+    int first = 0;
+    int last = size - 1;
+    int middle;
+    bool found = false;
+    int count = 0;
+
+    while (first <= last && !found)
+    {
+        middle = (first + last) / 2;
+        if (lotto[middle] == searchVal)
+            found = true;
+        else if (lotto[middle] > searchVal)
+            last = middle - 1;
+        else
+            first = middle + 1;
+        count++;
+    }
+    return count;
+}
+
+template<typename T>
+int bubbleSort(T arr[], int size)
+{
+    bool swap;
+    int temp, count = 0;
+    do {
+        swap = false;
+        for (int i = 0; i < (size - 1); i++)
+        {
+            if (arr[i] > arr[i + 1]) {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swap = true;
+                count++;
+            }
+
+        }
+    } while (swap);
+    return count;
+}
+
+template <typename T>
+void selectionSort3(T acc[], int size)
+{
+    int startScan, minIndex;
+    T minValue;
+    for (startScan = 0; startScan < (size - 1); startScan++)
+    {
+        minIndex = startScan;
+        minValue = acc[startScan];
+        for (int index = startScan + 1; index < size; index++)
+        {
+            if (acc[index] < minValue) {
+                minValue = acc[index];
+                minIndex = index;
+            }
+        }
+        acc[minIndex] = acc[startScan];
+        acc[startScan] = minValue;
+        for (int i = 0; i < size; i++)
+            cout << acc[i] << " ";
+        cout << endl;
+    }
+}
+
+template<typename T>
+void bubbleSort3(T arr[], int size)
+{
+    bool swap;
+    int temp, count = 0;
+    do {
+        swap = false;
+        for (int i = 0; i < (size - 1); i++)
+        {
+            if (arr[i] > arr[i + 1]) {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swap = true;
+                count++;
+            }
+            for (int i = 0; i < size; i++)
+                cout << arr[i] << " ";
+            cout << endl;
+
+        }
+    } while (swap);
+}
+
+int main()
+{
 
 1. Charge Account Validation
 Write a program that lets the user enter a charge account number. The program should
@@ -165,10 +305,142 @@ Modify the Rainfall Statistics program you wrote for Programming Challenge 2 of
 Chapter 7 . The program should display a list of months, sorted in order of rainfall,
 from highest to lowest.
 
+    const int MONTH = 12;
+    double rainfall[MONTH];
+    string month[MONTH] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+
+    cout << "Enter the amount of rainfall for each month\n";
+    for (int i = 0; i < MONTH; i++)
+    {
+        cout << month[i] << ": ";
+        inputValidate(rainfall[i]);
+    }
+
+    selectionSort2(rainfall, month, MONTH);
+
+    cout << "\nThe list of months from highest to lowest amount of rainfall.\n";
+    for (int i = 0; i < MONTH; i++)
+        cout << month[i] << ": " << rainfall[i] << endl;
+        
+  
 6. String Selection Sort
 Modify the selectionSort function presented in this chapter so it sorts an array
 of strings instead of an array of int s. Test the function with a driver program. Use
 Program 8-8 as a skeleton to complete.
 
+    const int NUM_NAMES = 20;
+    string names[NUM_NAMES] = { "Collins, Bill", "Smith, Bart", "Allen, Jim",
+                                "Griffin, Jim", "Stamey, Marty", "Rose, Geri",
+                                "Taylor, Terri", "Johnson, Jill",
+                                "Allison, Jeff", "Looney, Joe", "Wolfe, Bill",
+                                "James, Jean", "Weaver, Jim", "Pore, Bob",
+                                "Rutherford, Greg", "Javens, Renee",
+                                "Harrison, Rose", "Setzer, Cathy",
+                                "Pike, Gordon", "Holland, Beth" };
+
+    selectionSort(names, NUM_NAMES);
+
+    cout << "Sorted Name\n";
+    for (auto a : names)
+        cout << a << " " << endl;
+        
+7. Binary String Search
+Modify the binarySearch function presented in this chapter so it searches an array
+of strings instead of an array of int s. Test the function with a driver program. Use
+Program 8-8 as a skeleton to complete. (The array must be sorted before the binary
+search will work.)
+
+    const int NUM_NAMES = 20;
+    string names[NUM_NAMES] = { "Collins, Bill", "Smith, Bart", "Allen, Jim",
+                                "Griffin, Jim", "Stamey, Marty", "Rose, Geri",
+                                "Taylor, Terri", "Johnson, Jill",
+                                "Allison, Jeff", "Looney, Joe", "Wolfe, Bill",
+                                "James, Jean", "Weaver, Jim", "Pore, Bob",
+                                "Rutherford, Greg", "Javens, Renee",
+                                "Harrison, Rose", "Setzer, Cathy",
+                                "Pike, Gordon", "Holland, Beth" };
+
+    selectionSort(names, NUM_NAMES);
+
+    string input;
+    cout << "Enter the name you would like to look for\n";
+    getline(cin, input);
+
+    int found = binarySearch(names, NUM_NAMES,input);
+
+    if (found)
+        cout << "Name valid in the list.\n";
+    else
+        cout << "Can't find name in the list.\n";
+        
+8. Search Benchmarks
+Write a program that has an array of at least 20 integers. It should call a function that
+uses the linear search algorithm to locate one of the values. The function should keep
+a count of the number of comparisons it makes until it finds the value. The program
+then should call a function that uses the binary search algorithm to locate the same
+value. It should also keep count of the number of comparisons it makes. Display these
+values on the screen.
+
+    const int SIZE = 20;
+    int numArr[SIZE] = { 1,4,20,19,30,50,15,44,50,12,
+                        43,12,25,38,7,9,11,60,77,80 };
+
+    int value;
+    cout << "Enter search value: ";
+    cin >> value;
+
+    int linearTime = linearSearch2(numArr, SIZE, value);
+
+    selectionSort(numArr, SIZE);
+
+    int binaryTime = binarySearch2(numArr, SIZE, value);
+
+    cout << "Number of comparisons it takes for 2 searching algorithms\n";
+    cout << "Linear Search: " << linearTime << "\tBinary Search: " << binaryTime << endl;
+
+9. Sorting Benchmarks
+Write a program that uses two identical arrays of at least 20 integers. It should call
+a function that uses the bubble sort algorithm to sort one of the arrays in ascending
+order. The function should keep a count of the number of exchanges it makes. The
+program then should call a function that uses the selection sort algorithm to sort the
+other array. It should also keep count of the number of exchanges it makes. Display
+these values on the screen.
+
+    const int SIZE = 20;
+    int numArr[SIZE] = {1,4,20,19,30,50,15,44,50,12,43,12,25,38,7,9,11,60,77,80};
+    int numArr2[SIZE] = { 1,4,20,19,30,50,15,44,50,12,43,12,25,38,7,9,11,60,77,80 };
+
+ 
+    int selectCount = selectionSort2(numArr, SIZE);
+
+    int bubCount = bubbleSort(numArr2, SIZE);
+
+    cout << "The number of swaps for 2 sorting algorithms\n";
+    cout << "Bubble Sort: " << bubCount << endl;
+    cout << "Selection Sort: " << selectCount << endl;
+
+10. Sorting Orders
+Write a program that uses two identical arrays of just eight integers. It should display
+the contents of the first array, then call a function to sort the array using an ascending
+order bubble sort modified to print out the array contents after each pass of the sort.
+Next, the program should display the contents of the second array, then call a function
+to sort the array using an ascending order selection sort modified to print out the array
+contents after each pass of the sort.
+
+    const int SIZE = 8;
+    int numArr[SIZE] = {1,4,20,19,30,50,15,44};
+    int numArr2[SIZE] = { 1,4,20,19,30,50,15,44};
+
+ 
+    cout << "Selection Sort\n";
+    selectionSort3(numArr, SIZE);
+
+    cout << "\nBubble Sort\n";
+    bubbleSort3(numArr2, SIZE);
+
+11. Using Files—String Selection Sort Modification
+Modify the program you wrote for Programming Challenge 6 so it reads in 20 strings
+from a file. The data can be found in the names.txt file.
 return 0;
 }
