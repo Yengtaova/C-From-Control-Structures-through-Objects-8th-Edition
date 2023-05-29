@@ -179,6 +179,8 @@ Input Validation: Do not accept negative numbers for test scores.
     double average = averageScore(test, numTest);
 
     cout << "The average score of " << numTest << " tests are: " << average << endl;
+    
+    delete[] test;
 
 3. Drop Lowest Score
 Modify Problem 2 above so the lowest test score is dropped. This score should not be
@@ -201,6 +203,8 @@ included in the calculation of the average.
     double average = averageScore2(test, numTest);
 
     cout << "The average score of " << numTest << " tests are: " << average << endl;
+    
+    delete[] test;
 
 4. Test Scores #2
 Modify the program of Programming Challenge 2 to allow the user to enter name-score
@@ -229,6 +233,8 @@ score. In stepping through the arrays, use pointers rather than array subscripts
 
     showArray2(studentName, testScore, num);
 
+    delete[] testScore;
+    delete[] studentName;
 
 5. Pointer Rewrite
 The following function uses reference variables as parameters. Rewrite the function so
