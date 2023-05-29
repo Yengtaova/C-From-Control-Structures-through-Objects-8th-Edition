@@ -136,6 +136,74 @@ int doSomething(int* x, int* y)
     return *x + *y;
 }
 
+
+/*
+* This function accepts arrPtr, donations, and numDonations
+* indicating the number of elements in the array of pointers
+* and in donations as arguments. It initializes the elements
+* in arrPtr, then it makes each element point to an element in
+* donations.
+*/
+void initPtrArr(int* donations, int* arrPtr[], int size)
+{
+    for (int index = 0; index < size; index++)
+    {
+        *(arrPtr + index) = nullptr;
+    }
+
+    for (int index = 0; index < size; index++)
+    {
+        *(arrPtr + index) = &donations[index]; //remember that arrPtr is an array of pointer so it must store the address
+    }
+
+    
+}
+
+void arrSelectSort(int* arrPtr[], int numDonations)
+{
+    int startScan, minIndex;
+    int* minElement;
+    for (startScan = 0; startScan < (numDonations - 1); startScan++)
+    {
+        minIndex = startScan;
+        minElement = arrPtr[startScan];
+        for (int index = startScan + 1; index < numDonations; index++)
+        {
+            if (*(arrPtr[index]) < *minElement)
+            {
+                minElement = arrPtr[index];
+                minIndex = index;
+            }
+        }
+        arrPtr[minIndex] = arrPtr[startScan];
+        arrPtr[startScan] = minElement;
+    }
+}
+
+void showArrPtr(int* arrPtr[], int size)
+{
+    cout << "\n\tThe donations, sorted in ascending order are:\n";
+    for (int index = 0; index < size; index++)
+    {
+        cout << "\n\tDonation#" << setw(3) << right << (index + 1) << ":$";
+        cout << setw(8) << right << *(arrPtr[index]) << "";
+    }
+    cout << "\n";
+}
+
+void displayArray(const int* donations, const int numDonations)
+{
+    int index = 0;
+
+    cout << "\n\tThe donations, in their original order are: \n";
+    for (int index = 0; index < numDonations; index++)
+    {
+        cout << "\n\tDonation #" << setw(3) << right
+            << (index + 1) << ": $ ";
+        cout << setw(8) << right << *(donations + index) << " ";
+    }
+}
+//----------------------------------------------------------------------------------------------------------------------------------------------
 int main()
 {
 
@@ -154,6 +222,7 @@ should return a pointer to the array.
         cout << *(newArr + i) << " ";
 
     delete[] newArr;
+    newArr = nullptr;
 
 2. Test Scores #1
 Write a program that dynamically allocates an array large enough to hold a userdefined
@@ -181,6 +250,7 @@ Input Validation: Do not accept negative numbers for test scores.
     cout << "The average score of " << numTest << " tests are: " << average << endl;
     
     delete[] test;
+    test = nullptr;
 
 3. Drop Lowest Score
 Modify Problem 2 above so the lowest test score is dropped. This score should not be
@@ -205,6 +275,7 @@ included in the calculation of the average.
     cout << "The average score of " << numTest << " tests are: " << average << endl;
     
     delete[] test;
+    test = nullptr;
 
 4. Test Scores #2
 Modify the program of Programming Challenge 2 to allow the user to enter name-score
@@ -235,6 +306,9 @@ score. In stepping through the arrays, use pointers rather than array subscripts
 
     delete[] testScore;
     delete[] studentName;
+    
+    testScore = nullptr;
+    studentName = nullptr;
 
 5. Pointer Rewrite
 The following function uses reference variables as parameters. Rewrite the function so
@@ -259,9 +333,51 @@ Modify Program 9-19 (the United Cause case study program) so it can be used with
 any set of donations. The program should dynamically allocate the donations array
 and ask the user to input its values.
 
+    int numDonations;
+    cout << "Amount of donations: ";
+    cin >> numDonations;
+
+    int* donations = new int[numDonations];
+
+    /*cout << "Enter the value of each donations\n";
+    for (int i = 0; i < numDonations; i++)
+    {
+        cout << "Donation #" << i + 1 << " ";
+        cin >> *(donations + i);
+    }*/
+
+    //to save the time, we will use random number to enter the value of donations
+    srand(time(0));
+
+    for (int i = 0; i < numDonations; i++)
+        *(donations + i) = rand() % 100;
+
+    int** arrPtr = new int* [numDonations];
+
+    //Initialize arrPtr
+    initPtrArr(donations, arrPtr, numDonations);
+
+    //Sort the array with selection sort algorithm
+    arrSelectSort(arrPtr, numDonations);
+
+    //Displays the donations using the array of pointers in sorted order
+    showArrPtr(arrPtr, numDonations);
+
+    //Display the donations using the array of pointers in sorted order
+    displayArray(donations, numDonations);
+
+    //Free the memory
+    delete[] arrPtr;
+    delete[] donations;
+
+    arrPtr = nullptr;
+    donations = nullptr;
+
 7. Case Study Modification #2
 Modify Program 9-19 (the United Cause case study program) so the arrptr array is
 sorted in descending order instead of ascending order.
+
+/*This is the same as Q6 just go change arrSelectSort() inequality sign*/
 
 8. Mode Function
 In statistics, the mode of a set of values is the value that occurs most often or with the
@@ -274,6 +390,49 @@ return. If the array has no mode (none of the values occur more than once), the 
 should return −1. (Assume the array will always contain nonnegative values.)
 Demonstrate your pointer prowess by using pointer notation instead of array notation
 in this function.
+
+9. Median Function
+In statistics, when a set of values is sorted in ascending or descending order, its median
+is the middle value. If the set contains an even number of values, the median is the
+mean, or average, of the two middle values. Write a function that accepts as arguments
+the following:
+A) An array of integers
+B) An integer that indicates the number of elements in the array
+The function should determine the median of the array. This value should be returned
+as a double . (Assume the values in the array are already sorted.)
+Demonstrate your pointer prowess by using pointer notation instead of array notation
+in this function.
+
+10. Reverse Array
+Write a function that accepts an int array and the array’s size as arguments. The function
+should create a copy of the array, except that the element values should be reversed
+in the copy. The function should return a pointer to the new array. Demonstrate the
+function in a complete program.
+
+11. Array Expander
+Write a function that accepts an int array and the array’s size as arguments. The function
+should create a new array that is twice the size of the argument array. The function
+should copy the contents of the argument array to the new array and initialize the
+unused elements of the second array with 0. The function should return a pointer to
+the new array.
+
+12. Element Shifter
+Write a function that accepts an int array and the array’s size as arguments. The
+function should create a new array that is one element larger than the argument array.
+The first element of the new array should be set to 0. Element 0 of the argument array
+should be copied to element 1 of the new array, element 1 of the argument array should
+be copied to element 2 of the new array, and so forth. The function should return a
+pointer to the new array.
+
+13. Movie Statistics
+Write a program that can be used to gather statistical data about the number of movies
+college students see in a month. The program should perform the following steps:
+A) Ask the user how many students were surveyed. An array of integers with this
+many elements should then be dynamically allocated.
+B) Allow the user to enter the number of movies each student saw into the array.
+C) Calculate and display the average, median, and mode of the values entered. (Use
+the functions you wrote in Problems 8 and 9 to calculate the median and mode.)
+Input Validation: Do not accept negative numbers for input.
 
 return 0;
 }
