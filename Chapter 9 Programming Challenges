@@ -92,6 +92,42 @@ void dropLowestScore(double* arr, int size)
     arr[temp] = NULL;
 }
 
+void selectSort2(string* name, int* score, int size)
+{
+    int startScan, minIndex;
+    int minElement;
+    string minName;
+    
+    for (startScan = 0; startScan < (size - 1); startScan++)
+    {
+        minIndex = startScan;
+        minElement = score[startScan];
+        minName = name[startScan];
+        for (int index = startScan + 1; index < size; index++)
+        {
+            if (score[index] < minElement) {
+                minElement = score[index];
+                minIndex = index;
+                minName = name[index];
+            }
+
+        }
+        score[minIndex] = score[startScan];
+        score[startScan] = minElement;
+        name[minIndex] = name[startScan];
+        name[startScan] = minName;
+    }
+}
+
+void showArray2(string* name, int* score, int size)
+{
+    cout << "\nStudents' name and their scores.\n";
+    for (int i = 0; i < size; i++)
+    {
+        cout << *(name + i) << ": " << *(score + i) << endl;
+    }
+}
+
 int main()
 {
 
@@ -165,6 +201,26 @@ student’s integer test score. Modify the sorting function so it takes an array
 the student names and an array holding the student test scores. When the sorted list
 of scores is displayed, each student’s name should be displayed along with his or her
 score. In stepping through the arrays, use pointers rather than array subscripts.
+
+    int num;
+    cout << "How many students will be included?\n";
+    cin >> num;
+
+    string* studentName = new string[num];
+    int* testScore = new int[num];
+
+    for (int i = 0; i < num; i++)
+    {
+        cout << "Name: ";
+        cin >> *(studentName + i);
+        cout << "Score: ";
+        cin >> *(testScore + i);
+    }
+
+    selectSort2(studentName, testScore, num);
+
+    showArray2(studentName, testScore, num);
+
 
 5. Pointer Rewrite
 The following function uses reference variables as parameters. Rewrite the function so
