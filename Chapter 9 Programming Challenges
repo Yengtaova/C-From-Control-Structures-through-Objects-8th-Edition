@@ -1,7 +1,115 @@
+
+int* arrAllocate(int size)
+{
+    int* myArr = new int[size];
+    for (int i = 0; i < size; i++)
+        myArr[i] = NULL;
+    return myArr;
+}
+
+void arrSelectSort(double* arr, int size)
+{
+    int startScan, minIndex;
+    double minElement;
+
+    for (startScan = 0; startScan < (size - 1); startScan++)
+    {
+        minIndex = startScan;
+        minElement = arr[startScan];
+      
+        for (int index = startScan + 1; index < size; index++)
+        {
+            if (arr[index] < minElement)
+            {
+                minElement = arr[index];
+                minIndex = index;
+            }
+        }
+        arr[minIndex] = arr[startScan];
+        arr[startScan] = minElement;
+
+    }
+}
+
+void showArray(const double* arr, int size)
+{
+    for (int count = 0; count < size; count++)
+        cout << *(arr+count) << " ";
+    cout << endl;
+}
+
+
+double* testScore(int size)
+{
+    double* test = new double[size];
+    cout << "Enter each test scores\n";
+
+    for (int i = 0; i < size; i++) {
+        cout << "Test #" << i + 1 << ": ";
+        while (cin >> *(test + i) && *(test + i) < 0)
+            cout << "No negative value. Enter again.\n";
+    }
+    return test;
+}
+
+double averageScore(double* arr, int size)
+{
+    double total = 0;
+    for (int i = 0; i < size; i++)
+        total += *(arr+i);
+
+    double average = total / size;
+    return average;
+}
+
+double averageScore2(double* arr, int size)
+{
+    double total = 0;
+    int count = 0; //to store the drop lowest score so we can use it to substract from size
+    for (int i = 0; i < size; i++) {
+        if (*(arr + i) == 0)
+            count++;
+        total += *(arr + i);
+    }
+
+    double average = total / (size-1);
+    return average;
+}
+
+void dropLowestScore(double* arr, int size)
+{
+    int i = 0;
+    int temp = 0;
+    double lowest = arr[i];
+    for (i = 1; i < size; i++)
+    {
+        if (arr[i] < lowest) {
+            lowest = arr[i];
+            temp = i;
+        }
+    }
+    //The lowest score we set it to 0
+    arr[temp] = NULL;
+}
+
+int main()
+{
+
 1. Array Allocator
 Write a function that dynamically allocates an array of integers. The function should
 accept an integer argument indicating the number of elements to allocate. The function
 should return a pointer to the array.
+
+    int num;
+    cout << "How many elements you would like to create for an array?\n";
+    cin >> num;
+
+    int* newArr = arrAllocate(num);
+
+    for (int i = 0; i < num; i++)
+        cout << *(newArr + i) << " ";
+
+    delete[] newArr;
 
 2. Test Scores #1
 Write a program that dynamically allocates an array large enough to hold a userdefined
@@ -12,9 +120,43 @@ scores and averages with appropriate headings. Use pointer notation rather than 
 notation whenever possible.
 Input Validation: Do not accept negative numbers for test scores.
 
+    int numTest;
+
+    cout << "How many test score? ";
+    cin >> numTest;
+
+    double* test = testScore(numTest);
+
+    arrSelectSort(test, numTest);
+
+    cout << "\nSorted test score ";
+    showArray(test, numTest);
+
+    double average = averageScore(test, numTest);
+
+    cout << "The average score of " << numTest << " tests are: " << average << endl;
+
 3. Drop Lowest Score
 Modify Problem 2 above so the lowest test score is dropped. This score should not be
 included in the calculation of the average.
+
+    int numTest;
+
+    cout << "How many test score? ";
+    cin >> numTest;
+
+    double* test = testScore(numTest);
+
+    arrSelectSort(test, numTest);
+
+    dropLowestScore(test, numTest);
+
+    cout << "\nSorted test score ";
+    showArray(test, numTest);
+
+    double average = averageScore2(test, numTest);
+
+    cout << "The average score of " << numTest << " tests are: " << average << endl;
 
 4. Test Scores #2
 Modify the program of Programming Challenge 2 to allow the user to enter name-score
@@ -56,3 +198,6 @@ return. If the array has no mode (none of the values occur more than once), the 
 should return −1. (Assume the array will always contain nonnegative values.)
 Demonstrate your pointer prowess by using pointer notation instead of array notation
 in this function.
+
+return 0;
+}
