@@ -203,6 +203,32 @@ void displayArray(const int* donations, const int numDonations)
         cout << setw(8) << right << *(donations + index) << " ";
     }
 }
+
+int modeFunc(int* arr, int size)
+{
+    
+    int maxValue = 0,
+        maxCount = 0,
+        i, j;
+
+    for (i = 0; i < size; i++)
+    {
+        int count = 0;
+        for (j = 0; j < size; j++)
+        {
+            if (*(arr + j) == *(arr + i))
+                count++;
+        }
+        if (count > maxCount)
+        {
+            maxCount = count;
+            maxValue = *(arr + i);
+        }
+        else if (maxCount == 1)
+            maxValue = -1;
+    }
+    return maxValue;
+}
 //----------------------------------------------------------------------------------------------------------------------------------------------
 int main()
 {
@@ -390,6 +416,17 @@ return. If the array has no mode (none of the values occur more than once), the 
 should return −1. (Assume the array will always contain nonnegative values.)
 Demonstrate your pointer prowess by using pointer notation instead of array notation
 in this function.
+
+    const int SIZE = 6;
+   
+    int numArr[SIZE] = { 4,2,4,3,2,2 };
+
+    int mode =  modeFunc(numArr, SIZE);
+
+    if (mode == -1)
+        cout << "The array has no mode value.\n";
+    else
+        cout << "The mode value of the array is " << mode << endl;
 
 9. Median Function
 In statistics, when a set of values is sorted in ascending or descending order, its median
