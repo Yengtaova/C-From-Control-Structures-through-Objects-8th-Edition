@@ -286,6 +286,32 @@ int* elemShifter(int* arr, int size)
     return newArr;      
 }
 
+void getInfor(int* student,const int size)
+{
+    cout << "Enter the number of movies each student saw\n";
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Student " << i + 1 << ": ";
+        cin >> *(student + i);
+    }
+}
+
+void display(int* student, int size)
+{
+    double total = 0;
+    for (int i = 0; i < size; i++)
+        total += *(student + i);
+    
+    double average = total / size;
+
+    double median = medianFunc(student, size);
+    int mode = modeFunc(student, size);
+
+    cout << "\nThe average number of movies students saw is " << average << endl;
+    cout << "The mode " << mode
+        << "\nThe median " << median << endl;
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------------------
 int main()
 {
@@ -588,5 +614,14 @@ C) Calculate and display the average, median, and mode of the values entered. (U
 the functions you wrote in Problems 8 and 9 to calculate the median and mode.)
 Input Validation: Do not accept negative numbers for input.
 
+    int numStudent;
+    cout << "How many students were surveyed?\n";
+    cin >> numStudent;
+
+    int* student = new int[numStudent];
+
+    getInfor(student, numStudent);
+
+    display(student, numStudent);
 return 0;
 }
