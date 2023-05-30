@@ -229,6 +229,34 @@ int modeFunc(int* arr, int size)
     }
     return maxValue;
 }
+
+double medianFunc(int* arr, int size)
+{
+    double median;
+    int middle;
+    if (size % 2 == 0) //if set contains the even number of values
+    {
+        middle = size / 2;
+        median = (*(arr + middle) + (*(arr + (middle - 1)))) / 2.0;
+    }
+    else
+    {
+        middle = size / 2;
+        median = *(arr + middle);
+    }
+    return median;
+}
+
+int* reverseArr(int* arr, int size)
+{
+    int* newArray = new int[size];
+    //copy the value to the new array
+    for (int i = 0, j = size-1; i < size, j >= 0; i++, j--)
+        *(newArray + i) = *(arr + j);
+
+    return newArray;
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------------------
 int main()
 {
@@ -440,11 +468,34 @@ as a double . (Assume the values in the array are already sorted.)
 Demonstrate your pointer prowess by using pointer notation instead of array notation
 in this function.
 
+    const int SIZE = 7;
+    //const int SIZE2 = 8;
+   
+    int numArr[SIZE] = { 1,3,3,6,7,8,9 };
+    //int numArr[SIZE2] = { 1,2,3,4,5,6,8,9 };
+    
+     double median = medianFunc(numArr, SIZE);
+
+     cout << "The median value of the array is " << median << endl;
+
 10. Reverse Array
 Write a function that accepts an int array and the array’s size as arguments. The function
 should create a copy of the array, except that the element values should be reversed
 in the copy. The function should return a pointer to the new array. Demonstrate the
 function in a complete program.
+
+    const int SIZE = 7;
+    int numArr[SIZE] = { 1,2,3,4,5,6,7 };
+
+    cout << "Original array\n";
+    for (int i = 0; i < SIZE; i++)
+        cout << numArr[i] << " ";
+
+    int* arrPtr = reverseArr(numArr, SIZE);
+
+    cout << "\nReverse array\n";
+    for (int i = 0; i < SIZE; i++)
+        cout << *(arrPtr + i) << " ";
 
 11. Array Expander
 Write a function that accepts an int array and the array’s size as arguments. The function
