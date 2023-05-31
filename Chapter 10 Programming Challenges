@@ -85,6 +85,42 @@ void capitalize(char* arr)
     }
 }
 
+
+void menu()
+{
+    cout << "\nPress the following choices\n";
+    cout << "A. Count the number of vowels in the string.\n"
+        << "B. Count the number of consonants in the string.\n"
+        << "C. Count both the vowels and consonants in the string.\n"
+        << "D. Enter another string.\n"
+        << "E. Exit the program.\n";
+}
+
+void vowelsFind(char* arr)
+{
+    int count = 0;
+    while (*arr != '\0')
+    {
+        if (*arr == 'a' || *arr == 'e' || *arr == 'i' || *arr == 'o' || *arr == 'u')
+            count++;
+        arr++;
+    }
+    cout << "The number of vowels in the string are " << count << endl;
+}
+
+void consFind(char* arr)
+{
+    int count = 0;
+    while (*arr != '\0')
+    {
+        //cout << *arr << endl;
+        if (isalpha(*arr) && (*arr != 'a') && (*arr != 'e') && (*arr != 'i') && (*arr != 'o') && (*arr != 'u'))
+            count++;
+        arr++;
+    }
+    cout << "The number of consonants in the string are " << count << endl;
+}
+
 int main()
 {
 1. String Length
@@ -191,6 +227,49 @@ D) Enter another string
 E) Exit the program
 3. The program performs the operation selected by the user and repeats until the user
 selects E to exit the program.
+
+    const int SIZE = 80;
+    char word[SIZE];
+    char input;
+
+    cout << "Please enter the string\n";
+    cin.getline(word, SIZE);
+
+    do {
+       
+        menu();
+        cin >> input;
+
+        while (toupper(input) != 'A' && toupper(input) != 'B' && toupper(input) != 'C' && toupper(input) != 'D' && toupper(input) != 'E')
+        {
+            cout << "Invalid input. Enter again: ";
+            cin >> input;
+        }
+
+
+        switch (input)
+        {
+        case 'a':
+        case 'A':
+            vowelsFind(word);
+            break;
+        case 'b':
+        case 'B':
+            consFind(word);
+            break;
+        case 'c':
+        case 'C':
+            vowelsFind(word);
+            consFind(word);
+            break;
+        case 'd':
+        case 'D':
+            cin.ignore();
+            cout << "Enter new string: ";
+            cin.getline(word, SIZE);
+            break;
+        }
+    } while (toupper(input) != 'E');
 
 7. Name Arranger
 Write a program that asks for the user’s first, middle, and last names. The names
