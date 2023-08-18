@@ -280,6 +280,34 @@ middle name. For example, if the user entered “ Carol Lynn Smith ”, it shoul
 “ Smith, Carol Lynn ” in the fourth array. Display the contents of the fourth array
 on the screen.
 
+    const int SIZE= 15,
+              SIZE2= 30;
+    
+    char first[SIZE];
+    char middle[SIZE];
+    char last[SIZE];
+    char fullName[SIZE2];
+    
+    cout << "Enter your first name: ";
+    cin.getline(first,SIZE);
+    
+    cout << "Middle name: ";
+    cin.getline(middle, SIZE);
+    
+    cout << "Last name: ";
+    cin.getline(last, SIZE);
+    
+    //add fullname with last name and comma and space
+    int maxChars = sizeof(fullName) - (strlen(fullName)+1);
+    
+    strncat(fullName, last, maxChars);
+    strncat(fullName, ", ", maxChars);
+    strncat(fullName, first, maxChars);
+    strncat(fullName, ", ", maxChars);
+    strncat(fullName, middle, maxChars);
+    
+    cout << "\n" <<fullName << endl;
+
 8. Sum of Digits in a String
 Write a program that asks the user to enter a series of single digit numbers with nothing
 separating them. Read the input as a C-string or a string object. The program should
