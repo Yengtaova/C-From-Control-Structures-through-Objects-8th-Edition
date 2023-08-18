@@ -315,6 +315,30 @@ display the sum of all the single-digit numbers in the string. For example, if t
 enters 2514, the program should display 12, which is the sum of 2, 5, 1, and 4. The
 program should also display the highest and lowest digits in the string.
 
+    const int SIZE = 10;
+    char number[SIZE];
+    
+    cout << "Please enter the your desire number (no more than 10 digit): ";
+    cin.getline(number, SIZE);
+    
+    int total =0;
+    int index = 0;
+    int high = number[index] - '0';
+    int low = number[index] - '0';
+    
+    while(number[index] != '\0'){
+        total += (number[index] - '0');  //since the char value is not an actual integer.                                //We will need to substract 0 out of it. If we use                              //string, we will use atoi()
+        if(number[index] - '0' > high)
+            high = number[index]- '0';
+        if(number[index] - '0' < low)
+            low = number[index] - '0';
+        index++;
+    }
+    
+    cout << "The sum of your number is " << total << endl;
+    cout << "The highest digit number is " <<  high << endl;
+    cout << "The lowest digit number is " << low << endl;
+
 9. Most Frequent Character
 Write a function that accepts either a pointer to a C-string, or a string object, as its
 argument. The function should return the character that appears most frequently in the
