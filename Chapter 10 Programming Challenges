@@ -181,6 +181,42 @@ void mostFrequent(char* letter){
     cout << "appearance in order.\n";
 }
 
+void reverse(char* string3){
+    bool check = false;
+    bool quit = true;
+    char* temp = new char[100];
+    char begin = *string3;
+    int size = 0;
+    //cout << begin << endl;
+    while(*string3 != '\0')
+    {
+        char* nxtPtr = (string3+1);
+        if(*nxtPtr == '\0')
+        {
+            char* a = string3; //point to the end character of the string and we do point reverse backward
+            while(quit){
+                //cout << *a << " ";
+                if(!check){
+                    strcpy(temp, a);
+                    check = true;
+                }else
+                    strncat(temp,a, 1);
+                if(*a == begin)
+                    quit = false;
+                a -= 1;
+            }
+        }
+        string3++;      //when the pointer reach the end of the word. It is at '\0'
+        size++;         //we need to keep track of the size of the word. So we can
+    }                   //point the pointer back to the beginning of the word again.
+   
+    string3 = string3-size;  //Here we subtract the size. So we go the beginning
+    while(*string3 != '\0'){  //copy the value from temp variable to the original
+        *string3 = *temp;     //argument. This way we edit the actual value.
+        string3++;
+        temp++;
+    }
+}
 
 int main()
 {
@@ -436,6 +472,12 @@ whether it is upper- or lowercase. If a character is uppercase, it should be con
 lowercase. Likewise, if a character is lowercase, it should be converted to uppercase.
 Test the functions by asking for a string in function main , then passing it to them in
 the following order: reverse , lower , and upper
+
+    char one[] = "I eat ice-cream today";
+    upper(one);
+    lower(one);
+    reverse(one);
+    cout << one <<endl;
 
 12. Password Verifier
 Imagine you are developing a software package that requires users to enter their own
