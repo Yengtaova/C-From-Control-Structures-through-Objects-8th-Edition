@@ -85,6 +85,14 @@ void capitalize(char* arr)
     }
 }
 
+void replaceSubstring(string string1, string string2, string string3){
+    
+    int pos = string1.find(string2);
+    int n = string2.length();
+    string1.replace(pos, n, string3);
+    
+    cout << string1 << endl;
+}
 
 void menu()
 {
@@ -410,6 +418,12 @@ string2 : “the”
 string3 : “that”
 With these three arguments, the function would return a string object with the value
 “that dog jumped over that fence.” Demonstrate the function in a complete program.
+
+    string one = "the dog jump over the fence",
+           two = "the",
+           three = "that";
+    
+    replaceSubstring(one, two, three);
 
 11. Case Manipulator
 Write a program with three functions: upper , lower , and reverse . The upper function
