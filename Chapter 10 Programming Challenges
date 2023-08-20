@@ -121,6 +121,59 @@ void consFind(char* arr)
     cout << "The number of consonants in the string are " << count << endl;
 }
 
+void mostFrequent(char* letter){
+    vector<char>alpha;
+    vector<int>time;
+    char temp;
+   
+    int prev = 0;
+    while(*letter != '\0'){
+        //we have this part so we don't count the space or period in it.
+        if(*letter == ' ' || *letter == '.'){
+            letter++;
+            continue;
+        }
+    
+        int count = 1;
+        char* nxtPtr = (letter+1); ;
+    
+        while(*nxtPtr != '\0')
+        {
+            if(tolower(*letter) == tolower(*nxtPtr)){
+                count++;
+            }
+    
+            nxtPtr++;
+        }
+        if(count > prev){
+            alpha.clear();  //clear the old content out if there is a new character
+            time.clear();   //with greater number
+            prev = count;
+            temp = tolower(*letter);
+            alpha.push_back(temp);
+            time.push_back(prev);
+        }
+        else if(count == prev)  //if there is a character with the same nunber of apperance
+        {
+            alpha.push_back(*letter);
+            time.push_back(count);
+        }
+        letter++;
+    }
+    
+    if(prev == 1)
+        cout << "Every character has the same number of appearance\n";
+    else
+        cout << "The most frequent letter in the string is ";
+        for(auto element : alpha)
+            cout << element << " ";
+    cout << "with ";
+        for(auto element : time)
+            cout << element << " ";
+    cout << "appearance in order.\n";
+}
+
+
 int main()
 {
 1. String Length
@@ -343,6 +396,8 @@ program should also display the highest and lowest digits in the string.
 Write a function that accepts either a pointer to a C-string, or a string object, as its
 argument. The function should return the character that appears most frequently in the
 string. Demonstrate the function in a complete program.
+
+     mostFrequent("I like to eat ice cream");
 
 10. replaceSubstring Function
 Write a function named replaceSubstring . The function should accept three C-string
