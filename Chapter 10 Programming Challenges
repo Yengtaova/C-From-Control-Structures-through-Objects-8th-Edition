@@ -488,6 +488,42 @@ passwords. Your software requires that users’ passwords meet the following cri
 Write a program that asks for a password and then verifies that it meets the stated
 criteria. If it doesn’t, the program should display a message telling the user why.
 
+    const int SIZE=21;
+    char password[SIZE];
+    
+    cout << "Please set your password (no more than 20 characters) " << endl;
+    cin.get(password,SIZE);
+    
+    int num = 0;
+    bool upper = false,
+         lower = false,
+         digit = false,
+         number = false;
+     
+    while(password[num] != '\0')
+    {
+        if(num >= 5)
+            number = true;
+        if(isupper(password[num]))
+           upper = true;
+        if(islower(password[num]))
+           lower = true;
+        if(isdigit(password[num]))
+            digit = true;
+        num++;
+    }
+    
+    if(number && upper && lower && digit)
+        cout << "The password is set\n";
+    else{
+        if(num < 6)
+            cout << "The password should has at least 6 characters\n";
+        if(!upper || !lower)
+            cout << "The password should have at least one upper case and one lower case\n";
+        if(!digit)
+            cout << "The password should have at least one digit\n";
+    }
+
 13. Date Printer
 Write a program that reads a string from the user containing a date in the form mm/dd/yyyy.
 It should print the date in the form March 12, 2014.
