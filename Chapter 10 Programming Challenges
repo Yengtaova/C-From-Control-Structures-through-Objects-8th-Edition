@@ -269,6 +269,20 @@ void checkDateValid(string& date)
     }while((month < 1) || (month > 12));
 }
 
+void wordSeperator2(string& word){
+    
+    int first = 0;
+    for(int i=0;i < word.size(); i++)
+    {
+        if(isupper(word[i]) && first == 0)
+            first++;
+        if(isupper(word[i+1])){
+            word[i+1] = tolower(word[i+1]);
+            word.insert(i+1, " ");
+        }
+    }
+}
+
 int main()
 {
 1. String Length
@@ -594,6 +608,12 @@ together, but the first character of each word is uppercase. Convert the sentenc
 string in which the words are separated by spaces and only the first word starts with
 an uppercase letter. For example the string “StopAndSmellTheRoses.” would be converted
 to “Stop and smell the roses.”
+
+    string sample= "StopAndSmellTheRoses.";
+
+    wordSeperator2(sample);
+    
+    cout << sample << endl;
 
 15. Character Analysis
 If you have downloaded this book’s source code from the companion Web site, you
