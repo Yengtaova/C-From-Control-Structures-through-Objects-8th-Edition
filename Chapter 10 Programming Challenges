@@ -665,6 +665,36 @@ and determines the following:
 • The number of lowercase letters in the file
 • The number of digits in the file
 
+    int upperCase = 0;
+    int lowerCase = 0;
+    int digit = 0;
+    
+    ifstream inputFile("text.txt");
+    
+    if(inputFile.is_open()){
+        char myChar;
+        while(inputFile){
+            myChar = inputFile.get();
+            if(isupper(myChar))
+                upperCase++;
+            else if(islower(myChar))
+                lowerCase++;
+            else if(isdigit(myChar))
+                digit++;
+        }
+    }
+    else
+        cout << "Can't read the file.\n";
+   
+    //Remember to close the file
+    inputFile.close();
+    
+    cout << "There are " << upperCase << " uppercase  letters, \n"
+         << lowerCase << " lowercase letters, and\n"
+         << digit << " number of digits in the file.\n";
+    
+    
+
 
 16. Pig Latin
 Write a program that reads a sentence as input and converts each word to “Pig Latin.”
