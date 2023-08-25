@@ -666,6 +666,55 @@ and determines the following:
 • The number of digits in the file
 
 
+16. Pig Latin
+Write a program that reads a sentence as input and converts each word to “Pig Latin.”
+In one version, to convert a word to Pig Latin you remove the first letter and place
+that letter at the end of the word. Then you append the string “ay” to the word. Here
+is an example:
+English: I SLEPT MOST OF THE NIGHT
+Pig Latin: IAY LEPTSAY OSTMAY FOAY HETAY IGHTNAY
+
+17. Morse Code Converter
+Morse code is a code where each letter of the English alphabet, each digit, and various
+punctuation characters are represented by a series of dots and dashes. Table 10-9
+shows part of the code.
+Write a program that asks the user to enter a string, and then converts that string to
+Morse code.
+
+18. Phone Number List
+Write a program that has an array of at least 10 string objects that hold people’s
+names and phone numbers. You may make up your own strings, or use the following:
+        "Alejandra Cruz, 555-1223"
+        "Joe Looney, 555-0097"
+        "Geri Palmer, 555-8787"
+        "Li Chen, 555-1212"
+        "Holly Gaddis, 555-8878"
+        "Sam Wiggins, 555-0998"
+        "Bob Kain, 555-8712"
+        "Tim Haynes, 555-7676"
+        "Warren Gaddis, 555-9037"
+        "Jean James, 555-4939"
+        "Ron Palmer, 555-2783"
+The program should ask the user to enter a name or partial name to search for in the
+array. Any entries in the array that match the string entered should be displayed. For
+example, if the user enters “ Palmer ” the program should display the following names
+from the list:
+Geri Palmer, 555-8787
+Ron Palmer, 555-2783
+
+19. Check Writer
+Write a program that displays a simulated paycheck. The program should ask the user to
+enter the date, the payee’s name, and the amount of the check (up to $10,000). It should
+then display a simulated check with the dollar amount spelled out, as shown here:
+Date: 11/24/2014
+Pay to the Order of: John Phillips $1920.85
+One thousand nine hundred twenty and 85 cents
+Be sure to format the numeric value of the check in fixed-point notation with two
+decimal places of precision. Be sure the decimal place always displays, even when the
+number is zero or has no fractional part. Use either C-strings or string class objects
+in this program.
+Input Validation: Do not accept negative dollar amounts, or amounts over $10,000.
+
 
 return 0;
 }
