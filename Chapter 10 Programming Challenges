@@ -269,6 +269,45 @@ void checkDateValid(string& date)
     }while((month < 1) || (month > 12));
 }
 
+void wordSeperator(char word[]){
+    
+    int count = 0;
+    int countWord = 0;
+    int space = 0;
+    bool first = true;
+
+    //We use this loop to count how many char in the string
+    while(word[countWord] != '\0')
+        countWord++;
+    
+    //create a string char to store the value from argument with the edited version
+    char temp[countWord];
+    
+    while(word[count] != '\0'){
+        //skip the first capital of the string
+        if(first && isupper(word[count])){
+            strncat(temp, &word[count], 1);
+            count++;
+            first = false;
+            continue;
+        }
+        //if we run accross the capital letter
+        else if(isupper(word[count]))
+        {
+            strncat(temp, " ", 1);  //add space
+            space++;    //keep track of space added to the new string so we can make a copy back to the original argument with the correct size
+            char lower = tolower(word[count]);  //convert the lowercase and add it to temp string
+            strncat(temp, &lower, 1);
+        }
+        else  //if there is nothing just add it to the string
+            strncat(temp, &word[count], 1);
+        count++;
+    }
+    //copy the edited one back to original
+    strncpy(word, temp, count+space);
+}
+
+//#################### String object version ###################
 void wordSeperator2(string& word){
     
     int first = 0;
@@ -282,6 +321,7 @@ void wordSeperator2(string& word){
         }
     }
 }
+
 
 int main()
 {
@@ -611,8 +651,9 @@ to “Stop and smell the roses.”
 
     string sample= "StopAndSmellTheRoses.";
 
+    wordSeperator(sample);
     wordSeperator2(sample);
-    
+
     cout << sample << endl;
 
 15. Character Analysis
