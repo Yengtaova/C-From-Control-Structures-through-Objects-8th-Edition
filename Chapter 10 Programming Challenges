@@ -323,6 +323,52 @@ void wordSeperator2(string& word){
 }
 
 
+string trim(string str)
+{
+    //erase 1 character at index 0 if it is a space
+    while(str[0] == ' ')
+        str.erase(0,1);
+    
+    return str;
+}
+
+string getWord(string& str)
+{
+    //trim any spaces from the beginning of the string
+    str = trim(str);
+    
+    //get the beginning of the word by locating the first space
+    //or until the end of the string is reached
+    int i = 0;
+    while(str[i] != ' ' && i < str.size())
+        i++;
+    //i now equals the length of the word
+    //so copy the part of the string from the beginning to the i
+    string word = str.substr(0, i);
+    
+    //erase the word from the string after we go through it
+    str.erase(0, i);
+    
+    return word;
+}
+
+string translatePigLatin(string word)
+{
+    //get the first character
+    char first = word[0];
+    
+    //append the letter to the end of the word
+    word.append(1, first);
+    
+    //append the ay to the end of the word
+    word.append("ay");
+    
+    //delete the first character
+    word.erase(0,1);
+    
+    return word;
+}
+
 int main()
 {
 1. String Length
@@ -703,6 +749,32 @@ that letter at the end of the word. Then you append the string “ay” to the w
 is an example:
 English: I SLEPT MOST OF THE NIGHT
 Pig Latin: IAY LEPTSAY OSTMAY FOAY HETAY IGHTNAY
+
+    string str; //user entered sentence
+    string pigLatin;  //translated sentence
+    
+    //get the input
+    cout << "Enter the sentence that you want to translated into Pig Latin:\n";
+    getline(cin, str);
+    
+    //translate
+    //every time we use getWord() the string will get lesser, until nothing left
+    while(str.size() > 0)
+    {
+        //get the word from the sentence
+        string word = getWord(str);
+        
+        //translate word to pig latin
+        word = translatePigLatin(word);
+        
+        //add the word to our translated string
+        pigLatin += word + " ";
+    }
+    
+    //display the translation
+    cout << pigLatin << endl;
+    getchar();  //we use here just to freeze the screen
+    
 
 17. Morse Code Converter
 Morse code is a code where each letter of the English alphabet, each digit, and various
